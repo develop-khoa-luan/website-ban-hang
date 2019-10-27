@@ -59,3 +59,15 @@ Route::get('/edit-brand-product/{brand_product_id}','BrandProduct@edit_brand_pro
 Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_brand_product' );
 //delete brand product
 Route::get('/delete-brand-product/{brand_product_id}','BrandProduct@delete_brand_product' );
+
+// Product
+Route::get('/add-product','ProductController@add_product' );
+Route::get('/all-product','ProductController@all_product' );
+Route::post('/save-product','ProductController@save_product' );
+Route::get('/unactive-product/{product_id}','ProductController@unactive_product' );
+Route::get('/active-product/{product_id}','ProductController@active_product' );
+//edit product
+Route::get('/edit-product/{product_id}','ProductController@edit_product' );
+Route::post('/update-product/{product_id}','ProductController@update_product' );
+//delete product
+Route::get('/delete-product/{product_id}','ProductController@delete_product' );
