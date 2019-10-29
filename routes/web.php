@@ -17,6 +17,14 @@ Route::get('/','HomeController@index' );
 
 Route::get('/trang-chu', 'HomeController@index'  );
 
+// Category Index page
+Route::get('/danh-muc-san-pham/{category_id}', 'CategoryProduct@show_category_home'  );
+
+// Brand Index page
+Route::get('/thuong-hieu-san-pham/{brand_id}', 'BrandProduct@show_brand_home'  );
+
+Route::get('/chi-tiet-san-pham/{product_id}', 'ProductController@details_product'  );
+
 // Back-end
 
 Route::get('/admin', 'AdminController@index');

@@ -63,7 +63,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="public/frontend/images/logo.png" alt="" /></a>
+							<a href="index.html"><img src="{{asset('public/frontend/images/logo.png')}}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -171,8 +171,8 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="public/frontend/images/girl1.jpg" class="girl img-responsive" alt="" />
-									<img src="public/frontend/imagespricing.png" class="pricing" alt="" />
+									<img src="{{asset('public/frontend/images/girl1.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('public/frontend/imagespricing.png')}}" class="pricing" alt="" />
 								</div>
 							</div>
 							<div class="item">
@@ -184,8 +184,8 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="public/frontend/images/girl2.jpg" class="girl img-responsive" alt="" />
-									<img src="public/frontend/images/pricing.png" class="pricing" alt="" />
+									<img src="{{asset('public/frontend/images/girl2.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('public/frontend/images/pricing.png')}}" class="pricing" alt="" />
 								</div>
 							</div>
 
@@ -198,8 +198,8 @@
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="public/frontend/images/girl3.jpg" class="girl img-responsive" alt="" />
-									<img src="public/frontend/images/pricing.png" class="pricing" alt="" />
+									<img src="{{asset('public/frontend/images/girl3.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('public/frontend/images/pricing.png')}}" class="pricing" alt="" />
 								</div>
 							</div>
 
@@ -287,7 +287,7 @@
 
 						<div class="shipping text-center">
 							<!--shipping-->
-							<img src="public/frontend/images/shipping.jpg" alt="" />
+							<img src="{{asset('public/frontend/images/shipping.jpg')}}" alt="" />
 						</div>
 						<!--/shipping-->
 					</div>
