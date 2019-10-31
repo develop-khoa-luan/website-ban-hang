@@ -79,3 +79,12 @@ Route::get('/edit-product/{product_id}','ProductController@edit_product' );
 Route::post('/update-product/{product_id}','ProductController@update_product' );
 //delete product
 Route::get('/delete-product/{product_id}','ProductController@delete_product' );
+
+
+// Cart Product
+Route::post('/save-cart','CartController@save_cart' );
+Route::get('/show-cart','CartController@show_cart' );
+
+Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart' );
+
+Route::post('/update-cart-quanlity','CartController@update_cart_quanlity' );
