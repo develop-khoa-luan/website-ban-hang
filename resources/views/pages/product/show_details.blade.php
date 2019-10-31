@@ -45,15 +45,19 @@
             <h2>{{$value->product_name}}</h2> 
             <p>ID Product: {{$value->product_id}}</p>
             <img src="images/product-details/rating.png" alt="" />
-            <span>
-                <span>{{number_format($value->product_price).' '.'VND'}}</span>
-                <label>Quantity:</label>
-                <input type="number" min="0" value="1" />
-                <button type="button" class="btn btn-fefault cart">
-                    <i class="fa fa-shopping-cart"></i>
-                    Add to cart
-                </button>
-            </span>
+        <form action="{{URL::to('/save-cart')}}" method="POST">
+                {{csrf_field()}}
+                <span>
+                    <span>{{number_format($value->product_price).' '.'VND'}}</span>
+                    <label>Quantity:</label>
+                    <input name="qty" type="number" min="0" value="1" />
+                    <input name="product_id_hidden" type="hidden" value="{{$value->product_id}}" />
+                    <button type="submit" class="btn btn-fefault cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        Add to cart
+                    </button>
+                </span>
+            </form>
             <p><b>Availability:</b> In Stock</p>
             <p><b>Condition:</b> New</p>
             <p><b>Brand:</b> {{$value->brand_name}} </p>
