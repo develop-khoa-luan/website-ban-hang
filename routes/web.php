@@ -91,11 +91,11 @@ Route::post('/update-cart-quanlity','CartController@update_cart_quanlity' );
 
 // Cart Product Checkout
 Route::get('/login-checkout','CheckoutController@login_checkout' );
-
+Route::get('/logout-checkout','CheckoutController@logout_checkout' );
+Route::post('/login-customer','CheckoutController@login_customer' );
 // add customer
 Route::post('/add-customer','CheckoutController@add_customer' );
 Route::get('/checkout','CheckoutController@checkout' );
 
 // input delivery info
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer' );
-

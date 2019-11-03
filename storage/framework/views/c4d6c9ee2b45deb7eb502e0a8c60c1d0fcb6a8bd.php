@@ -63,7 +63,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="<?php echo e(asset('public/frontend/images/logo.png')); ?>" alt="" /></a>
+							<a href="trang-chu"><img src="<?php echo e(asset('public/frontend/images/logo.png')); ?>" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -112,7 +112,7 @@
 									$customer_id = Session::get('customer_id');
 									if($customer_id != NULL){
 								?>
-								<li><a href="<?php echo e(URL::to('/trang-chu')); ?>"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+								<li><a href="<?php echo e(URL::to('/logout-checkout')); ?>"><i class="fa fa-lock"></i> Đăng xuất</a></li>
 								<?php
 								}else{	
 								?>

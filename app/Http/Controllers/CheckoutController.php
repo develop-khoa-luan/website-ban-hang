@@ -33,7 +33,7 @@ class CheckoutController extends Controller
         $customer_id = DB::table('tbl_customer')->insertGetId($data);
         Session::put('customer_id',$customer_id);
         Session::put('customer_name',$request->customer_name);
-        return Redirect('/checkout');
+        return Redirect::to('/checkout');
         
     }
 
@@ -55,7 +55,7 @@ class CheckoutController extends Controller
 
         $shipping_id = DB::table('tbl_shipping')->insertGetId($data);
         Session::put('shipping_id',$shipping_id);
-        return Redirect('/payment');
+        return Redirect::to('/payment');
         
     }
 
@@ -63,5 +63,21 @@ class CheckoutController extends Controller
         
     }
 
-    //public function logout-checkout
+    public function logout_checkout(){
+        Session::flush();
+        return Redirect::to('/login_checkout');
+    }
+    public function login_customer(Request $request){
+        $email = $request->email_account;
+        $password = md5($request->password_account);
+        $result = DB::table('tbl_customers')->where('customer_email', $email)->where('password_account', $password)->first();
+        if($result)
+        {
+            Session::put('customer_id',$customer_id);
+            return Redirect::to('/checkout');
+        }else{
+            return Redirect::to('/login-checkout');
+        }
+        
+    }
 }
