@@ -62,4 +62,6 @@ class CheckoutController extends Controller
     public function payment(){
         
     }
+
+    //public function logout-checkout
 }
