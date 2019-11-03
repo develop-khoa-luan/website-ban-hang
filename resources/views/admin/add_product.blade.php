@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nội dung sản phẩm</label>
-                            <textarea style="resize: none" rows="8" name="product_content" class="form-control" id="exampleInputPassword1"></textarea>
+                            <textarea style="resize: none" rows="8" name="product_content" class="form-control" id="contentWithCkeditor"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Hiển thị</label>

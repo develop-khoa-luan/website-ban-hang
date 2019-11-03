@@ -17,6 +17,8 @@ Route::get('/','HomeController@index' );
 
 Route::get('/trang-chu', 'HomeController@index'  );
 
+Route::post('/tim-kiem', 'HomeController@search'  );
+
 // Category Index page
 Route::get('/danh-muc-san-pham/{category_id}', 'CategoryProduct@show_category_home'  );
 
@@ -91,11 +93,17 @@ Route::post('/update-cart-quanlity','CartController@update_cart_quanlity' );
 
 // Cart Product Checkout
 Route::get('/login-checkout','CheckoutController@login_checkout' );
-
+Route::get('/logout-checkout','CheckoutController@logout_checkout' );
+Route::post('/login-customer','CheckoutController@login_customer' );
 // add customer
 Route::post('/add-customer','CheckoutController@add_customer' );
 Route::get('/checkout','CheckoutController@checkout' );
+Route::get('/payment','CheckoutController@payment' );
+Route::post('/order-place','CheckoutController@order_place' );
 
 // input delivery info
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer' );
 
+// manage order
+Route::get('/manage-order','CheckoutController@manage_order' );
+Route::get('/view-order/{order_id}','CheckoutController@view_order' );
