@@ -267,11 +267,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href=<?php echo e(URL::to( '/dashboard')); ?>>
+                            <a href=<?php echo e(URL::to( '/dashboard')); ?>>
                         <i class="fa fa-dashboard"></i>
                         <span>Tổng quan</span>
                     </a>
                         </li>
+
+                        <li class="sub-menu">
+                                <a href="javascript:;">
+                            <i class="fa fa-book"></i>
+                            <span>Đơn hàng</span>
+                        </a>
+                                <ul class="sub">
+                                    <li><a href="<?php echo e(URL::to('/manage-order')); ?>">Quản lý đơn hàng</a></li>
+                                </ul>
+                            </li>
 
                         <li class="sub-menu">
                             <a href="javascript:;">
@@ -396,6 +406,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- calendar -->
     <script type="text/javascript" src="public/backend/js/monthly.js"></script>
+    <script type="text/javascript" src="public/backend/ckeditor/ckeditor.js"></script>
+    <script>
+            CKEDITOR.replace( 'contentWithCkeditor' );
+    </script>
     <script type="text/javascript">
         $(window).load( function() {
 

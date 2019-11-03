@@ -63,11 +63,13 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="trang-chu"><img src="{{asset('public/frontend/images/logo.png')}}" alt="" /></a>
+							<a href="{{URL::to('/trang-chu')}}"><img src="{{asset('public/frontend/images/logo.png')}}"
+									alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+								<button type="button" class="btn btn-default dropdown-toggle usa"
+									data-toggle="dropdown">
 									USA
 									<span class="caret"></span>
 								</button>
@@ -78,7 +80,8 @@
 							</div>
 
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+								<button type="button" class="btn btn-default dropdown-toggle usa"
+									data-toggle="dropdown">
 									DOLLAR
 									<span class="caret"></span>
 								</button>
@@ -95,28 +98,38 @@
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
 								<?php
 									$customer_id = Session::get('customer_id');
-									if($customer_id != NULL){
+									$shippping_id = Session::get('shipping_id');
+									if($customer_id != NULL && $shippping_id == NULL){
 								?>
-								<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+								<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+								</li>
+								<?php
+									}elseif ($customer_id != NULL && $shippping_id != NULL) {
+										?>
+								<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+								</li>
 								<?php
 								}else{	
 								?>
-								<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+								<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
+										toán</a></li>
 								<?php
 								}
 								?>
-							
-								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+								</li>
 
 								<?php
 									$customer_id = Session::get('customer_id');
 									if($customer_id != NULL){
 								?>
-								<li><a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+								<li><a href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất</a>
+								</li>
 								<?php
 								}else{	
 								?>
-								<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+								<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-lock"></i> Đăng nhập</a>
+								</li>
 								<?php
 								}
 								?>
@@ -132,9 +145,10 @@
 			<!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9">
+					<div class="col-sm-7">
 						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<button type="button" class="navbar-toggle" data-toggle="collapse"
+								data-target=".navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -160,10 +174,15 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search" />
-						</div>
+					<div class="col-sm-5">
+						<form action="{{URL::to('/tim-kiem')}}" method="POST">
+							{{ csrf_field() }}
+							<div class="search_box pull-right">
+								<input type="text" name="keywords_submit" placeholder="Tìm kiếm sản phầm..." />
+								<button class="btn btn-primary" type="submit" name="search_keywords"
+									style="margin: 0%; margin-left: 0%"><i class="fa fa-search"></i></button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -189,12 +208,14 @@
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
 									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+										incididunt ut labore et dolore magna
 										aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{asset('public/frontend/images/girl1.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('public/frontend/images/girl1.jpg')}}" class="girl img-responsive"
+										alt="" />
 									<img src="{{asset('public/frontend/imagespricing.png')}}" class="pricing" alt="" />
 								</div>
 							</div>
@@ -202,12 +223,14 @@
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
 									<h2>100% Responsive Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+										incididunt ut labore et dolore magna
 										aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{asset('public/frontend/images/girl2.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('public/frontend/images/girl2.jpg')}}" class="girl img-responsive"
+										alt="" />
 									<img src="{{asset('public/frontend/images/pricing.png')}}" class="pricing" alt="" />
 								</div>
 							</div>
@@ -216,12 +239,14 @@
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
 									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+										incididunt ut labore et dolore magna
 										aliqua. </p>
 									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
 								<div class="col-sm-6">
-									<img src="{{asset('public/frontend/images/girl3.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('public/frontend/images/girl3.jpg')}}" class="girl img-responsive"
+										alt="" />
 									<img src="{{asset('public/frontend/images/pricing.png')}}" class="pricing" alt="" />
 								</div>
 							</div>
@@ -276,7 +301,9 @@
 								</div> --}} @foreach($category as $key => $cate)
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h4 class="panel-title"><a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></h4>
+										<h4 class="panel-title"><a
+												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+										</h4>
 									</div>
 								</div>
 								@endforeach
@@ -290,7 +317,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									@foreach($brand as $key => $brand)
-									<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span class="pull-right"></span>{{$brand->brand_name}}</a></li>
+									<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
+												class="pull-right"></span>{{$brand->brand_name}}</a></li>
 									@endforeach
 								</ul>
 							</div>
@@ -301,8 +329,8 @@
 							<!--price-range-->
 							<h2>Price Range</h2>
 							<div class="well text-center">
-								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]"
-								 id="sl2"><br />
+								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600"
+									data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
 								<b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
 							</div>
 						</div>
@@ -462,7 +490,8 @@
 							<h2>About Shopper</h2>
 							<form action="#" class="searchform">
 								<input type="text" placeholder="Your email address" />
-								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+								<button type="submit" class="btn btn-default"><i
+										class="fa fa-arrow-circle-o-right"></i></button>
 								<p>Get the most recent updates from <br />our site and be updated your self...</p>
 							</form>
 						</div>
@@ -476,7 +505,8 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-right">Designed by <span><a target="_blank"
+								href="http://www.themeum.com">Themeum</a></span></p>
 				</div>
 			</div>
 		</div>
