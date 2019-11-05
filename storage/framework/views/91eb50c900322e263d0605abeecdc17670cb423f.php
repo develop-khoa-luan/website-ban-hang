@@ -3,7 +3,7 @@
     <div class="container">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
-                <li><a href="<?php echo e(URL::to('/')); ?>">Trang chủ</a></li>
+                <li><a href="<?php echo e(URL::to('/trang-chu')); ?>">Home</a></li>
                 <li class="active">Thanh toán giỏ hàng</li>
             </ol>
         </div>
@@ -83,7 +83,7 @@
             <span>
                 <label><input type="checkbox" name="payment_option" value="3"> Thanh toán thẻ ghi nợ</label>
             </span>
-            <input type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-primary btn-sm">
+            <input type="submit" value="Đặt hàng" style="width: 80px; height: 30px; margin-top: -10px" name="send_order_place" class="btn btn-primary btn-sm">
         </div>
     </form>
     </div>

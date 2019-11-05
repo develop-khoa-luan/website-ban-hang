@@ -13,19 +13,7 @@
 
         <div class="shopper-informations">
             <div class="row">
-                {{-- <div class="col-sm-3">
-                    <div class="shopper-info">
-                        <p>Shopper Information</p>
-                        <form>
-                            <input type="text" placeholder="Display Name">
-                            <input type="text" placeholder="User Name">
-                            <input type="password" placeholder="Password">
-                            <input type="password" placeholder="Confirm password">
-                        </form>
-                        <a class="btn btn-primary" href="">Get Quotes</a>
-                        <a class="btn btn-primary" href="">Continue</a>
-                    </div>
-                </div> --}}
+                
                 <div class="col-sm-12 clearfix">
                     <div class="bill-to">
                         <p>Điền thông tin giao hàng</p>
@@ -45,7 +33,7 @@
                				
             </div>
         </div>
-        <div class="review-payment">
+        {{-- <div class="review-payment">
             <h2>Xem lại giỏ hàng</h2>
         </div>
 
@@ -59,7 +47,7 @@
                 <span>
                     <label><input type="checkbox"> Paypal</label>
                 </span>
-            </div>
+            </div> --}}
     </div>
 </section>
 

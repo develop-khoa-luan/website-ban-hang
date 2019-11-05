@@ -1,23 +1,20 @@
 <?php $__env->startSection('content'); ?>
 <section id="cart_items">
-    <div class="container">
-        <div class="breadcrumbs">
+    <div class="container" style="width: 100%">
+        <div class="breadcrumbs" >
             <ol class="breadcrumb">
-                <li><a href="<?php echo e(URL::to('/')); ?>">Trang chủ</a></li>
+                <li><a href="<?php echo e(URL::to('/')); ?>" >Home</a></li>
                 <li class="active">Giỏ hàng</li>
             </ol>
         </div>
         <div class="table-responsive cart_info">
             <?php
                 $content = Cart::content();
-                // echo '<pre>';
-                // print_r($content);
-                // echo '<pre>';
+ 
             ?>
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
-                        
                         <td class="description">Tên sản phẩm</td>
                         <td class="price">Giá</td>
                         <td class="quantity">Số lượng</td>
@@ -70,7 +67,7 @@
     <div class="container">
         
         <div class="row">
-            
+
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
