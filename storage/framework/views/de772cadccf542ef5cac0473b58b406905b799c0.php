@@ -4,7 +4,7 @@
 <div class="features_items">
     <!--features_items-->
     <?php $__currentLoopData = $category_name; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key =>$category_name_show): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <h2 class="title text-center"><?php echo e($category_name_show->category_name); ?></h2>
+    <h2 class="title text-center" style="margin-top: 10px"><?php echo e($category_name_show->category_name); ?></h2>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	
     <?php $__currentLoopData = $category_by_id; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

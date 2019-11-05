@@ -14,10 +14,7 @@
 	<link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
 	<link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
 	<link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
-	<!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+
 	<link rel="shortcut icon" href="images/ico/favicon.ico">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -37,7 +34,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> (+84) 0903768379</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> 15520520@gm.uit.edu.vn</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> 1997Store@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -66,31 +63,7 @@
 							<a href="{{URL::to('/trang-chu')}}"><img src="{{asset('public/frontend/images/logo.png')}}"
 									alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa"
-									data-toggle="dropdown">
-									USA
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
-								</ul>
-							</div>
-
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa"
-									data-toggle="dropdown">
-									DOLLAR
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canadian Dollar</a></li>
-									<li><a href="#">Pound</a></li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -160,7 +133,12 @@
 								<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="shop.html">Products</a></li>
+										@foreach($category as $key => $cate)
+											<li><a
+												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
+										@endforeach
+								
+								
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -169,7 +147,7 @@
 										<li><a href="blog-single.html">Blog Single</a></li>
 									</ul>
 								</li>
-								<li><a href="404.html">Giỏ hàng</a></li>
+								<li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li>
 								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>
 						</div>
@@ -277,35 +255,14 @@
 							<!--category-productsr-->
 							<div class="panel panel-default">
 
-								{{--
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
-										</a>
-										</h4>
-									</div>
-									<div id="womens" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul>
-												<li><a href="#">Fendi</a></li>
-												<li><a href="#">Guess</a></li>
-												<li><a href="#">Valentino</a></li>
-												<li><a href="#">Dior</a></li>
-												<li><a href="#">Versace</a></li>
-											</ul>
+								@foreach($category as $key => $cate)
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title"><a
+													href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+											</h4>
 										</div>
 									</div>
-								</div> --}} @foreach($category as $key => $cate)
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title"><a
-												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
-										</h4>
-									</div>
-								</div>
 								@endforeach
 							</div>
 						</div>
@@ -317,8 +274,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									@foreach($brand as $key => $brand)
-									<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
-												class="pull-right"></span>{{$brand->brand_name}}</a></li>
+										<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
+													class="pull-right"></span>{{$brand->brand_name}}</a></li>
 									@endforeach
 								</ul>
 							</div>
@@ -329,9 +286,9 @@
 							<!--price-range-->
 							<h2>Price Range</h2>
 							<div class="well text-center">
-								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600"
-									data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
-								<b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000"
+									data-slider-step="5" data-slider-value="[200000,800000]" id="sl2"><br />
+								<b class="pull-left">0 VND</b> <b class="pull-right">1.000.000 VND</b>
 							</div>
 						</div>
 						<!--/price-range-->
@@ -427,7 +384,7 @@
 					<div class="col-sm-3">
 						<div class="address">
 							<img src="public/frontend/images/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+							<p> HCMC, VietNam</p>
 						</div>
 					</div>
 				</div>
@@ -504,9 +461,9 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+					<p class="pull-left">Copyright © 2019 1997Store Inc. All rights reserved.</p>
 					<p class="pull-right">Designed by <span><a target="_blank"
-								href="http://www.themeum.com">Themeum</a></span></p>
+								href="#">1997Store</a></span></p>
 				</div>
 			</div>
 		</div>

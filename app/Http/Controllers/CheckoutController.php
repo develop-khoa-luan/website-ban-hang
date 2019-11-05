@@ -123,14 +123,20 @@ class CheckoutController extends Controller
         }
 
         if ($data['payment_method'] == 1) {
-            echo 'Thanh toán bằng thẻ ATM';
+            $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+            Cart::destroy();
+            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
         } elseif ($data['payment_method'] == 2) {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             Cart::destroy();
             return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
         } else {
-            echo 'thanh toán bằng thẻ ghi nợ';
+            $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+            Cart::destroy();
+            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
         }
     }
     public function manage_order()

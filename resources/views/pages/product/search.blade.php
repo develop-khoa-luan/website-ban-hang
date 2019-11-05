@@ -4,7 +4,7 @@
 <div class="features_items">
 	<!--features_items-->
 	<h2 class="title text-center">Kết quả tìm kiếm</h2>
-	{{-- @foreach($search_product as $key => $product)
+	 @foreach($search_product as $key => $product)
 	<div class="col-sm-4">
 		<div class="product-image-wrapper">
 			<div class="single-products">
@@ -23,7 +23,7 @@
 			</div>
 		</div>
     </div>
-    @endforeach --}}
+    @endforeach
 
 </div>
 <!--features_items-->

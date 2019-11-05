@@ -4,7 +4,7 @@
 <div class="features_items">
     <!--features_items-->
     @foreach ($category_name as $key =>$category_name_show)
-    <h2 class="title text-center">{{$category_name_show->category_name}}</h2>
+    <h2 class="title text-center" style="margin-top: 10px">{{$category_name_show->category_name}}</h2>
     @endforeach
 	
     @foreach($category_by_id as $key => $product)
