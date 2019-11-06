@@ -273,7 +273,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="public/backend/js/sb-admin-2.min.js"></script>
-
+  <script type="text/javascript" src="public/backend/ckeditor/ckeditor.js"></script>
   <!-- Page level plugins -->
   <script src="public/backend/vendor/chart.js/Chart.min.js"></script>
 

@@ -79,13 +79,13 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
-                        <button type="submit" id="btn-public" class="btn btn-success col-12">Success</button>
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
                     </div>
                     <div class="col-12">
-                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Secondary</button>
+                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
                     </div>
                     <div class="col-12">
-                        <button type="button" class="btn btn-danger col-12 mt-2">Danger</button>
+                        <a href="{{URL::to('/all-product')}}"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
                     </div>
                 </div>
             </div>
