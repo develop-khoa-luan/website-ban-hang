@@ -22,7 +22,6 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <!--/head-->
-
 <body>
 	<header id="header">
 		<!--header-->
@@ -69,31 +68,32 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
-								<?php
-									$customer_id = Session::get('customer_id');
-									$shippping_id = Session::get('shipping_id');
-									if($customer_id != NULL && $shippping_id == NULL){
+								 <?php
+									// $customer_id = Session::get('customer_id');
+									// $shippping_id = Session::get('shipping_id');
+								//	if($customer_id != NULL && $shippping_id == NULL){
 								?>
-								<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-								</li>
+								{{-- <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+								</li> --}}
 								<?php
-									}elseif ($customer_id != NULL && $shippping_id != NULL) {
+								//	}elseif ($customer_id != NULL && $shippping_id != NULL) {
 										?>
-								<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-								</li>
+								{{-- <li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+								</li> --}}
 								<?php
-								}else{	
+								//}else{	
 								?>
-								<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
-										toán</a></li>
+								{{-- <li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
+										toán</a></li> --}}
 								<?php
-								}
+								//}
 								?>
 								<?php
 									$count = Cart::content()->count();
 								?>
 								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
-								class="text-danger count_cart" style="font-size: 17px"> {{$count}}</sup></i> Giỏ hàng</a>
+												class="text-danger count_cart" style="font-size: 17px">
+												{{$count}}</sup></i> Giỏ hàng</a>
 								</li>
 
 								<?php
@@ -481,6 +481,14 @@
 	<script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
 	<script src="{{asset('public/frontend/custom-js/custom-layout.js')}}"></script>
+	<?php 
+	$alert_successful = Session::get('alert_successful');
+	if($alert_successful == "1"){
+		echo '<script type="text/javascript">';
+		echo ' alert("Thêm vào giỏ hàng thành công")';
+		echo '</script>';
+	}
+	?>
 </body>
 
 </html>

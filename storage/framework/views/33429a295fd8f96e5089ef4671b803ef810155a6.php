@@ -24,25 +24,23 @@
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $content; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v_content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    
                     <tr>
                         
                         <td class="cart_description">
-                            <h4><a href=""><?php echo e($v_content->name); ?></a></h4>
+                            <a href="<?php echo e(URL::to('/chi-tiet-san-pham/'.$v_content->id)); ?>"><h5><?php echo e($v_content->name); ?></h5></a>
                         </td>
                         <td class="cart_price">
-                            <p><?php echo e(number_format($v_content->price).' '.'VND'); ?></p>
+                            <?php echo e(number_format($v_content->price).' '.'VND'); ?>
+
                         </td>
                         <td class="cart_quantity">
                             <form action="<?php echo e(URL::to('/update-cart-quanlity')); ?>" method="POST">
                                 <?php echo e(csrf_field()); ?>
 
-                                <input class="cart_quantity_input" type="text" name="cart_qty" value="<?php echo e($v_content->qty); ?>">
+                                <input class="cart_quantity_input" type="number" name="cart_qty" value="<?php echo e($v_content->qty); ?>">
                                 
                                 <input type="hidden" value="<?php echo e($v_content->rowId); ?>" name="rowId_cart" id="">
-                                <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default">
-                                
-                                
+                                <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
                             </form>
                         </td>
                         <td class="cart_total">
