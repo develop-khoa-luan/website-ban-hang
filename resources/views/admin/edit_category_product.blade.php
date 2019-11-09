@@ -1,40 +1,57 @@
 @extends('admin_layout')
 @section('admin_content')
-
-<div class="col-lg-12">
-    <section class="panel">
-        <header class="panel-heading">
-            Cập nhật danh mục sản phẩm
-            
-        </header>
-        <?php
+<?php
                 $message = Session::get('message');
                 if($message){
                     echo '<span style="color:red">' .$message. '</span>';
                     Session::put('message',null);
                 }
-        ?>
-        <div class="panel-body">
-            @foreach ($edit_category_product as $key => $edit_value)
-                
-            
-            <div class="position-center">
-                <form role="form" action="{{URL::to('/update-category-product/'.$edit_value ->category_id)}}" method="POST">
-                    {{csrf_field()}}
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tên danh mục</label>    
-                    <input type="text" value="{{$edit_value->category_name}}" name="category_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
+                ?>
+        <h3 class="h3 text-primary mt-4 mb-4">Cập nhập danh mục sản phẩm</h3>
+        @foreach ($edit_category_product as $key => $edit_value)
+        <form role="form" action="{{URL::to('/update-category-product/'.$edit_value ->category_id)}}" method="POST">
+            {{csrf_field()}}
+    <div class="row">
+        <div class="col-lg-9 col-md-8">
+            <div class="card m-1 border border-primary">
+                <div class="card-header p-2 text-primary border-botton border-primary">
+                    Nhập thông tin danh mục
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Mô tả danh mục</label>
-                    <textarea style="resize: none" rows = "8" name="category_product_desc" class="form-control" id="exampleInputPassword1"> {{$edit_value->category_desc}}
-                    </textarea>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tên danh mục</label>
+                        <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1"
+                        value="{{$edit_value->category_name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mô tả danh mục</label>
+                        <textarea style="resize: none" rows="4" name="category_product_desc" class="form-control"
+                            id="exampleInputPassword1">{{$edit_value->category_desc}}</textarea>
+                    </div>
+                    {{-- Use Jquery to change the category status by click button, see at backend/demo/add-product.js --}}
+                    <input type="number" value="0" name="category_product_status" id="product_status" readonly hidden />
                 </div>
-                <button type="submit" name="update_category_product" class="btn btn-info">Cập nhật danh mục</button>
-            </form>
             </div>
-            @endforeach
         </div>
-    </section>
-</div>
+        <div class="col-lg-3 col-md-4">
+            <div class="card m-1 border border-primary">
+                <div class="card-header p-2 text-primary border-botton border-primary">
+                    Hành động
+                </div>
+                <div class="card-body">
+                    <div class="col-12">
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
+                    </div>
+                    <div class="col-12">
+                        <a href="{{URL::to('/all-category-product')}}"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    @endforeach
+    </div>
 @endsection
