@@ -63,7 +63,7 @@
 							<a href="<?php echo e(URL::to('/trang-chu')); ?>"><img src="<?php echo e(asset('public/frontend/images/logo.png')); ?>"
 									alt="" /></a>
 						</div>
-						
+
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -89,7 +89,11 @@
 								<?php
 								}
 								?>
-								<li><a href="<?php echo e(URL::to('/show-cart')); ?>"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+								<?php
+									$count = Cart::content()->count();
+								?>
+								<li><a href="<?php echo e(URL::to('/show-cart')); ?>"><i class="fa fa-shopping-cart"><sup
+								class="text-danger count_cart" style="font-size: 17px"> <?php echo e($count); ?></sup></i> Giỏ hàng</a>
 								</li>
 
 								<?php
@@ -134,11 +138,12 @@
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										<?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-											<li><a
-												href="<?php echo e(URL::to('/danh-muc-san-pham/'.$cate->category_id)); ?>"><?php echo e($cate->category_name); ?></a></li>
+										<li><a
+												href="<?php echo e(URL::to('/danh-muc-san-pham/'.$cate->category_id)); ?>"><?php echo e($cate->category_name); ?></a>
+										</li>
 										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-								
-								
+
+
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -257,13 +262,13 @@
 							<div class="panel panel-default">
 
 								<?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title"><a
-													href="<?php echo e(URL::to('/danh-muc-san-pham/'.$cate->category_id)); ?>"><?php echo e($cate->category_name); ?></a>
-											</h4>
-										</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title"><a
+												href="<?php echo e(URL::to('/danh-muc-san-pham/'.$cate->category_id)); ?>"><?php echo e($cate->category_name); ?></a>
+										</h4>
 									</div>
+								</div>
 								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</div>
 						</div>
@@ -275,8 +280,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<?php $__currentLoopData = $brand; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-										<li><a href="<?php echo e(URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)); ?>"> <span
-													class="pull-right"></span><?php echo e($brand->brand_name); ?></a></li>
+									<li><a href="<?php echo e(URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)); ?>"> <span
+												class="pull-right"></span><?php echo e($brand->brand_name); ?></a></li>
 									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</ul>
 							</div>
@@ -463,23 +468,20 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2019 1997Store Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank"
-								href="#">1997Store</a></span></p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="#">1997Store</a></span></p>
 				</div>
 			</div>
 		</div>
 
 	</footer>
 	<!--/Footer-->
-
-
-
 	<script src="<?php echo e(asset('public/frontend/js/jquery.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/js/bootstrap.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/js/jquery.scrollUp.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/js/price-range.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/js/jquery.prettyPhoto.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/js/main.js')); ?>"></script>
+	<script src="<?php echo e(asset('public/frontend/custom-js/custom-layout.js')); ?>"></script>
 </body>
 
 </html><?php /**PATH C:\xampp\htdocs\website-online\resources\views/layout.blade.php ENDPATH**/ ?>

@@ -63,7 +63,7 @@
 							<a href="{{URL::to('/trang-chu')}}"><img src="{{asset('public/frontend/images/logo.png')}}"
 									alt="" /></a>
 						</div>
-						
+
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -89,7 +89,11 @@
 								<?php
 								}
 								?>
-								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+								<?php
+									$count = Cart::content()->count();
+								?>
+								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
+								class="text-danger count_cart" style="font-size: 17px"> {{$count}}</sup></i> Giỏ hàng</a>
 								</li>
 
 								<?php
@@ -134,11 +138,12 @@
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										@foreach($category as $key => $cate)
-											<li><a
-												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
+										<li><a
+												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+										</li>
 										@endforeach
-								
-								
+
+
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -256,13 +261,13 @@
 							<div class="panel panel-default">
 
 								@foreach($category as $key => $cate)
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title"><a
-													href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
-											</h4>
-										</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title"><a
+												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+										</h4>
 									</div>
+								</div>
 								@endforeach
 							</div>
 						</div>
@@ -274,8 +279,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									@foreach($brand as $key => $brand)
-										<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
-													class="pull-right"></span>{{$brand->brand_name}}</a></li>
+									<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
+												class="pull-right"></span>{{$brand->brand_name}}</a></li>
 									@endforeach
 								</ul>
 							</div>
@@ -462,23 +467,20 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2019 1997Store Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank"
-								href="#">1997Store</a></span></p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="#">1997Store</a></span></p>
 				</div>
 			</div>
 		</div>
 
 	</footer>
 	<!--/Footer-->
-
-
-
 	<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
 	<script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
 	<script src="{{asset('public/frontend/js/price-range.js')}}"></script>
 	<script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
+	<script src="{{asset('public/frontend/custom-js/custom-layout.js')}}"></script>
 </body>
 
 </html>

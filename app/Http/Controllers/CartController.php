@@ -9,9 +9,10 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 session_start();
 
-use Cart;
+    use Cart;
 
 class CartController extends Controller
 {
@@ -19,7 +20,7 @@ class CartController extends Controller
         $product_Id = $request->product_id_hidden;
         $quanlity = $request->qty;
         $product_info = DB::table('tbl_product')->where('product_id',$product_Id)->first();
-
+        $current_url = URL::current();
         $data['id'] = $product_info->product_id;
         $data['qty'] = $quanlity;
         $data['name'] = $product_info->product_name;
@@ -29,7 +30,7 @@ class CartController extends Controller
 
         Cart::add($data);
         // Cart::destroy();
-        return Redirect::to('/show-cart');
+        return Redirect::to($current_url);
     }
 
     public function show_cart(){
