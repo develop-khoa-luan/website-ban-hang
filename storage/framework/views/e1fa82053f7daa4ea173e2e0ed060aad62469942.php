@@ -163,7 +163,7 @@
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger"><?php echo e(number_format($count_price, 0)); ?></th>
+                                        <th class="text-danger"><?php echo e($order_by_id->order_total); ?></th>
                                     </tr>
                                 </tfoot>
                             </table>

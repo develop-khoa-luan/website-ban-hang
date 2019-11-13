@@ -155,7 +155,7 @@
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{ number_format($count_price, 0) }}</th>
+                                        <th class="text-danger">{{$order_by_id->order_total }}</th>
                                     </tr>
                                 </tfoot>
                             </table>
