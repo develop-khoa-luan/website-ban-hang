@@ -101,4 +101,7 @@
         </div>
     </div>
 </form>
+<script type="text/javascript" src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/js/custom-js/add-product.js')}}"></script>
 @endsection

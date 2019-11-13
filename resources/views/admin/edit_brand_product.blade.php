@@ -29,7 +29,7 @@
                             id="exampleInputPassword1" placeholder="Mô tả...">{{$edit_value->brand_desc}}</textarea>
                     </div>
                     {{-- Use Jquery to change the brand status by click button, see at backend/demo/add-product.js --}}
-                    <input type="number" value="0" name="brand_product_status" id="product_status" readonly hidden />
+                    <input type="number" value="0" name="brand_product_status" id="brand_status" readonly hidden />
                 </div>
             </div>
         </div>
@@ -53,5 +53,7 @@
         </div>
     </div>
 </form>
+<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/js/custom-js/brand.js')}}"></script>
 @endforeach
 @endsection

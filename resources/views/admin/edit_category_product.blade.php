@@ -7,10 +7,10 @@
                     Session::put('message',null);
                 }
                 ?>
-        <h3 class="h3 text-primary mt-4 mb-4">Cập nhập danh mục sản phẩm</h3>
-        @foreach ($edit_category_product as $key => $edit_value)
-        <form role="form" action="{{URL::to('/update-category-product/'.$edit_value ->category_id)}}" method="POST">
-            {{csrf_field()}}
+<h3 class="h3 text-primary mt-4 mb-4">Cập nhập danh mục sản phẩm</h3>
+@foreach ($edit_category_product as $key => $edit_value)
+<form role="form" action="{{URL::to('/update-category-product/'.$edit_value ->category_id)}}" method="POST">
+    {{csrf_field()}}
     <div class="row">
         <div class="col-lg-9 col-md-8">
             <div class="card m-1 border border-primary">
@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên danh mục</label>
                         <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1"
-                        value="{{$edit_value->category_name}}">
+                            value="{{$edit_value->category_name}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả danh mục</label>
@@ -29,7 +29,7 @@
                             id="exampleInputPassword1">{{$edit_value->category_desc}}</textarea>
                     </div>
                     {{-- Use Jquery to change the category status by click button, see at backend/demo/add-product.js --}}
-                    <input type="number" value="0" name="category_product_status" id="product_status" readonly hidden />
+                    <input type="number" value="0" name="category_product_status" id="category_status" readonly hidden />
                 </div>
             </div>
         </div>
@@ -46,12 +46,15 @@
                         <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
                     </div>
                     <div class="col-12">
-                        <a href="{{URL::to('/all-category-product')}}"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
+                        <a href="{{URL::to('/all-category-product')}}"><input type="button"
+                                class="btn btn-danger col-12 mt-2" value="Hủy" /></a>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-    @endforeach
-    </div>
+</form>
+@endforeach
+</div>
+<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/js/custom-js/category.js')}}"></script>
 @endsection

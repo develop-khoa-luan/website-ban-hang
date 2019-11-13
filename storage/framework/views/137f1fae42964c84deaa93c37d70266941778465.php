@@ -10,7 +10,7 @@
                     Session::put('message',null);
                 }
         ?>
-        <h3 class="h3 text-primary mt-4 mb-4">Thêm thương hiệu sản phẩm</h3>
+        <h3 class="h3 text-primary mt-4 mb-4">Cập nhập thương hiệu sản phẩm</h3>
     <div class="row">
         <div class="col-lg-9 col-md-8">
             <div class="card m-1 border border-primary">
@@ -29,7 +29,7 @@
                             id="exampleInputPassword1" placeholder="Mô tả..."><?php echo e($edit_value->brand_desc); ?></textarea>
                     </div>
                     
-                    <input type="number" value="0" name="brand_product_status" id="product_status" readonly hidden />
+                    <input type="number" value="0" name="brand_product_status" id="brand_status" readonly hidden />
                 </div>
             </div>
         </div>
@@ -53,6 +53,8 @@
         </div>
     </div>
 </form>
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/brand.js')); ?>"></script>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/edit_brand_product.blade.php ENDPATH**/ ?>

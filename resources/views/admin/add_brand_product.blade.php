@@ -27,7 +27,7 @@
                         <textarea style="resize: none" rows="4" name="brand_product_desc" class="form-control"
                             id="exampleInputPassword1" placeholder="Mô tả..."></textarea>
                     </div>
-                    {{-- Use Jquery to change the brand status by click button, see at backend/demo/add-product.js --}}
+                    {{-- Use Jquery to change the brand status by click button, see at backend/demo/brand.js --}}
                     <input type="number" value="0" name="brand_product_status" id="product_status" readonly hidden />
                 </div>
             </div>
@@ -52,4 +52,6 @@
         </div>
     </div>
 </form>
+<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/js/custom-js/brand.js')}}"></script>
 @endsection

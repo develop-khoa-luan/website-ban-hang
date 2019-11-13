@@ -28,7 +28,7 @@
                             id="exampleInputPassword1" placeholder="Mô tả..."></textarea>
                     </div>
                     {{-- Use Jquery to change the category status by click button, see at backend/demo/add-product.js --}}
-                    <input type="number" value="0" name="category_product_status" id="product_status" readonly hidden />
+                    <input type="number" value="0" name="category_product_status" id="category_status" readonly hidden />
                 </div>
             </div>
         </div>
@@ -52,4 +52,6 @@
         </div>
     </div>
 </form>
+<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/js/custom-js/category.js')}}"></script>
 @endsection

@@ -107,3 +107,4 @@ Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer
 // manage order
 Route::get('/manage-order','CheckoutController@manage_order' );
 Route::get('/view-order/{order_id}','CheckoutController@view_order' );
+Route::post('/update-order/{order_id}','CheckoutController@update_order' );
