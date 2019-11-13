@@ -52,5 +52,7 @@
         </div>
     </div>
 </form>
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/brand.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/add_brand_product.blade.php ENDPATH**/ ?>

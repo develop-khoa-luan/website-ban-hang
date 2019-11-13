@@ -77,6 +77,7 @@ class CategoryProduct extends Controller
         $data = array();
         $data['category_name'] = $request->category_product_name;
         $data['category_desc'] = $request->category_product_desc;
+        $data['category_status'] = $request->category_product_status;
         DB::table('tbl_category_product')->where('category_id',$category_product_id)->update($data);
         Session::put('message','Cập nhật danh mục sản phẩm thành công.');
         return Redirect::to('all-category-product');

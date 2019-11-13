@@ -273,7 +273,6 @@
 
   <!-- Custom scripts for all pages-->
   <script src="<?php echo e(asset('public/backend/js/sb-admin-2.min.js')); ?>"></script>
-  <script type="text/javascript" src="<?php echo e(asset('public/backend/ckeditor/ckeditor.js')); ?>"></script>
   <!-- Page level plugins -->
   <script src="<?php echo e(asset('public/backend/vendor/chart.js/Chart.min.js')); ?>"></script>
 
@@ -285,7 +284,6 @@
 <script src="<?php echo e(asset('public/backend/vendor/datatables/jquery.dataTables.js')); ?>"></script>
 <script src="<?php echo e(asset('public/backend/vendor/datatables/dataTables.bootstrap4.js')); ?>"></script>
 <script src="<?php echo e(asset('public/backend/js/demo/datatables-demo.js')); ?>"></script>
-<script src="<?php echo e(asset('public/backend/js/demo/add-product.js')); ?>"></script>
 
 </body>
 

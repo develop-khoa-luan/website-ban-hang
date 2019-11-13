@@ -108,7 +108,6 @@ class CheckoutController extends Controller
         $order_data['payment_id'] = $payment_id;
         $order_data['order_total'] = Cart::total();
         $order_data['order_status'] = 'Đang chờ xử lý';
-        $order_data['created_at'] = new DateTime();
         $order_id = DB::table('tbl_order')->insertGetId($order_data);
 
         //Insert order_detail
@@ -159,7 +158,25 @@ class CheckoutController extends Controller
             ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
             ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
             ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*', 'tbl_order_detail.*')->first();
-        $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id);
+        $all_order_detail = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->get();
+        $list_quantity_product = DB::table('tbl_order_detail')
+        ->join('tbl_product', 'tbl_order_detail.product_id', '=', 'tbl_product.product_id')
+        ->get();
+        $count_price = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_price');
+        $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
+        $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id)
+        ->with('order_detail', $all_order_detail)
+        ->with('count_quantity', $count_quantity)
+        ->with('list_quantity_product', $list_quantity_product)
+        ->with('count_price', $count_price);
         return view('admin_layout')->with('admin.view_product', $manager_order_by_id);
+    }
+    public function update_order(Request $request,$order_id){
+        $this->AuthLogin();
+        $data = array();
+        $data['order_status'] = $request->order_status;
+        DB::table('tbl_order')->where('order_id',$order_id)->update($data);
+        Session::put('message','Cập nhật đơn hàng thành công.');
+        return Redirect::to('manage-order');
     }
 }
