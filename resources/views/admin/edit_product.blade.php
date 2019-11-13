@@ -69,6 +69,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Số lượng sản phẩm</label>
+                                <input type="number" name="product_quantity" class="form-control" id="exampleInputEmail1"
+                                value="{{$pro->product_quantity}}">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả sản phẩm</label>
                         <textarea style="resize: none" rows="4" name="product_desc" class="form-control"

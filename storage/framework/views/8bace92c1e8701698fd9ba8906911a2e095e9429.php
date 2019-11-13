@@ -23,6 +23,7 @@
                         <th>Hình sản phẩm</th>
                         <th>Danh mục</th>
                         <th>Thương hiệu</th>
+                        <th>Số lượng</th>
                         <th>Hiển thị</th>
                         <th>Sửa -- Xóa</th>
                     </tr>
@@ -35,6 +36,7 @@
                             <td><img src="public/uploads/product/<?php echo e($pro -> product_image); ?>" width="100" height="100"></td>
                             <td><?php echo e($pro -> category_name); ?></td>
                             <td><?php echo e($pro -> brand_name); ?></td>
+                            <td><?php echo e($pro -> product_quantity); ?></td>
                             <td>
                                 <span class="text-ellipsis">
                                     <?php

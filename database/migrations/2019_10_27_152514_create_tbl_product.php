@@ -23,7 +23,9 @@ class CreateTblProduct extends Migration
             $table->string('product_price');
             $table->string('product_image');
             $table->integer('product_status');
-            $table->timestamps();
+            $table->string('product_quantity');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
