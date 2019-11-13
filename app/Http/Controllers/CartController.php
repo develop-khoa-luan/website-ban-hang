@@ -9,27 +9,26 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 session_start();
 
-use Cart;
+    use Cart;
 
 class CartController extends Controller
 {
     public function save_cart(Request $request){
+        $current_url = $request->current_url_hidden;
         $product_Id = $request->product_id_hidden;
         $quanlity = $request->qty;
         $product_info = DB::table('tbl_product')->where('product_id',$product_Id)->first();
-
         $data['id'] = $product_info->product_id;
         $data['qty'] = $quanlity;
         $data['name'] = $product_info->product_name;
         $data['price'] = $product_info->product_price;
         $data['weight'] = $product_info->product_price;
         $data['option']['image'] = $product_info->product_image;
-
         Cart::add($data);
-        // Cart::destroy();
-        return Redirect::to('/show-cart');
+        return Redirect::to($current_url)->with('alert_successful','1');
     }
 
     public function show_cart(){

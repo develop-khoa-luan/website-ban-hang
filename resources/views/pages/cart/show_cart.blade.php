@@ -25,27 +25,24 @@
                 </thead>
                 <tbody>
                     @foreach ($content as $v_content)
-                    
                     <tr>
                         {{-- <td class="cart_product">
                             <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" width="20"  alt="" /></a>
                            
                         </td> --}}
                         <td class="cart_description">
-                            <h4><a href="">{{$v_content->name}}</a></h4>
+                            <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                         </td>
                         <td class="cart_price">
-                            <p>{{number_format($v_content->price).' '.'VND'}}</p>
+                            {{number_format($v_content->price).' '.'VND'}}
                         </td>
                         <td class="cart_quantity">
                             <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
                                 {{ csrf_field() }}
-                                <input class="cart_quantity_input" type="text" name="cart_qty" value="{{$v_content->qty}}">
+                                <input class="cart_quantity_input" type="number" name="cart_qty" value="{{$v_content->qty}}">
                                 {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
                                 <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
-                                <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default">
-                                
-                                
+                                <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
                             </form>
                         </td>
                         <td class="cart_total">

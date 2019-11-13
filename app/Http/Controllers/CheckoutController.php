@@ -108,6 +108,7 @@ class CheckoutController extends Controller
         $order_data['payment_id'] = $payment_id;
         $order_data['order_total'] = Cart::total();
         $order_data['order_status'] = 'Đang chờ xử lý';
+        $order_data['created_at'] = new DateTime();
         $order_id = DB::table('tbl_order')->insertGetId($order_data);
 
         //Insert order_detail

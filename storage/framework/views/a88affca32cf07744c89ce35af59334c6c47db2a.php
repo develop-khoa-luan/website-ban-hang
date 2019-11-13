@@ -1,61 +1,102 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Admin Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script
-        type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- bootstrap-css -->
-    <link rel="stylesheet" href="public/backend/css/bootstrap.min.css">
-    <!-- //bootstrap-css -->
-    <!-- Custom CSS -->
-    <link href="public/backend/css/style.css" rel='stylesheet' type='text/css' />
-    <link href="public/backend/css/style-responsive.css" rel="stylesheet" />
-    <!-- font CSS -->
-    <link
-        href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
-        rel='stylesheet' type='text/css'>
-    <!-- font-awesome icons -->
-    <link rel="stylesheet" href="css/font.css" type="text/css" />
-    <link href="public/backend/css/font-awesome.css" rel="stylesheet">
-    <!-- //font-awesome icons -->
-    <script src="public/backend/js/jquery2.0.3.min.js"></script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>1997-Shop Admin - Login</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="<?php echo e(asset('public/backend/vendor/fontawesome-free/css/all.min.css')); ?>" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="<?php echo e(asset('public/backend/css/sb-admin-2.min.css')); ?>" rel="stylesheet">
+
 </head>
 
-<body>
-    <div class="log-w3">
-        <div class="w3layouts-main">
-            <h2>Sign In Now</h2>
-            <?php
-                $message = Session::get('message');
-                if($message){
-                    echo $message;
-                    Session::put('message',null);
-                }
-            ?>
-            <form action="<?php echo e(URL::to('/admin-dashboard')); ?>" method="post">
-                <?php echo e(csrf_field()); ?>
+<body class="bg-gradient-primary">
 
-                <input type="text" class="ggg" name="admin_email" placeholder="E-MAIL" required="">
-                <input type="password" class="ggg" name="admin_password" placeholder="PASSWORD" required="">
-                <span><input type="checkbox" />Remember Me</span>
-                <h6><a href="#">Forgot Password?</a></h6>
-                <div class="clearfix"></div>
-                <input type="submit" value="Sign In" name="login">
-            </form>
-            
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                  </div>
+                  <?php
+                  $message = Session::get('message');
+                  if($message){
+                      echo $message;
+                      Session::put('message',null);
+                  }
+              ?>
+                   <form action="<?php echo e(URL::to('/admin-dashboard')); ?>" method="post">
+                    <?php echo e(csrf_field()); ?>
+
+                    <div class="form-group">
+                      <input type="email" name="admin_email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Địa chỉ email...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="admin_password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mật khẩu">
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">    
+                        <input type="submit" class="btn btn-primary btn-sm" value="Sign In" name="login">
+                    </div>
+                    
+                    
+                  </form>
+                  
+                  <div class="text-center">
+                    <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="register.html">Tạo tài khoản mới!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+      </div>
+
     </div>
-    <script src="public/backend/js/bootstrap.js"></script>
-    <script src="public/backend/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="public/backend/js/scripts.js"></script>
-    <script src="public/backend/js/jquery.slimscroll.js"></script>
-    <script src="public/backend/js/jquery.nicescroll.js"></script>
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-    <script src="public/backend/js/jquery.scrollTo.js"></script>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+  <script src="<?php echo e(asset('public/backend/vendor/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="<?php echo e(asset('public/backend/vendor/jquery-easing/jquery.easing.min.js')); ?>"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="<?php echo e(asset('public/backend/js/sb-admin-2.min.js')); ?>"></script>
+
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin_login.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin_login.blade.php ENDPATH**/ ?>

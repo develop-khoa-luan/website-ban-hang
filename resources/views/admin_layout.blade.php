@@ -1,445 +1,292 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Admin Management Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
-    </script>
-    <!-- bootstrap-css -->
-    <link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}">
-    <!-- //bootstrap-css -->
-    <!-- Custom CSS -->
-    <link href="{{asset('public/backend/css/style.css')}}" rel='stylesheet' type='text/css' />
-    <link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet" />
-    <!-- font CSS -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
-        rel='stylesheet' type='text/css'>
-    <!-- font-awesome icons -->
-    <link rel="stylesheet" href="{{asset('public/backend/css/font.css')}}" type="text/css" />
-    <link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('public/backend/css/morris.css')}}" type="text/css" />
-    <!-- calendar -->
-    <link rel="stylesheet" href="{{asset('public/backend/css/monthly.css')}}">
-    <!-- //calendar -->
-    <!-- //font-awesome icons -->
-    <script src="{{asset('public/backend/js/jquery2.0.3.min.js')}}"></script>
-    <script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
-    <script src="{{asset('public/backend/js/morris.js')}}"></script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{{asset('public/backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{asset('public/backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
 </head>
 
-<body>
-    <section id="container">
-        <!--header start-->
-        <header class="header fixed-top clearfix">
-            <!--logo start-->
-            <div class="brand">
-                <a href="index.html" class="logo">
-        Admin
-    </a>
-                <div class="sidebar-toggle-box">
-                    <div class="fa fa-bars"></div>
-                </div>
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href={{URL::to( '/dashboard')}}>
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3"><sup>1977</sup>Shop</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href={{URL::to( '/dashboard')}}>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Bảng tin</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Quản lý -->
+      <div class="sidebar-heading">
+        Quản lý
+      </div>
+
+      <!-- Quản lý doanh mục sản phẩm -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bill" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-file-invoice"></i>
+          <span>Đơn hàng</span>
+        </a>
+        <div id="bill" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Quản lý đơn hàng</h6>
+            <a class="collapse-item" href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Quản lý sản phẩm -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fab fa-product-hunt"></i>
+          <span>Quản lý sản phẩm</span>
+        </a>
+        <div id="product" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Quản lý sản phẩm</h6>
+            <a class="collapse-item" href="{{URL::to('/add-product')}}">Thêm sản phẩm</a>
+            <a class="collapse-item" href="{{URL::to('/all-product')}}">Danh sách sản phẩm</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Quản lý doanh mục -->
+      <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fas fa-th-large"></i>
+              <span>Quản lý danh mục</span>
+            </a>
+            <div id="category" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý danh mục</h6>
+                <a class="collapse-item" href="{{URL::to('/add-category-product')}}">Thêm danh mục</a>
+                <a class="collapse-item" href="{{URL::to('/all-category-product')}}">Danh sách danh mục</a>
+              </div>
             </div>
-            <!--logo end-->
-            <div class="nav notify-row" id="top_menu">
-                <!--  notification start -->
-                <ul class="nav top-menu">
-                    <!-- settings start -->
+          </li>
 
-                    <!-- <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <i class="fa fa-tasks"></i>
-                <span class="badge bg-success">8</span>
+          <!-- Quản lý thương hiệu -->
+      <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brand" aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fas fa-store-alt"></i>
+              <span>Quản lý thương hiệu</span>
             </a>
-            <ul class="dropdown-menu extended tasks-bar">
-                <li>
-                    <p class="">You have 8 pending tasks</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info clearfix">
-                            <div class="desc pull-left">
-                                <h5>Target Sell</h5>
-                                <p>25% , Deadline  12 June’13</p>
-                            </div>
-                                    <span class="notification-pie-chart pull-right" data-percent="45">
-                            <span class="percent"></span>
-                            </span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info clearfix">
-                            <div class="desc pull-left">
-                                <h5>Product Delivery</h5>
-                                <p>45% , Deadline  12 June’13</p>
-                            </div>
-                                    <span class="notification-pie-chart pull-right" data-percent="78">
-                            <span class="percent"></span>
-                            </span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info clearfix">
-                            <div class="desc pull-left">
-                                <h5>Payment collection</h5>
-                                <p>87% , Deadline  12 June’13</p>
-                            </div>
-                                    <span class="notification-pie-chart pull-right" data-percent="60">
-                            <span class="percent"></span>
-                            </span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info clearfix">
-                            <div class="desc pull-left">
-                                <h5>Target Sell</h5>
-                                <p>33% , Deadline  12 June’13</p>
-                            </div>
-                                    <span class="notification-pie-chart pull-right" data-percent="90">
-                            <span class="percent"></span>
-                            </span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="external">
-                    <a href="#">See All Tasks</a>
-                </li>
-            </ul>
-        </li> -->
-
-                    <!-- settings end -->
-                    <!-- inbox dropdown start-->
-                    <!-- <li id="header_inbox_bar" class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <i class="fa fa-envelope-o"></i>
-                <span class="badge bg-important">4</span>
-            </a>
-            <ul class="dropdown-menu extended inbox">
-                <li>
-                    <p class="red">You have 4 Mails</p>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="photo"><img alt="avatar" src="public/backend/images/3.png"></span>
-                                <span class="subject">
-                                <span class="from">Jonathan Smith</span>
-                                <span class="time">Just now</span>
-                                </span>
-                                <span class="message">
-                                    Hello, this is an example msg.
-                                </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="photo"><img alt="avatar" src="public/backend/images/1.png"></span>
-                                <span class="subject">
-                                <span class="from">Jane Doe</span>
-                                <span class="time">2 min ago</span>
-                                </span>
-                                <span class="message">
-                                    Nice admin template
-                                </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="photo"><img alt="avatar" src="public/backend/images/3.png"></span>
-                                <span class="subject">
-                                <span class="from">Tasi sam</span>
-                                <span class="time">2 days ago</span>
-                                </span>
-                                <span class="message">
-                                    This is an example msg.
-                                </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="photo"><img alt="avatar" src="public/backend/images/2.png"></span>
-                                <span class="subject">
-                                <span class="from">Mr. Perfect</span>
-                                <span class="time">2 hour ago</span>
-                                </span>
-                                <span class="message">
-                                    Hi there, its a test
-                                </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">See all messages</a>
-                </li>
-            </ul>
-        </li> -->
-
-                    <!-- inbox dropdown end -->
-                    <!-- notification dropdown start-->
-                    <!-- <li id="header_notification_bar" class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-                <i class="fa fa-bell-o"></i>
-                <span class="badge bg-warning">3</span>
-            </a>
-            <ul class="dropdown-menu extended notification">
-                <li>
-                    <p>Notifications</p>
-                </li>
-                <li>
-                    <div class="alert alert-info clearfix">
-                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                        <div class="noti-info">
-                            <a href="#"> Server #1 overloaded.</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="alert alert-danger clearfix">
-                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                        <div class="noti-info">
-                            <a href="#"> Server #2 overloaded.</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="alert alert-success clearfix">
-                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                        <div class="noti-info">
-                            <a href="#"> Server #3 overloaded.</a>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </li> -->
-
-                    <!-- notification dropdown end -->
-                </ul>
-                <!--  notification end -->
+            <div id="brand" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý thương hiệu</h6>
+                <a class="collapse-item" href="{{URL::to('/add-brand-product')}}">Thêm thương hiệu</a>
+                <a class="collapse-item" href="{{URL::to('/all-brand-product')}}">Danh sách thương hiệu</a>
+              </div>
             </div>
-            <div class="top-nav clearfix">
-                <!--search & user info start-->
-                <ul class="nav pull-right top-menu">
-                    <li>
-                        <input type="text" class="form-control search" placeholder=" Search">
-                    </li>
-                    <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="public/backend/images/2.png">
-                <span class="username">
+          </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Thống kê  -->
+      <div class="sidebar-heading">
+        Thống kê
+      </div>
+      <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                     <?php
-                        $name = Session::get('admin_name');
-                        if($name){
-                            echo $name;
-                        }
-                    ?>
+                    $name = Session::get('admin_name');
+                    if($name){
+                        echo $name;
+                    }
+                ?>
                 </span>
-                <b class="caret"></b>
-            </a>
-                        <ul class="dropdown-menu extended logout">
-                            <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
-                        </ul>
-                    </li>
-                    <!-- user login dropdown end -->
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
 
-                </ul>
-                <!--search & user info end-->
-            </div>
-        </header>
-        <!--header end-->
-        <!--sidebar start-->
-        <aside>
-            <div id="sidebar" class="nav-collapse">
-                <!-- sidebar menu start-->
-                <div class="leftside-navigation">
-                    <ul class="sidebar-menu" id="nav-accordion">
-                        <li>
-                            <a href={{URL::to( '/dashboard')}}>
-                        <i class="fa fa-dashboard"></i>
-                        <span>Tổng quan</span>
-                    </a>
-                        </li>
+          </ul>
 
-                        <li class="sub-menu">
-                                <a href="javascript:;">
-                            <i class="fa fa-book"></i>
-                            <span>Đơn hàng</span>
-                        </a>
-                                <ul class="sub">
-                                    <li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
-                                </ul>
-                            </li>
+        </nav>
+        <!-- End of Topbar -->
 
-                        <li class="sub-menu">
-                            <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Danh mục sản phẩm</span>
-                    </a>
-                            <ul class="sub">
-                                <li><a href="{{URL::to('/add-category-product')}}">Thêm danh mục sản phẩm</a></li>
-                                <li><a href="{{URL::to('/all-category-product')}}">Hiển thị danh mục sản phẩm</a></li>
-                            </ul>
-                        </li>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+                <section>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Thương hiệu sản phẩm</span>
-                    </a>
-                            <ul class="sub">
-                                <li><a href="{{URL::to('/add-brand-product')}}">Thêm thương hiệu sản phẩm</a></li>
-                                <li><a href="{{URL::to('/all-brand-product')}}">Hiển thị thương hiệu sản phẩm</a></li>
-                            </ul>
-                        </li>
+                        @yield('admin_content')
+        
+                    </section>
+        </div>
+      <!-- End of Main Content -->
 
-                        <li class="sub-menu">
-                            <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Sản phẩm</span>
-                    </a>
-                            <ul class="sub">
-                                <li><a href="{{URL::to('/add-product')}}">Thêm sản phẩm</a></li>
-                                <li><a href="{{URL::to('/all-product')}}">Hiển thị sản phẩm</a></li>
-                            </ul>
-                        </li>
+      
+    </div>
+    <!-- End of Content Wrapper -->
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Your Website 2019</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
 
-                    </ul>
-                </div>
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
-        <!--sidebar end-->
-        <!--main content start-->
-        <section id="main-content">
-            <section class="wrapper">
+  </div>
+  <!-- End of Page Wrapper -->
 
-                @yield('admin_content')
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
-            </section>
-            <!-- footer -->
-            <div class="footer">
-                <div class="wthree-copyright">
-                    <p>©2019 1997 Store. All rights reserved | Design by <a href="http://w3layouts.com">1997 Store</a></p>
-                </div>
-            </div>
-            <!-- / footer -->
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        </section>
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('public/backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    </section>
+  <!-- Core plugin JavaScript-->
+  <script src="{{asset('public/backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-    <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>
-    <script src="{{asset('public/backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('public/backend/js/scripts.js')}}"></script>
-    <script src="{{asset('public/backend/js/jquery.slimscroll.js')}}"></script>
-    <script src="{{asset('public/backend/js/jquery.nicescroll.js')}}"></script>
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-    <script src="public/backend/js/jquery.scrollTo.js')}}"></script>
-    <!-- morris JavaScript -->
-    <script>
-        $(document).ready(function() {
-		//BOX BUTTON SHOW AND CLOSE
-	   jQuery('.small-graph-box').hover(function() {
-		  jQuery(this).find('.box-button').fadeIn('fast');
-	   }, function() {
-		  jQuery(this).find('.box-button').fadeOut('fast');
-	   });
-	   jQuery('.small-graph-box .box-close').click(function() {
-		  jQuery(this).closest('.small-graph-box').fadeOut(200);
-		  return false;
-	   });
-	   
-	    //CHARTS
-	    function gd(year, day, month) {
-			return new Date(year, month - 1, day).getTime();
-		}
-		
-		graphArea2 = Morris.Area({
-			element: 'hero-area',
-			padding: 10,
-        behaveLikeLine: true,
-        gridEnabled: false,
-        gridLineColor: '#dddddd',
-        axes: true,
-        resize: true,
-        smooth:true,
-        pointSize: 0,
-        lineWidth: 0,
-        fillOpacity:0.85,
-			data: [
-				{period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-				{period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-				{period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-				{period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-				{period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-				{period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-				{period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-				{period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-				{period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-			
-			],
-			lineColors:['#eb6f6f','#926383','#eb6f6f'],
-			xkey: 'period',
-            redraw: true,
-            ykeys: ['iphone', 'ipad', 'itouch'],
-            labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-			pointSize: 2,
-			hideHover: 'auto',
-			resize: true
-		});
-		
-	   
-	});
-    </script>
-    <!-- calendar -->
-    <script type="text/javascript" src="public/backend/js/monthly.js"></script>
-    <script type="text/javascript" src="public/backend/ckeditor/ckeditor.js"></script>
-    <script>
-            CKEDITOR.replace( 'contentWithCkeditor' );
-    </script>
-    <script type="text/javascript">
-        $(window).load( function() {
+  <!-- Custom scripts for all pages-->
+  <script src="{{asset('public/backend/js/sb-admin-2.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
+  <!-- Page level plugins -->
+  <script src="{{asset('public/backend/vendor/chart.js/Chart.min.js')}}"></script>
 
-			$('#mycalendar').monthly({
-				mode: 'event',
-				
-			});
+  <!-- Page level custom scripts -->
+  <script src="{{asset('public/backend/js/demo/chart-area-demo.js')}}"></script>
+  <script src="{{asset('public/backend/js/demo/chart-pie-demo.js')}}"></script>
 
-			$('#mycalendar2').monthly({
-				mode: 'picker',
-				target: '#mytarget',
-				setWidth: '250px',
-				startHidden: true,
-				showTrigger: '#mytarget',
-				stylePast: true,
-				disablePast: true
-			});
+  <!-- JS quản lý đơn hàng -->
+<script src="{{asset('public/backend/vendor/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('public/backend/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('public/backend/js/demo/datatables-demo.js')}}"></script>
+<script src="{{asset('public/backend/js/demo/add-product.js')}}"></script>
 
-		switch(window.location.protocol) {
-		case 'http:':
-		case 'https:':
-		// running on a server, should be good.
-		break;
-		case 'file:':
-		alert('Just a heads-up, events will not work when run locally.');
-		}
-
-		});
-    </script>
-    <!-- //calendar -->
 </body>
 
 </html>

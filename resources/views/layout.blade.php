@@ -22,7 +22,6 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <!--/head-->
-
 <body>
 	<header id="header">
 		<!--header-->
@@ -63,33 +62,38 @@
 							<a href="{{URL::to('/trang-chu')}}"><img src="{{asset('public/frontend/images/logo.png')}}"
 									alt="" /></a>
 						</div>
-						
+
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
-								<?php
-									$customer_id = Session::get('customer_id');
-									$shippping_id = Session::get('shipping_id');
-									if($customer_id != NULL && $shippping_id == NULL){
+								 <?php
+									// $customer_id = Session::get('customer_id');
+									// $shippping_id = Session::get('shipping_id');
+								//	if($customer_id != NULL && $shippping_id == NULL){
 								?>
-								<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-								</li>
+								{{-- <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+								</li> --}}
 								<?php
-									}elseif ($customer_id != NULL && $shippping_id != NULL) {
+								//	}elseif ($customer_id != NULL && $shippping_id != NULL) {
 										?>
-								<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
-								</li>
+								{{-- <li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+								</li> --}}
 								<?php
-								}else{	
+								//}else{	
 								?>
-								<li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
-										toán</a></li>
+								{{-- <li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
+										toán</a></li> --}}
 								<?php
-								}
+								//}
 								?>
-								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+								<?php
+									$count = Cart::content()->count();
+								?>
+								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
+												class="text-danger count_cart" style="font-size: 17px">
+												{{$count}}</sup></i> Giỏ hàng</a>
 								</li>
 
 								<?php
@@ -134,11 +138,12 @@
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										@foreach($category as $key => $cate)
-											<li><a
-												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
+										<li><a
+												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+										</li>
 										@endforeach
-								
-								
+
+
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -256,13 +261,13 @@
 							<div class="panel panel-default">
 
 								@foreach($category as $key => $cate)
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title"><a
-													href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
-											</h4>
-										</div>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title"><a
+												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
+										</h4>
 									</div>
+								</div>
 								@endforeach
 							</div>
 						</div>
@@ -274,8 +279,8 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									@foreach($brand as $key => $brand)
-										<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
-													class="pull-right"></span>{{$brand->brand_name}}</a></li>
+									<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
+												class="pull-right"></span>{{$brand->brand_name}}</a></li>
 									@endforeach
 								</ul>
 							</div>
@@ -462,23 +467,28 @@
 			<div class="container">
 				<div class="row">
 					<p class="pull-left">Copyright © 2019 1997Store Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank"
-								href="#">1997Store</a></span></p>
+					<p class="pull-right">Designed by <span><a target="_blank" href="#">1997Store</a></span></p>
 				</div>
 			</div>
 		</div>
 
 	</footer>
 	<!--/Footer-->
-
-
-
 	<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
 	<script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
 	<script src="{{asset('public/frontend/js/price-range.js')}}"></script>
 	<script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
+	<script src="{{asset('public/frontend/custom-js/custom-layout.js')}}"></script>
+	<?php 
+	$alert_successful = Session::get('alert_successful');
+	if($alert_successful == "1"){
+		echo '<script type="text/javascript">';
+		echo ' alert("Thêm vào giỏ hàng thành công")';
+		echo '</script>';
+	}
+	?>
 </body>
 
 </html>

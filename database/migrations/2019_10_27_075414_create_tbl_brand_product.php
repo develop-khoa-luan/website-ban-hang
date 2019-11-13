@@ -18,7 +18,8 @@ class CreateTblBrandProduct extends Migration
             $table->string('brand_name');
             $table->text('brand_desc');
             $table->integer('brand_status');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
