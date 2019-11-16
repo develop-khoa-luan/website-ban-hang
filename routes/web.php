@@ -108,3 +108,13 @@ Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer
 Route::get('/manage-order','CheckoutController@manage_order' );
 Route::get('/view-order/{order_id}','CheckoutController@view_order' );
 Route::post('/update-order/{order_id}','CheckoutController@update_order' );
+
+//manage images
+Route::get('all-image','ImageUploadController@allImage');
+Route::get('add-image','ImageUploadController@fileCreate');
+Route::post('image/upload/store','ImageUploadController@fileStore');
+Route::get('image/delete/{filename}','ImageUploadController@fileDestroy');
+
+//manage gallery for ckeditor and choose picture for products
+Route::get('gallery','ImageUploadController@gallery');
+Route::get('add-gallery','ImageUploadController@add_gallery');
