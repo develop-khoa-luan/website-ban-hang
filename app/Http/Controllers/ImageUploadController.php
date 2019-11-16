@@ -17,7 +17,7 @@ class ImageUploadController extends Controller
     public function allImage()
     {
         $photos = ImageUpload::all();
-        return view('gallery.all_image', compact('photos'));
+        return view('admin.all_image', compact('photos'));
     }
 
     //for getting image ckeditor and choose picture product
