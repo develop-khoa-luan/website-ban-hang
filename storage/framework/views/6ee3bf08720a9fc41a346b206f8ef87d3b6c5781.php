@@ -53,18 +53,18 @@
                             <div class="row">
                                 <?php $__currentLoopData = $photos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <!-- Grid column -->
-                                <div class="col-lg-3 col-md-4 col-sm-6   mb-4 d-flex justify-content-center">
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
 
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" style="width: 300px; height: 300px">
                                         <!--Modal: Name-->
-                                        <img class="img-thumbnail" style="width: 300px; height: 300px"
+                                        <img class="img-thumbnail" style="width: 200px; height: 200px"
                                             src="public/uploads/product/<?php echo e($photo->filename); ?>"
                                             alt="<?php echo e($photo->filename); ?>" data-toggle="modal"
                                             data-target="#my_model<?php echo e($photo->id); ?>">
                                         <p id="fileNameImage"><?php echo e($photo->filename); ?></p>
+                                        <!-- Grid column -->
+                                    </li>
                                 </div>
-                                <!-- Grid column -->
-                                </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </ul>
@@ -116,7 +116,7 @@
         <script src="<?php echo e(asset('public/backend/js/custom-js/gallery.js')); ?>"></script>
 </body>
 <script>
-   $(document).ready(function() {
+    $(document).ready(function() {
     function ProcessParentMessage(message) {
         $("#message-from-container").append('<div>' + message + '</div>');
     }
@@ -148,4 +148,5 @@
     });
 });
 </script>
+
 </html><?php /**PATH C:\xampp\htdocs\website-online\resources\views/gallery/all_image.blade.php ENDPATH**/ ?>

@@ -53,18 +53,18 @@
                             <div class="row">
                                 @foreach($photos as $photo)
                                 <!-- Grid column -->
-                                <div class="col-lg-3 col-md-4 col-sm-6   mb-4 d-flex justify-content-center">
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
 
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" style="width: 300px; height: 300px">
                                         <!--Modal: Name-->
-                                        <img class="img-thumbnail" style="width: 300px; height: 300px"
+                                        <img class="img-thumbnail" style="width: 200px; height: 200px"
                                             src="public/uploads/product/{{ $photo->filename }}"
                                             alt="{{ $photo->filename }}" data-toggle="modal"
                                             data-target="#my_model{{$photo->id}}">
                                         <p id="fileNameImage">{{ $photo->filename }}</p>
+                                        <!-- Grid column -->
+                                    </li>
                                 </div>
-                                <!-- Grid column -->
-                                </li>
                                 @endforeach
                             </div>
                         </ul>
@@ -116,7 +116,7 @@
         <script src="{{asset('public/backend/js/custom-js/gallery.js')}}"></script>
 </body>
 <script>
-   $(document).ready(function() {
+    $(document).ready(function() {
     function ProcessParentMessage(message) {
         $("#message-from-container").append('<div>' + message + '</div>');
     }
@@ -148,4 +148,5 @@
     });
 });
 </script>
+
 </html>
