@@ -113,6 +113,21 @@
             </div>
           </li>
 
+          <!-- Quản lý thương hiệu -->
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#images" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="far fa-images"></i>
+            <span>Quản lý hình ảnh</span>
+          </a>
+          <div id="images" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Quản lý hình ảnh</h6>
+              <a class="collapse-item" href="{{URL::to('/add-image')}}">Thêm hình ảnh</a>
+              <a class="collapse-item" href="{{URL::to('/all-image')}}">Danh sách hình ảnh</a>
+            </div>
+          </div>
+        </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
