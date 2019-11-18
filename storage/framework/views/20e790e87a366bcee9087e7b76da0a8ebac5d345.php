@@ -21,10 +21,17 @@
 							<img src="public/uploads/product/<?php echo e($product->product_image); ?>" alt="" />
 							<h2><?php echo e(number_format($product->product_price).' '.'VND'); ?></h2>
 							<p><?php echo e($product->product_name); ?></p>
+							<?php
+							if($product->product_quantity <=0 ) { ?>
+							<div class="btn btn-default">Sản phẩm hết hàng</div>
+							<?php
+							}else{
+							?>
 							<button type="submit" class="btn btn-default add-to-cart">
 								<i class="fa fa-shopping-cart"></i>
 								Thêm vào giỏ hàng
 							</button>
+							<?php }?>
 						</div>
 					</div>
 				</a>
@@ -33,7 +40,6 @@
 		</div>
 	</form>
 	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
 </div>
 <!--features_items-->
 

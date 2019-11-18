@@ -28,18 +28,3 @@ function myFunction() {
         }
     }
 }
-
-$(document).ready(function() {
-    function ProcessParentMessage(message) {
-        $("#message-from-container").append('<div>' + message + '</div>');
-    }
-
-    // Helper function to get parameters from the query string.
-    function getUrlParam(paramName) {
-        var reParam = new RegExp('(?:[\?&]|&)' + paramName + '=([^&]+)', 'i');
-        var match = window.location.search.match(reParam);
-
-        return (match && match.length > 1) ? match[1] : null;
-    }
-    // Simulate user action of selecting a file to be returned to CKEditor.
-});

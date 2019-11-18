@@ -55,7 +55,14 @@
                 <span>
                     <span><?php echo e(number_format($value->product_price).' '.'VND'); ?></span>
                     <label>Quantity:</label>
-                    <input name="qty" type="number" min="0" value="1" />
+                    <?php
+							if($value->product_quantity <=0 ) { ?>
+							<input name="qty" type="number" min="0" max="<?php echo e($value->product_quantity); ?>" value="0" />
+							<?php
+							}else{
+							?>
+							<input name="qty" type="number" min="0" max="<?php echo e($value->product_quantity); ?>" value="1" />
+							<?php }?>
                     <input name="product_id_hidden" type="hidden" value="<?php echo e($value->product_id); ?>" />
                     <button type="submit" class="btn btn-fefault cart">
                         <i class="fa fa-shopping-cart"></i>
@@ -63,10 +70,10 @@
                     </button>
                 </span>
             </form>
-            <p><b>Availability:</b> In Stock</p>
-            <p><b>Condition:</b> New</p>
-            <p><b>Brand:</b> <?php echo e($value->brand_name); ?> </p>
-            <p><b>Category:</b> <?php echo e($value->category_name); ?> </p>
+            <p><b>Số lượng:</b> <?php echo e($value->product_quantity); ?></p>
+            <p><b>Trạng thái:</b> Hàng mới</p>
+            <p><b>Thương hiệu:</b> <?php echo e($value->brand_name); ?> </p>
+            <p><b>Danh mục:</b> <?php echo e($value->category_name); ?> </p>
             <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
         </div>
         <!--/product-information-->
