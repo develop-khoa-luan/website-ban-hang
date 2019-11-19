@@ -22,6 +22,7 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <!--/head-->
+
 <body>
 	<header id="header">
 		<!--header-->
@@ -68,7 +69,7 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
-								 <?php
+								<?php
 									// $customer_id = Session::get('customer_id');
 									// $shippping_id = Session::get('shipping_id');
 								//	if($customer_id != NULL && $shippping_id == NULL){
@@ -85,12 +86,10 @@
 								<?php
 								//}
 								?>
-								<?php
-									$count = Cart::content()->count();
-								?>
 								<li><a href="<?php echo e(URL::to('/show-cart')); ?>"><i class="fa fa-shopping-cart"><sup
-												class="text-danger count_cart" style="font-size: 17px">
-												<?php echo e($count); ?></sup></i> Giỏ hàng</a>
+												class="text-danger count_cart"
+												style="font-size: 17px"></sup></i> Giỏ
+										hàng</a>
 								</li>
 
 								<?php
@@ -197,7 +196,7 @@
 								<div class="col-sm-6">
 									<img src="<?php echo e(asset('public/frontend/images/girl1.jpg')); ?>" class="girl img-responsive"
 										alt="" />
-									<img src="<?php echo e(asset('public/frontend/imagespricing.png')); ?>" class="pricing" alt="" />
+									
 								</div>
 							</div>
 							<div class="item">
@@ -479,14 +478,19 @@
 	<script src="<?php echo e(asset('public/frontend/js/jquery.prettyPhoto.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/js/main.js')); ?>"></script>
 	<script src="<?php echo e(asset('public/frontend/custom-js/custom-layout.js')); ?>"></script>
-	<?php 
-	$alert_successful = Session::get('alert_successful');
-	if($alert_successful == "1"){
-		echo '<script type="text/javascript">';
-		echo ' alert("Thêm vào giỏ hàng thành công")';
-		echo '</script>';
-	}
-	?>
+	<script>
+		$(document).ready(function(){
+			debugger;
+			$.ajax({
+				type:"GET",
+				url:"<?php echo e(url('/count-cart')); ?>",
+				success: function(data) {
+					$(".count_cart").text(data.count_cart);
+					console.log(data.count_cart)
+				}
+			});
+		});
+	</script>
 </body>
 
 </html><?php /**PATH C:\xampp\htdocs\website-online\resources\views/layout.blade.php ENDPATH**/ ?>

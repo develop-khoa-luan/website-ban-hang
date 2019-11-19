@@ -118,3 +118,6 @@ Route::get('image/delete/{filename}','ImageUploadController@fileDestroy');
 //manage gallery for ckeditor and choose picture for products
 Route::get('gallery','ImageUploadController@gallery');
 Route::get('add-gallery','ImageUploadController@add_gallery');
+
+//API for website
+Route::get('/count-cart', 'APIController@count_cart'  );
