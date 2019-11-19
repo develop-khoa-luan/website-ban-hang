@@ -3,10 +3,10 @@
 
 <div class="features_items">
 	<!--features_items-->
+	<meta name="_token" content="{{csrf_token()}}" />
 	<h2 class="title text-center" style="margin-top: 10px">Sản phẩm mới</h2>
 	@foreach($all_product as $key => $product)
-	<form action="{{URL::to('/save-cart')}}" method="POST">
-		{{csrf_field()}}
+	<form>
 		<?php
 			$current_url = url()->current();
 		?>
@@ -27,7 +27,7 @@
 							<?php
 							}else{
 							?>
-							<button type="submit" class="btn btn-default add-to-cart">
+							<button class="btn btn-default btn-add-to-cart">
 								<i class="fa fa-shopping-cart"></i>
 								Thêm vào giỏ hàng
 							</button>
@@ -41,6 +41,35 @@
 	</form>
 	@endforeach
 </div>
+
+<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
+<script>
+	$(document).ready(function(){
+		$('.btn-add-to-cart').click(function(e){
+			e.preventDefault();
+		$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+		}
+		});
+		$.ajax({
+		url: "{{ url('/save-cart') }}",
+		method: 'post',
+		data: {
+			product_id_hidden: $(this).parents()[3].children[0].value,
+			qty: $(this).parents()[3].children[1].value
+		},
+		success: function(result){
+			$(".count_cart").text(result.cart_count);
+			debugger;
+			alert("Thêm sản phẩm vô giỏ hàng thành công!");
+		},
+		error: function(result){
+			alert("Thêm sản phẩm vô giỏ hàng thất bại!");
+		}});
+		});
+		});
+</script>
 <!--features_items-->
 
 {{--

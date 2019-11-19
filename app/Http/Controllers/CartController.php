@@ -17,7 +17,6 @@ session_start();
 class CartController extends Controller
 {
     public function save_cart(Request $request){
-        $current_url = $request->current_url_hidden;
         $product_Id = $request->product_id_hidden;
         $quanlity = $request->qty;
         $product_info = DB::table('tbl_product')->where('product_id',$product_Id)->first();
@@ -28,7 +27,8 @@ class CartController extends Controller
         $data['weight'] = $product_info->product_price;
         $data['option']['image'] = $product_info->product_image;
         Cart::add($data);
-        return Redirect::to($current_url)->with('alert_successful','1');
+        $cart_count = Cart::content()->count();
+        return response()->json(['cart_count'=>$cart_count]);
     }
 
     public function show_cart(){
