@@ -480,13 +480,14 @@
 	<script src="<?php echo e(asset('public/frontend/custom-js/custom-layout.js')); ?>"></script>
 	<script>
 		$(document).ready(function(){
-			debugger;
 			$.ajax({
 				type:"GET",
 				url:"<?php echo e(url('/count-cart')); ?>",
 				success: function(data) {
-					$(".count_cart").text(data.count_cart);
-					console.log(data.count_cart)
+					if(data.count_cart>0){
+						$(".count_cart").text(data.count_cart);
+					}
+					
 				}
 			});
 		});
