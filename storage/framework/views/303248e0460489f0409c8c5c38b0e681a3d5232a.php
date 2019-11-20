@@ -28,7 +28,7 @@
                             id="exampleInputPassword1" placeholder="Mô tả..."></textarea>
                     </div>
                     
-                    <input type="number" value="0" name="category_product_status" id="product_status" readonly hidden />
+                    <input type="number" value="0" name="category_product_status" id="category_status" readonly hidden />
                 </div>
             </div>
         </div>
@@ -52,5 +52,7 @@
         </div>
     </div>
 </form>
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/category.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/add_category_product.blade.php ENDPATH**/ ?>

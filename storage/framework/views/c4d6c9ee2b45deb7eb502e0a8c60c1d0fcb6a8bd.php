@@ -68,7 +68,7 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
+								
 								<?php
 									// $customer_id = Session::get('customer_id');
 									// $shippping_id = Session::get('shipping_id');
@@ -148,7 +148,7 @@
 										<li><a href="blog-single.html">Blog Single</a></li>
 									</ul>
 								</li>
-								<li><a href="<?php echo e(URL::to('/show-cart')); ?>">Giỏ hàng</a></li>
+								
 								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>
 						</div>
