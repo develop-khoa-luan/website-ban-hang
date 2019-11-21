@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label class="text-dark for=" exampleInputPassword1">Thương hiệu sản phẩm:</label>
+                                <label class="text-dark for=" exampleInputPassword1>Thương hiệu sản phẩm:</label>
                                 <select name="product_brand" class="form-control input-sm m-bot15">
                                     @foreach($brand_product as $key => $brand)
                                     <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá sản phẩm</label>
                                 <input type="number" name="product_price" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Giá sản phẩm...">
+                                    placeholder="Giá sản phẩm..." step="10000">
                             </div>
 
                         </div>
@@ -93,7 +93,15 @@
                         <textarea style="resize: none" rows="8" name="product_content" class="form-control"
                             id="contentWithCkeditor" placeholder="Nội dung..."></textarea>
                     </div>
-                    <input type="number" value="0" name="product_status" id="product_status" readonly hidden />
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Hiển thị</label>
+                        <select name="product_status" class="form-control input-sm m-bot15">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option> 
+                        </select>
+                    </div>
+                    {{-- <input type="number" value="0" name="product_status" id="product_status" readonly hidden /> --}}
                 </div>
             </div>
         </div>
@@ -104,13 +112,11 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
-                        <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Thêm mới</button>
                     </div>
+                    
                     <div class="col-12">
-                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
-                    </div>
-                    <div class="col-12">
-                        <a href="{{URL::to('/all-product')}}"><input type="button" class="btn btn-danger col-12 mt-2"
+                        <a href="{{URL::to('/add-product')}}"><input type="button" class="btn btn-danger col-12 mt-2"
                                 value="Hủy" /></a>
                     </div>
                 </div>

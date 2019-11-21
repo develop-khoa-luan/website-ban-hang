@@ -75,9 +75,9 @@
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
                   </div>
-                  <div class="text-center">
+                  {{-- <div class="text-center">
                     <a class="small" href="register.html">Tạo tài khoản mới!</a>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>

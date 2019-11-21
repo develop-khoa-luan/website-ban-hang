@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>Admin - 1997Store</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo e(asset('public/backend/vendor/fontawesome-free/css/all.min.css')); ?>" rel="stylesheet" type="text/css">
@@ -33,7 +33,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><sup>1977</sup>Shop</div>
+        <div class="sidebar-brand-text mx-3"><sup>1997</sup>Store</div>
       </a>
 
       <!-- Divider -->
@@ -273,7 +273,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="<?php echo e(URL::to('/logout')); ?>">Logout</a>
         </div>
       </div>
     </div>

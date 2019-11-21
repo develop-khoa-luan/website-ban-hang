@@ -51,7 +51,7 @@
                             <input class="cart_quantity_input" type="number" name="cart_qty" value="{{$v_content->qty}}">
                             {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
                             <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
-                            <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
+                            {{-- <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm"> --}}
 
 
                         </form>

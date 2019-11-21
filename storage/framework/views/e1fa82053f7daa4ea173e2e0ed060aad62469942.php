@@ -9,6 +9,8 @@
 <div class="row">
     <div class="col-12 col-sm-9 col-md-9">
         <div class="row">
+            <?php $__currentLoopData = $view_order_customer_detail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $view_ord_cus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="card border border-primary mb-3">
                     <div class="card-header p-2 text-primary border-botton border-primary text-center">
@@ -21,7 +23,7 @@
                                     Tên người mua:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->customer_name); ?>
+                                    <?php echo e($view_ord_cus->customer_name); ?>
 
                                 </div>
                             </div>
@@ -32,7 +34,7 @@
                                     Email:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->customer_email); ?>
+                                    <?php echo e($view_ord_cus->customer_email); ?>
 
                                 </div>
                             </div>
@@ -43,7 +45,7 @@
                                     Số điện thoại:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->customer_phone); ?>
+                                    <?php echo e($view_ord_cus->customer_phone); ?>
 
                                 </div>
                             </div>
@@ -54,7 +56,7 @@
                                     Ngày đặt:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->created_at); ?>
+                                    <?php echo e($view_ord_cus->created_at); ?>
 
                                 </div>
                             </div>
@@ -73,6 +75,8 @@
                     </div>
                 </div>
             </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $view_order_shipping_detail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $view_ord_shi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="card border border-primary mb-3">
                     <div class="card-header p-2 text-primary border-botton border-primary text-center">
@@ -85,7 +89,7 @@
                                     Tên người nhận:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->shipping_name); ?>
+                                    <?php echo e($view_ord_shi->shipping_name); ?>
 
                                 </div>
                             </div>
@@ -96,7 +100,7 @@
                                     Địa chỉ giao hàng:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->shipping_address); ?>
+                                    <?php echo e($view_ord_shi->shipping_address); ?>
 
                                 </div>
                             </div>
@@ -107,7 +111,7 @@
                                     Số điện thoại giao hàng:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    <?php echo e($order_by_id->shipping_phone); ?>
+                                    <?php echo e($view_ord_shi->shipping_phone); ?>
 
                                 </div>
                             </div>
@@ -115,6 +119,7 @@
                     </div>
                 </div>
             </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
         <div class="row">
             <div class="col-12">
@@ -169,7 +174,8 @@
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger"><?php echo e($order_by_id->order_total); ?></th>
+                                        <th class="text-danger"><?php echo e(number_format($count_price, 0)); ?></th>
+                                        
                                     </tr>
                                 </tfoot>
                             </table>

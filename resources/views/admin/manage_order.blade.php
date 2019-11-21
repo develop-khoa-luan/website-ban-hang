@@ -24,7 +24,7 @@
                         <th>Tổng giá tiền</th>
                         <th>tình trạng</th>
                         <th>Chú ý</th>
-                        <th class="text-center">Sửa -- Xóa</th>
+                        <th class="text-center">Xem -- Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                         <td>{{ $order -> order_total }}</td>
                         <td>{{ $order -> order_status }}</td>
                         <td>...</td>
-                        <td align="center">
+                        <td >
                             <a href="{{URL::to('/view-order/'.$order->order_id)}}}" class="active" ui-toggle-class="">
                                 <i class="fa fa-edit text-success text-active"></i>
                             </a> -- 

@@ -23,7 +23,7 @@
                         <th>Tổng giá tiền</th>
                         <th>tình trạng</th>
                         <th>Chú ý</th>
-                        <th class="text-center">Sửa -- Xóa</th>
+                        <th class="text-center">Xem -- Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,7 @@
                         <td><?php echo e($order -> order_total); ?></td>
                         <td><?php echo e($order -> order_status); ?></td>
                         <td>...</td>
-                        <td align="center">
+                        <td >
                             <a href="<?php echo e(URL::to('/view-order/'.$order->order_id)); ?>}" class="active" ui-toggle-class="">
                                 <i class="fa fa-edit text-success text-active"></i>
                             </a> -- 
