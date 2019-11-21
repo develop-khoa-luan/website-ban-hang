@@ -68,7 +68,7 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-star"></i> Yêu thích</a></li>
+								
 								<?php
 									// $customer_id = Session::get('customer_id');
 									// $shippping_id = Session::get('shipping_id');
@@ -148,7 +148,7 @@
 										<li><a href="blog-single.html">Blog Single</a></li>
 									</ul>
 								</li>
-								<li><a href="<?php echo e(URL::to('/show-cart')); ?>">Giỏ hàng</a></li>
+								
 								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>
 						</div>
@@ -385,8 +385,7 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
-							<img src="public/frontend/images/map.png" alt="" />
-							<p> HCMC, VietNam</p>
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.067502534812!2d106.77973971446636!3d10.882470492249647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d88556fa38e7%3A0x9746dea7851b826a!2zS8OtIHTDumMgeMOhIGtodSBiIMSR4bqhaSBo4buNYyBxdeG7kWMgZ2lhIEhDTQ!5e0!3m2!1svi!2s!4v1574355966020!5m2!1svi!2s" width="300" height="200px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 						</div>
 					</div>
 				</div>

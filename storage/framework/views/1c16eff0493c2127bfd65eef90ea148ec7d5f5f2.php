@@ -27,8 +27,15 @@
                         <textarea style="resize: none" rows="4" name="brand_product_desc" class="form-control"
                             id="exampleInputPassword1" placeholder="Mô tả..."></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Hiển thị</label>
+                        <select name="brand_product_status" class="form-control input-sm m-bot15">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option> 
+                        </select>
+                    </div>
                     
-                    <input type="number" value="0" name="brand_product_status" id="product_status" readonly hidden />
+                    
                 </div>
             </div>
         </div>
@@ -39,13 +46,11 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
-                        <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Thêm mới</button>
                     </div>
+                    
                     <div class="col-12">
-                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
-                    </div>
-                    <div class="col-12">
-                        <a href="<?php echo e(URL::to('/all-product')); ?>"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
+                        <a href="<?php echo e(URL::to('/add-brand-product')); ?>"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
                     </div>
                 </div>
             </div>

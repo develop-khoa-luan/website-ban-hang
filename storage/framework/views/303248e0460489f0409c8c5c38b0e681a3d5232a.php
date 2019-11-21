@@ -27,8 +27,17 @@
                         <textarea style="resize: none" rows="4" name="category_product_desc" class="form-control"
                             id="exampleInputPassword1" placeholder="Mô tả..."></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Hiển thị</label>
+                        <select name="category_product_status" class="form-control input-sm m-bot15">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option> 
+                        </select>
+                    </div>
+
                     
-                    <input type="number" value="0" name="category_product_status" id="product_status" readonly hidden />
+                    
                 </div>
             </div>
         </div>
@@ -39,11 +48,9 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
-                        <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Thêm mới</button>
                     </div>
-                    <div class="col-12">
-                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
-                    </div>
+                    
                     <div class="col-12">
                         <a href="<?php echo e(URL::to('/all-product')); ?>"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
                     </div>
@@ -52,5 +59,7 @@
         </div>
     </div>
 </form>
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/category.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/add_category_product.blade.php ENDPATH**/ ?>

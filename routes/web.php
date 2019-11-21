@@ -121,3 +121,8 @@ Route::get('add-gallery','ImageUploadController@add_gallery');
 
 //API for website
 Route::get('/count-cart', 'APIController@count_cart'  );
+
+
+
+//delete order 
+Route::get('/delete-order/{order_id}','CheckoutController@delete_order' );

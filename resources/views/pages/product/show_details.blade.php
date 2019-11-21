@@ -9,7 +9,7 @@
     <div class="col-sm-5">
         <div class="view-product">
             <img src="{{URL::to('/public/uploads/product/'.$value ->product_image)}}" alt="" />
-            <h3>ZOOM</h3>
+            {{-- <h3>ZOOM</h3> --}}
         </div>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
@@ -44,7 +44,7 @@
             <!--/product-information-->
             <img src="images/product-details/new.jpg" class="newarrival" alt="" />
             <h2>{{$value->product_name}}</h2>
-            <p>ID Product: {{$value->product_id}}</p>
+            {{-- <p>ID Product: {{$value->product_id}}</p> --}}
             <img src="images/product-details/rating.png" alt="" />
             <form action="{{URL::to('/save-cart')}}" method="POST">
                 {{csrf_field()}}
@@ -54,7 +54,7 @@
                 <input type="text" name="current_url_hidden" hidden readonly value="{{$current_url}}" />
                 <span>
                     <span>{{number_format($value->product_price).' '.'VND'}}</span>
-                    <label>Quantity:</label>
+                    <label>Số lượng:</label>
                     <?php
 							if($value->product_quantity <=0 ) { ?>
 							<input name="qty" type="number" min="0" max="{{$value->product_quantity}}" value="0" />
@@ -64,16 +64,25 @@
 							<input name="qty" type="number" min="0" max="{{$value->product_quantity}}" value="1" />
 							<?php }?>
                     <input name="product_id_hidden" type="hidden" value="{{$value->product_id}}" />
-                    <button type="submit" class="btn btn-fefault cart">
+                    <button type="submit" class="btn btn-fefault cart" style="margin: 10px 0">
                         <i class="fa fa-shopping-cart"></i>
-                        Add to cart
+                        Thêm vào giỏ hàng
                     </button>
                 </span>
             </form>
-            <p><b>Số lượng:</b> {{$value->product_quantity}}</p>
-            <p><b>Trạng thái:</b> Hàng mới</p>
-            <p><b>Thương hiệu:</b> {{$value->brand_name}} </p>
-            <p><b>Danh mục:</b> {{$value->category_name}} </p>
+            {{-- <p><b>Số lượng:</b> {{$value->product_quantity}}</p> --}}
+            <p><b>Trạng thái:</b> 
+                <?php
+					if($value->product_quantity <=0 ) { ?>
+						<p>Hết hàng</p>
+				<?php
+					}else{
+					?>
+						<p>Còn hàng</p>
+				<?php }?>
+            </p>
+            {{-- <p><b>Thương hiệu:</b> {{$value->brand_name}} </p>
+            <p><b>Danh mục:</b> {{$value->category_name}} </p> --}}
             <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
         </div>
         <!--/product-information-->

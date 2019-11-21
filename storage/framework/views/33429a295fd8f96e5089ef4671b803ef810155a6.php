@@ -24,6 +24,7 @@
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $content; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v_content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    
                     <tr>
                         
                         <td class="cart_description">
@@ -37,7 +38,7 @@
                             <form action="<?php echo e(URL::to('/update-cart-quanlity')); ?>" method="POST">
                                 <?php echo e(csrf_field()); ?>
 
-                                <input class="cart_quantity_input" type="number" name="cart_qty" value="<?php echo e($v_content->qty); ?>">
+                                <input class="cart_quantity_input" type="number"   name="cart_qty" min="0" max="10"  value="<?php echo e($v_content->qty); ?>">
                                 
                                 <input type="hidden" value="<?php echo e($v_content->rowId); ?>" name="rowId_cart" id="">
                                 <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
@@ -55,6 +56,7 @@
                             <a class="cart_quantity_delete" href="<?php echo e(URL::to('/delete-to-cart/'.$v_content->rowId)); ?>"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
+                    
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
@@ -69,10 +71,11 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        <li>Tổng <span><?php echo e(Cart::subtotal().' '.'VND'); ?></span></li>
-                        <li>Thuế <span><?php echo e(Cart::tax().' '.'VND'); ?></span></li>
+                        
+                        
                         <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Tổng tiền <span><?php echo e(Cart::total().' '.'VND'); ?></span></li>
+                        <li>Tổng Tiền <span><?php echo e(Cart::subtotal().' '.'VND'); ?></span></li>
+                        
                     </ul>
                         <?php
                             $customer_id = Session::get('customer_id');
