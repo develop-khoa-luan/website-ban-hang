@@ -18,7 +18,7 @@
 				<a href="{{URL::to('/chi-tiet-san-pham/'.$product->product_id)}}">
 					<div class="single-products">
 						<div class="productinfo text-center">
-							<img src="public/uploads/product/{{$product->product_image}}" alt="" />
+							<img style="height:250px" src="public/uploads/product/{{$product->product_image}}" alt="" />
 							<h2>{{number_format($product->product_price).' '.'VND'}}</h2>
 							<p>{{$product->product_name}}</p>
 							<?php
