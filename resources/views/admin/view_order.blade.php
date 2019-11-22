@@ -10,8 +10,6 @@
 <div class="row">
     <div class="col-12 col-sm-9 col-md-9">
         <div class="row">
-            @foreach ($view_order_customer_detail as $key => $view_ord_cus)
-        
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="card border border-primary mb-3">
                     <div class="card-header p-2 text-primary border-botton border-primary text-center">
@@ -24,7 +22,7 @@
                                     Tên người mua:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_cus->customer_name}}
+                                    {{$order_by_id->customer_name}}
                                 </div>
                             </div>
                         </div>
@@ -34,7 +32,7 @@
                                     Email:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_cus->customer_email}}
+                                    {{$order_by_id->customer_email}}
                                 </div>
                             </div>
                         </div>
@@ -44,7 +42,7 @@
                                     Số điện thoại:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_cus->customer_phone}}
+                                    {{$order_by_id->customer_phone}}
                                 </div>
                             </div>
                         </div>
@@ -54,25 +52,23 @@
                                     Ngày đặt:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_cus->created_at}}
+                                    {{$order_by_id->created_at}}
                                 </div>
                             </div>
                         </div>
                         <div class="card-form p-2">
-                                <div class="row border-bottom">
-                                    <div class="col-12 col-sm-6 col-md-6 text-danger">
-                                        Trạng thái đơn hàng
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                        {{$order_by_id->order_status}}
-                                    </div>
+                            <div class="row border-bottom">
+                                <div class="col-12 col-sm-6 col-md-6 text-danger">
+                                    Trạng thái đơn hàng
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 text-dark">
+                                    {{$order_by_id->order_status}}
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            @endforeach
-            @foreach ($view_order_shipping_detail as $key => $view_ord_shi)
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="card border border-primary mb-3">
                     <div class="card-header p-2 text-primary border-botton border-primary text-center">
@@ -85,7 +81,7 @@
                                     Tên người nhận:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_shi->shipping_name}}
+                                    {{$order_by_id->shipping_name}}
                                 </div>
                             </div>
                         </div>
@@ -95,7 +91,7 @@
                                     Địa chỉ giao hàng:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_shi->shipping_address}}
+                                    {{$order_by_id->shipping_address}}
                                 </div>
                             </div>
                         </div>
@@ -105,14 +101,13 @@
                                     Số điện thoại giao hàng:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$view_ord_shi->shipping_phone}}
+                                    {{$order_by_id->shipping_phone}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
         <div class="row">
             <div class="col-12">
@@ -135,28 +130,21 @@
                                 </thead>
                                 <tbody class="text-center content-center">
                                     @foreach ($order_detail as $item)
-                                    @foreach ($list_quantity_product as $quantity)
-                                    <?php
-                                       if($item->product_id == $quantity->product_id){ ?>
-
+                                    
                                     <tr>
                                         <td>{{$item->product_name}}</td>
                                         <td>{{ number_format($item->product_sales_quantity, 0) }}</td>
-                                        <td>{{ number_format($quantity->product_quantity, 0) }}</td>
+                                        <td>{{ number_format($item->product_quantity, 0) }}</td>
                                         <td>{{ number_format($item->product_price, 0) }}</td>
-                                        <td>
-                                            <?php
-                                                if($item->product_sales_quantity > $quantity->product_quantity){ ?>
-                                            <span class="text-danger">Không đủ hàng</span>
-                                            <?php }else {?>
-
-                                            <?php }?>
-                                        </td>
+                                        <?php if($item->product_quantity <= 10){ ?>
+                                        <td class="text-danger">Sản phẩm sắp hết hàng</td>
+                                        <?php } 
+                                        else { ?>
+                                        <td></td>
+                                        <?php } ?>
                                         <td>{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
                                         </td>
                                     </tr>
-                                    <?php } ?>
-                                    @endforeach
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -166,8 +154,9 @@
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($count_price, 0) }}</th>
-                                        {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}</th> --}}
+                                        <th class="text-danger">{{$order_by_id->order_total}}</th>
+                                        {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
+                                        </th> --}}
                                     </tr>
                                 </tfoot>
                             </table>
@@ -182,21 +171,23 @@
             <div class="card-header p-2 text-primary border-botton border-primary text-center">
                 Hành động
             </div>
-            <form role="form" action="{{URL::to('/update-order/'.$order_by_id->order_id)}}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{URL::to('/update-order/'.$order_by_id->order_id)}}" method="POST"
+                enctype="multipart/form-data">
                 {{csrf_field()}}
-            <div class="card-body">
-                <div class="col-12">
-                    <select name="order_status" class="col-12 form-control input-sm m-bot15">
-                        <option value="Đang chờ xử lý">Đang chờ xử lý</option>
-                        <option value="Xác nhận đơn hàng">Xác nhận đơn hàng</option>
-                        <option value="Hủy đơn hàng">Hủy đơn hàng</option>
-                        <option value="Xác nhận thanh toán">Xác nhận thanh toán</option>
-                    </select>
-                    <input type="submit" class="btn btn-primary col-12 mt-2" value="Xác Nhận" onclick="return confirm('Xác nhận cập nhập ?')" />
-                    <a href="{{URL::to('/manage-order')}}"><input type="button" class="btn btn-danger col-12 mt-2"
-                            value="Hủy" /></a>
+                <div class="card-body">
+                    <div class="col-12">
+                        <select name="order_status" class="col-12 form-control input-sm m-bot15">
+                            <option value="Đang chờ xử lý">Đang chờ xử lý</option>
+                            <option value="Xác nhận đơn hàng">Xác nhận đơn hàng</option>
+                            <option value="Hủy đơn hàng">Hủy đơn hàng</option>
+                            <option value="Xác nhận thanh toán">Xác nhận thanh toán</option>
+                        </select>
+                        <input type="submit" class="btn btn-primary col-12 mt-2" value="Xác Nhận"
+                            onclick="return confirm('Xác nhận cập nhập ?')" />
+                        <a href="{{URL::to('/manage-order')}}"><input type="button" class="btn btn-danger col-12 mt-2"
+                                value="Hủy" /></a>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>

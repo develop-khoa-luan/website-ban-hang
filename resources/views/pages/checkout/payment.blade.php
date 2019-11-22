@@ -21,7 +21,7 @@
                 ?>
         <table class="table table-condensed">
             <thead>
-                <tr class="cart_menu">
+                <tr class="cart_menu" style="text-align:center">
                     {{-- <td class="image">Hình ảnh </td> --}}
                     <td class="description">Tên sản phẩm</td>
                     <td class="price">Giá</td>
@@ -30,7 +30,7 @@
                     <td></td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="text-align:center">
                 @foreach ($content as $v_content)
 
                 <tr>
@@ -48,7 +48,7 @@
                     <td class="cart_quantity">
                         <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
                             {{ csrf_field() }}
-                            <input class="cart_quantity_input" type="number" name="cart_qty" value="{{$v_content->qty}}">
+                            <input style="border:none; font-weight: bold; font-size: 18px"  class="cart_quantity_input" type="text" name="cart_qty" value="{{$v_content->qty}}">
                             {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
                             <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
                             {{-- <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm"> --}}

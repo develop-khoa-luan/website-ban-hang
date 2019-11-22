@@ -157,39 +157,21 @@ class CheckoutController extends Controller
         $order_by_id = DB::table('tbl_order')
             ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
             ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
-            ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
-            ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*', 'tbl_order_detail.*')->first();
-        $all_order_detail = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->get();
-        $list_quantity_product = DB::table('tbl_order_detail')
-            ->join('tbl_product', 'tbl_order_detail.product_id', '=', 'tbl_product.product_id')
-            ->get();
+            ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->where('order_id', $order_id)->first();
+            
+        $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
+        ->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*', 'tbl_product.product_quantity')->get();
 
-        $view_order_customer_detail = DB::table('tbl_order')
-        ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
-        ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
-        ->where('tbl_order.order_id', $order_id)
-        ->get();
-
-        $view_order_shipping_detail = DB::table('tbl_order')
-        ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
-        ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
-        ->where('tbl_order.order_id', $order_id)
-        ->get();
-
-        
-        $count_price = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_price');
         $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
+
         $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id)
             ->with('order_detail', $all_order_detail)
-            ->with('count_quantity', $count_quantity)
-            ->with('list_quantity_product', $list_quantity_product)
-            ->with('view_order_customer_detail', $view_order_customer_detail)
-            ->with('view_order_shipping_detail', $view_order_shipping_detail)
-            ->with('count_price', $count_price);
+            ->with('count_quantity', $count_quantity);
         return view('admin_layout')->with('admin.view_product', $manager_order_by_id);
     }
     public function update_order(Request $request, $order_id)
     {
+        //dd($order_id);
         $this->AuthLogin();
         $get_order = DB::table('tbl_order')->where('order_id', $order_id)->first();
         $get_status = $get_order->order_status;
@@ -264,7 +246,7 @@ class CheckoutController extends Controller
                             DB::table('tbl_product')->where('product_id', $order_datail->product_id)->increment('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
-                        Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Đang chờ xử lý');
+                        Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Hủy đơn hàng');
                         return Redirect::to('/view-order/' . $order_id);
                         break;
                     default:
@@ -287,10 +269,11 @@ class CheckoutController extends Controller
     }
 
     // delete order
-    public function delete_order($order_id){
+    public function delete_order($order_id)
+    {
         $this->AuthLogin();
-        DB::table('tbl_order')->where('order_id',$order_id)->delete();
-        Session::put('message','Xóa danh mục sản phẩm thành công.');
+        DB::table('tbl_order')->where('order_id', $order_id)->delete();
+        Session::put('message', 'Xóa danh mục sản phẩm thành công.');
         return Redirect::to('manage-order');
     }
 }
