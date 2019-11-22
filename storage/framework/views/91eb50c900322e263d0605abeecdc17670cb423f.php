@@ -70,25 +70,47 @@
             </tbody>
         </table>
     </div>
+
+    <section id="do_action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="total_area" style="    padding: 20px 25px 30px 0;margin-bottom: 20px">
+                            <ul>
+                                <li>Phí vận chuyển <span>Free</span></li>
+                                <li>Tổng Tiền <span><?php echo e(Cart::subtotal().' '.'VND'); ?></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
     <h4>Chọn hình thức thanh toán</h4>
     <form action="<?php echo e(URL::to('/order-place')); ?>" method="POST">
         <?php echo e(csrf_field()); ?>
 
-        <div style="margin:40px 0; font-size: 20px" class="payment-options">
-            <span>
-                <label><input type="checkbox" name="payment_option" value="1"> Thanh toán qua thẻ ATM</label>
-            </span>
-            <span>
-                <label><input type="checkbox" name="payment_option" value="2"> Thanh toán khi nhận hàng</label>
-            </span>
-            <span>
-                <label><input type="checkbox" name="payment_option" value="3"> Thanh toán thẻ ghi nợ</label>
-            </span>
-            <input type="submit" value="Đặt hàng" style="width: 80px; height: 30px; margin-top: -10px" name="send_order_place" class="btn btn-primary btn-sm">
+        
+
+        <div style="margin:20px 10px; display: flex" class="payment-options">
+            <select  name="payment_option" style="height: 40px; width: 40%">
+                <option value="1" >
+                    Thanh toán qua thẻ ATM
+                </option>
+                <option value="2" selected>
+                    Thanh toán khi nhận hàng
+                </option>
+                <option value="3">
+                    Thanh toán thẻ ghi nợ
+                </option>
+            </select>
+            <input type="submit" value="Đặt hàng" style="width: 80px; height: 30px; font-size: 14px; margin: 5px 0 0 50px" name="send_order_place" class="btn btn-primary btn-sm">
+            <button style=" width: auto; height: 30px; font-size: 14px; margin: 5px 0 0 20px; border: none; background-color: #FE980F" ><a style="color: white" href="<?php echo e(URL::to('/trang-chu')); ?>">Tiếp tục mua sắm</a></button>
         </div>
     </form>
-    </div>
 </section>
+
+
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/checkout/payment.blade.php ENDPATH**/ ?>

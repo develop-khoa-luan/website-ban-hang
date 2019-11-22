@@ -1,4 +1,6 @@
 <?php $__env->startSection('content'); ?>
+
+
 <section id="cart_items">
     <div class="container" style="width: 100%">
         <div class="breadcrumbs" >
@@ -24,7 +26,7 @@
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $content; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v_content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    
+              
                     <tr>
                         
                         <td class="cart_description">
@@ -38,7 +40,8 @@
                             <form action="<?php echo e(URL::to('/update-cart-quanlity')); ?>" method="POST">
                                 <?php echo e(csrf_field()); ?>
 
-                                <input class="cart_quantity_input" type="number"   name="cart_qty" min="0" max="10"  value="<?php echo e($v_content->qty); ?>">
+            
+                                <input class="cart_quantity_input" type="number" min="0"  name="cart_qty" value="<?php echo e($v_content->qty); ?>">
                                 
                                 <input type="hidden" value="<?php echo e($v_content->rowId); ?>" name="rowId_cart" id="">
                                 <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
@@ -56,7 +59,7 @@
                             <a class="cart_quantity_delete" href="<?php echo e(URL::to('/delete-to-cart/'.$v_content->rowId)); ?>"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
-                    
+        
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
@@ -65,7 +68,7 @@
 </section>
 <section id="do_action">
     <div class="container">
-        
+
         <div class="row">
 
             <div class="col-sm-6">
@@ -95,5 +98,7 @@
         </div>
     </div>
 </section>
+
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/cart/show_cart.blade.php ENDPATH**/ ?>

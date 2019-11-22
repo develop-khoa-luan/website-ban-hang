@@ -17,7 +17,7 @@
 				<a href="<?php echo e(URL::to('/chi-tiet-san-pham/'.$product->product_id)); ?>">
 					<div class="single-products">
 						<div class="productinfo text-center">
-							<img src="public/uploads/product/<?php echo e($product->product_image); ?>" alt="" />
+							<img style="height:250px" src="public/uploads/product/<?php echo e($product->product_image); ?>" alt="" />
 							<h2><?php echo e(number_format($product->product_price).' '.'VND'); ?></h2>
 							<p><?php echo e($product->product_name); ?></p>
 							<?php
