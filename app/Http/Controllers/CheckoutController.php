@@ -169,6 +169,7 @@ class CheckoutController extends Controller
         ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
         ->where('tbl_order.order_id', $order_id)
         ->get();
+       // dd($view_order_customer_detail);
 
         $view_order_shipping_detail = DB::table('tbl_order')
         ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
@@ -186,10 +187,12 @@ class CheckoutController extends Controller
             ->with('view_order_customer_detail', $view_order_customer_detail)
             ->with('view_order_shipping_detail', $view_order_shipping_detail)
             ->with('count_price', $count_price);
+            //dd($list_quantity_product);
         return view('admin_layout')->with('admin.view_product', $manager_order_by_id);
     }
     public function update_order(Request $request, $order_id)
     {
+        dd($order_id);
         $this->AuthLogin();
         $get_order = DB::table('tbl_order')->where('order_id', $order_id)->first();
         $get_status = $get_order->order_status;
