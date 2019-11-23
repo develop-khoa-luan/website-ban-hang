@@ -105,7 +105,7 @@
                     Chi tiết sản phẩm
                 </div>
                 <div class="card-body">
-                    <input type="number" name="count_product_detail" id="count_product_detail" class="count_product_detail"
+                    <input type="number" name="count_product_detail" id="count_product_detail" class="count_product_detail" hidden
                         value=<?php echo e($count_detail); ?>>
                     <div class="row d-flex justify-content-center">
                         <div class="col-5 d-flex justify-content-right">Size</div>
