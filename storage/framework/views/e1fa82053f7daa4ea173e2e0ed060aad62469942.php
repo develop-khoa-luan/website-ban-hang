@@ -1,5 +1,4 @@
-@extends('admin_layout')
-@section('admin_content')
+<?php $__env->startSection('admin_content'); ?>
 <?php
                 $message = Session::get('message');
                 if($message){
@@ -22,7 +21,8 @@
                                     Tên người mua:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->customer_name}}
+                                    <?php echo e($order_by_id->customer_name); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,8 @@
                                     Email:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->customer_email}}
+                                    <?php echo e($order_by_id->customer_email); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -42,7 +43,8 @@
                                     Số điện thoại:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->customer_phone}}
+                                    <?php echo e($order_by_id->customer_phone); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -52,7 +54,8 @@
                                     Ngày đặt:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->created_at}}
+                                    <?php echo e($order_by_id->created_at); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -62,7 +65,8 @@
                                     Trạng thái đơn hàng
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->order_status}}
+                                    <?php echo e($order_by_id->order_status); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -81,7 +85,8 @@
                                     Tên người nhận:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->shipping_name}}
+                                    <?php echo e($order_by_id->shipping_name); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -91,7 +96,8 @@
                                     Địa chỉ giao hàng:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->shipping_address}}
+                                    <?php echo e($order_by_id->shipping_address); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -101,7 +107,8 @@
                                     Số điện thoại giao hàng:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$order_by_id->shipping_phone}}
+                                    <?php echo e($order_by_id->shipping_phone); ?>
+
                                 </div>
                             </div>
                         </div>
@@ -129,34 +136,34 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center content-center">
-                                    @foreach ($order_detail as $item)
+                                    <?php $__currentLoopData = $order_detail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     
                                     <tr>
-                                        <td>{{$item->product_name}}</td>
-                                        <td>{{ number_format($item->product_sales_quantity, 0) }}</td>
-                                        <td>{{ number_format($item->product_quantity, 0) }}</td>
-                                        <td>{{ number_format($item->product_price, 2) }}</td>
+                                        <td><?php echo e($item->product_name); ?></td>
+                                        <td><?php echo e(number_format($item->product_sales_quantity, 0)); ?></td>
+                                        <td><?php echo e(number_format($item->product_quantity, 0)); ?></td>
+                                        <td><?php echo e(number_format($item->product_price, 2)); ?></td>
                                         <?php if($item->product_quantity <= 10){ ?>
                                         <td class="text-danger">Sản phẩm sắp hết hàng</td>
                                         <?php } 
                                         else { ?>
                                         <td></td>
                                         <?php } ?>
-                                        <td>{{ number_format($item->product_price*$item->product_sales_quantity, 2) }}
+                                        <td><?php echo e(number_format($item->product_price*$item->product_sales_quantity, 2)); ?>
+
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                                 <tfoot>
                                     <tr class="text-center">
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($count_quantity, 2)}}</th>
+                                        <th class="text-danger"><?php echo e(number_format($count_quantity, 2)); ?></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($order_by_id->order_total, 2)}}</th>
-                                        {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
-                                        </th> --}}
+                                        <th class="text-danger"><?php echo e(number_format($order_by_id->order_total, 2)); ?></th>
+                                        
                                     </tr>
                                 </tfoot>
                             </table>
@@ -171,9 +178,10 @@
             <div class="card-header p-2 text-primary border-botton border-primary text-center">
                 Hành động
             </div>
-            <form role="form" action="{{URL::to('/update-order/'.$order_by_id->order_id)}}" method="POST"
+            <form role="form" action="<?php echo e(URL::to('/update-order/'.$order_by_id->order_id)); ?>" method="POST"
                 enctype="multipart/form-data">
-                {{csrf_field()}}
+                <?php echo e(csrf_field()); ?>
+
                 <div class="card-body">
                     <div class="col-12">
                         <select name="order_status" class="col-12 form-control input-sm m-bot15">
@@ -184,7 +192,7 @@
                         </select>
                         <input type="submit" class="btn btn-primary col-12 mt-2" value="Xác Nhận"
                             onclick="return confirm('Xác nhận cập nhập ?')" />
-                        <a href="{{URL::to('/manage-order')}}"><input type="button" class="btn btn-danger col-12 mt-2"
+                        <a href="<?php echo e(URL::to('/manage-order')); ?>"><input type="button" class="btn btn-danger col-12 mt-2"
                                 value="Hủy" /></a>
                     </div>
                 </div>
@@ -192,8 +200,9 @@
         </div>
     </div>
 </div>
-<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
 <script>
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/view_order.blade.php ENDPATH**/ ?>

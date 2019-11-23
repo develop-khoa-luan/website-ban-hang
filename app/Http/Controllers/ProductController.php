@@ -54,9 +54,20 @@ class ProductController extends Controller
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $data['product_status'] = $request->product_status;
-        $data['product_quantity'] = $request->product_quantity;
         $data['product_image'] = $request->new_image;
-        DB::table('tbl_product')->insert($data);
+        $product_id = DB::table('tbl_product')->insertGetId($data);
+        $count_product_detail = $request->count_product_detail;
+        if ($count_product_detail > 0) {
+            for ($i = 1; $i <= $count_product_detail; $i++) {
+                $product_detail_data = array();
+                $product_size = "product_size_" . $i;
+                $product_quantity = "product_quantity_" . $i;
+                $product_detail_data['product_id'] = $product_id;
+                $product_detail_data['product_size'] = $request->$product_size;
+                $product_detail_data['product_quantity'] = $request->$product_quantity;
+                DB::table('tbl_product_detail')->insert($product_detail_data);
+            }
+        }
         Session::put('message', 'Thêm sản phẩm thành công.');
         return Redirect::to('add-product');
     }
@@ -82,10 +93,11 @@ class ProductController extends Controller
         $this->AuthLogin();
         $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
-
+        $all_product_detail = DB::table('tbl_product_detail')->where('product_id', $product_id)->get();
         $edit_product = DB::table('tbl_product')->where('product_id', $product_id)->get();
-
-        $manager_product = view('admin.edit_product')->with('edit_product', $edit_product)->with('cate_product', $cate_product)->with('brand_product', $brand_product);
+        $count_detail = count($all_product_detail);
+        $manager_product = view('admin.edit_product')->with('edit_product', $edit_product)->with('cate_product', $cate_product)
+            ->with('brand_product', $brand_product)->with('all_product_detail', $all_product_detail)->with('count_detail', $count_detail);
         return view('admin_layout')->with('admin.edit_product', $manager_product);
     }
 
@@ -101,10 +113,18 @@ class ProductController extends Controller
         $data['brand_id'] = $request->product_brand;
         $data['product_image'] = $request->new_image;
         $data['product_status'] = $request->product_status;
-        $data['product_quantity'] = $request->product_quantity;
-
-
         DB::table('tbl_product')->where('product_id', $product_id)->update($data);
+        $count_product_detail = $request->count_product_detail;
+        DB::table('tbl_product_detail')->where('product_id', $product_id)->delete();
+        for ($i = 1; $i <= $count_product_detail; $i++) {
+            $product_detail_data = array();
+            $product_size = "product_size_" . $i;
+            $product_quantity = "product_quantity_" . $i;
+            $product_detail_data['product_id'] = $product_id;
+            $product_detail_data['product_size'] = $request->$product_size;
+            $product_detail_data['product_quantity'] = $request->$product_quantity;
+            DB::table('tbl_product_detail')->insert($product_detail_data);
+        }
         Session::put('message', 'Cập nhật sản phẩm thành công.');
         return Redirect::to('all-product');
     }
@@ -139,5 +159,5 @@ class ProductController extends Controller
             ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
         return view('pages.product.show_details')->with('category', $cate_product)->with('brand', $brand_product)->with('details_product', $details_product)->with('related_product', $related_product);
-    } 
+    }
 }

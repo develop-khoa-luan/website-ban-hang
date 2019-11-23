@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TblOrder extends Migration
+class CreateTblProductDetail extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class TblOrder extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_order', function (Blueprint $table) {
-            $table->bigIncrements('order_id');
-            $table->integer('customer_id');
-            $table->integer('shipping_id');
-            $table->integer('payment_id');
-            $table->float('order_total', 13, 2);
-            $table->string('order_status');
+        Schema::create('tbl_product_detail', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('product_id');
+            $table->string('product_size');
+            $table->integer('product_quantity');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -32,6 +30,6 @@ class TblOrder extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_order');
+        Schema::dropIfExists('tbl_product_detail');
     }
 }

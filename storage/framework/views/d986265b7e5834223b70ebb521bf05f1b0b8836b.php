@@ -1,7 +1,7 @@
-@extends('admin_layout')
-@section('admin_content')
-<form role="form" action="{{URL::to('/save-product')}}" method="POST" enctype="multipart/form-data">
-    {{csrf_field()}}
+<?php $__env->startSection('admin_content'); ?>
+<form role="form" action="<?php echo e(URL::to('/save-product')); ?>" method="POST" enctype="multipart/form-data">
+    <?php echo e(csrf_field()); ?>
+
     <?php
                 $message = Session::get('message');
                 if($message){
@@ -26,9 +26,9 @@
                             <div class="form-group">
                                 <label class="text-dark for=" exampleInputPassword1">Danh mục sản phẩm:</label>
                                 <select name="product_cate" class="form-control input-sm m-bot15">
-                                    @foreach($cate_product as $key => $cate)
-                                    <option value="{{$cate->category_id}}">{{$cate->category_name}}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $cate_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($cate->category_id); ?>"><?php echo e($cate->category_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
@@ -36,9 +36,9 @@
                             <div class="form-group">
                                 <label class="text-dark for=" exampleInputPassword1>Thương hiệu sản phẩm:</label>
                                 <select name="product_brand" class="form-control input-sm m-bot15">
-                                    @foreach($brand_product as $key => $brand)
-                                    <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $brand_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($brand->brand_id); ?>"><?php echo e($brand->brand_name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             <option value="0">Ẩn</option>
                         </select>
                     </div>
-                    {{-- <input type="number" value="0" name="product_status" id="product_status" readonly hidden /> --}}
+                    
                 </div>
             </div>
         </div>
@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="col-12">
-                        <a href="{{URL::to('/add-product')}}"><input type="button" class="btn btn-danger col-12 mt-2"
+                        <a href="<?php echo e(URL::to('/add-product')); ?>"><input type="button" class="btn btn-danger col-12 mt-2"
                                 value="Hủy" /></a>
                     </div>
                 </div>
@@ -139,16 +139,16 @@
         </div>
     </div>
 </form>
-<script type="text/javascript" src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
-<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('public/backend/js/custom-js/add-product.js')}}"></script>
+<script type="text/javascript" src="<?php echo e(asset('public/backend/ckeditor/ckeditor.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/product.js')); ?>"></script>
 <script>
     // This will hold the handle of the child window
         var __CHILD_WINDOW_HANDLE = null;
         
 
         $("#open-child-window").on('click', function() {
-            __CHILD_WINDOW_HANDLE = window.open('{{URL::to('/gallery')}}', '_blank', 'width=1200,height=600,left=200,top=50');
+            __CHILD_WINDOW_HANDLE = window.open('<?php echo e(URL::to('/gallery')); ?>', '_blank', 'width=1200,height=600,left=200,top=50');
         });
         
         $("#send-message-child").on('click', function() {
@@ -161,7 +161,7 @@
         function ProcessChildMessage(message) {
             $("#get-image").val(message);
             var get_image = $("#get-image").val();
-            var change_src = '{{URL::to('/public/uploads/product/')}}'+'/'+get_image;
+            var change_src = '<?php echo e(URL::to('/public/uploads/product/')); ?>'+'/'+get_image;
             debugger;
             $("#current-image").attr('src', change_src);
         }
@@ -172,7 +172,8 @@
         });
 
         CKEDITOR.replace('contentWithCkeditor', {
-            filebrowserBrowseUrl: '{{URL::to("/gallery")}}'
+            filebrowserBrowseUrl: '<?php echo e(URL::to("/gallery")); ?>'
          });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/add_product.blade.php ENDPATH**/ ?>

@@ -1,5 +1,6 @@
 // js in product management
 $(document).ready(function() {
+
     $("#btn-public").on("click", function() {
         $("#product_status").val("1");
     });
@@ -33,4 +34,20 @@ $(document).ready(function() {
         var newCount = parseInt(count) - 1;
         $(".count_product_detail").val(newCount);
     });
+
+    $(".delete-product-detail").on("click", function() {
+        var count = $(".count_product_detail").val();
+        var getCutId = $(this).parents()[1].id;
+        var nextId = parseInt(getCutId) + 1;
+        $(this).parents()[1].remove()
+        for (var nextId; nextId <= count; nextId++) {
+            $("#" + nextId).attr("id", (parseInt(nextId) - 1));
+            var a = $("#product_quantity_" + nextId).attr({ id: "product_quantity_" + (parseInt(nextId) - 1), name: ("product_quantity_" + (parseInt(nextId) - 1)) });
+            var a = $("#product_size_" + nextId).attr({ id: "product_size_" + (parseInt(nextId) - 1), name: ("product_size_" + (parseInt(nextId) - 1)) });
+        }
+        var newCount = parseInt(count) - 1;
+        $(".count_product_detail").val(newCount);
+    });
+
+
 });
