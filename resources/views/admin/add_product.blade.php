@@ -10,7 +10,7 @@
                 }
         ?>
     <div class="row">
-        <div class="col-lg-9 col-md-8">
+        <div class="col-lg-8 col-md-12">
             <div class="card m-1 border border-primary">
                 <div class="card-header p-2 text-primary border-botton border-primary">
                     Nhập thông tin sản phẩm
@@ -51,14 +51,6 @@
                                 <input type="number" name="product_price" class="form-control" id="exampleInputEmail1"
                                     placeholder="Giá sản phẩm..." step="10000">
                             </div>
-
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số lượng sản phẩm</label>
-                                <input type="number" name="product_quantity" class="form-control"
-                                    id="exampleInputEmail1" placeholder="Số lượng sản phẩm...">
-                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -98,15 +90,37 @@
                         <label for="exampleInputPassword1">Hiển thị</label>
                         <select name="product_status" class="form-control input-sm m-bot15">
                             <option value="1">Hiển thị</option>
-                            <option value="0">Ẩn</option> 
+                            <option value="0">Ẩn</option>
                         </select>
                     </div>
                     {{-- <input type="number" value="0" name="product_status" id="product_status" readonly hidden /> --}}
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4">
+        <div class="col-lg-4 col-md-12">
             <div class="card m-1 border border-primary">
+                <div class="card-header p-2 text-primary border-botton border-primary">
+                    Chi tiết sản phẩm
+                </div>
+                <div class="card-body">
+                    <input type="number" name="count_product_detail" class="count_product_detail" value="0" hidden>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-5 d-flex justify-content-right">Size</div>
+                        <div class="col-1"></div>
+                        <div class="col-5 d-flex justify-content-right">Số lượng</div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="append-product-detail"></div>
+                    <div class="row mt-2 d-flex justify-content-center">
+                        <div class="col-5"></div>
+                        <div class="col-1 d-flex justify-content-center"><i class="text-success fas fa-plus-circle add-product-detail"></i></div>
+                        <div class="col-5"></div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card m-1 border border-primary mt-4">
                 <div class="card-header p-2 text-primary border-botton border-primary">
                     Hành động
                 </div>
@@ -114,13 +128,14 @@
                     <div class="col-12">
                         <button type="submit" id="btn-public" class="btn btn-success col-12">Thêm mới</button>
                     </div>
-                    
+
                     <div class="col-12">
                         <a href="{{URL::to('/add-product')}}"><input type="button" class="btn btn-danger col-12 mt-2"
                                 value="Hủy" /></a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </form>

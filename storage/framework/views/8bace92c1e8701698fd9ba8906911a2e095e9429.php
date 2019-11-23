@@ -32,11 +32,11 @@
                         <?php $__currentLoopData = $all_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $pro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                             <td><?php echo e($pro -> product_name); ?></td>
-                            <td><?php echo e($pro -> product_price); ?></td>
+                            <td><?php echo e(number_format($pro -> product_price, 2)); ?></td>
                             <td><img src="public/uploads/product/<?php echo e($pro -> product_image); ?>" width="100" height="100"></td>
                             <td><?php echo e($pro -> category_name); ?></td>
                             <td><?php echo e($pro -> brand_name); ?></td>
-                            <td><?php echo e($pro -> product_quantity); ?></td>
+                            <td></td>
                             <td>
                                 <span class="text-ellipsis">
                                     <?php

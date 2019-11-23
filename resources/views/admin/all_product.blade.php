@@ -33,11 +33,11 @@
                         @foreach ($all_product as $key => $pro)
                     <tr>
                             <td>{{ $pro -> product_name }}</td>
-                            <td>{{ $pro -> product_price }}</td>
+                            <td>{{ number_format($pro -> product_price, 2) }}</td>
                             <td><img src="public/uploads/product/{{ $pro -> product_image }}" width="100" height="100"></td>
                             <td>{{ $pro -> category_name }}</td>
                             <td>{{ $pro -> brand_name }}</td>
-                            <td>{{ $pro -> product_quantity }}</td>
+                            <td></td>
                             <td>
                                 <span class="text-ellipsis">
                                     <?php

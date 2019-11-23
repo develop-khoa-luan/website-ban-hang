@@ -11,7 +11,7 @@
                 }
         ?>
     <div class="row">
-        <div class="col-lg-9 col-md-8">
+        <div class="col-lg-8 col-md-12">
             <div class="card m-1 border border-primary">
                 <div class="card-header p-2 text-primary border-botton border-primary">
                     Nhập thông tin sản phẩm
@@ -47,7 +47,6 @@
                                     @else
                                     <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
                                     @endif
-
                                     @endforeach
                                 </select>
                             </div>
@@ -61,15 +60,6 @@
                                     value="{{$pro->product_price}}">
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Số lượng sản phẩm</label>
-                                    <input type="number" name="product_quantity" class="form-control"
-                                        id="exampleInputEmail1" value="{{$pro->product_quantity}}">
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-12">
@@ -79,7 +69,7 @@
                                         class="fas fa-plus-circle"></i></a>
                                 <div class="row">
                                     <input id="get-image" name="new_image" type="text" readonly
-                                        class="col-11 form-control ml-2" value="{{$pro->product_image}}">
+                                        class="col-10 form-control ml-2" value="{{$pro->product_image}}">
                                     <div class="d-flex align-items-center">
                                         <a href="#" class="btn btn-danger btn-circle btn-sm ml-1" id="delete-image"><i
                                                 class="fas fa-trash"></i></a>
@@ -109,7 +99,45 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4">
+        <div class="col-lg-4 col-md-12">
+            <div class="card m-1 border border-primary">
+                <div class="card-header p-2 text-primary border-botton border-primary">
+                    Chi tiết sản phẩm
+                </div>
+                <div class="card-body">
+                    <input type="number" name="count_product_detail" id="count_product_detail" class="count_product_detail"
+                        value={{$count_detail}}>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-5 d-flex justify-content-right">Size</div>
+                        <div class="col-1"></div>
+                        <div class="col-5 d-flex justify-content-right">Số lượng</div>
+                        <div class="col-1"></div>
+                    </div>
+                    <?php $i = 0 ?>
+                    @foreach ($all_product_detail as $item)
+                    <?php $i++ ?>
+                    <div id={{$i}} class="row mt-2 d-flex justify-content-center">
+                        <input type="text" name="product_size_{{$i}}" id="product_size_{{$i}}"
+                    class="form-control col-5" id="exampleInputEmail1" placeholder="Size..." value="{{$item->product_size}}">
+                        <div class="col-1"></div>
+                        <input type="number" name="product_quantity_{{$i}}"
+                            id="product_quantity_{{$i}}" class="form-control col-5" id="exampleInputEmail1"
+                    placeholder="Số lượng..." value="{{$item->product_quantity}}">
+                        <div class="col-1 d-flex align-items-center"><i
+                                class="text-danger fas fa-minus-circle delete-product-detail"></i>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="append-product-detail"></div>
+                    <div class="row mt-2 d-flex justify-content-center">
+                        <div class="col-5"></div>
+                        <div class="col-1 d-flex justify-content-center"><i
+                                class="text-success fas fa-plus-circle add-product-detail"></i></div>
+                        <div class="col-5"></div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </div>
             <div class="card m-1 border border-primary">
                 <div class="card-header p-2 text-primary border-botton border-primary">
                     Hành động
@@ -132,7 +160,7 @@
 </form>
 <script type="text/javascript" src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('public/backend/js/custom-js/add-product.js')}}"></script>
+<script src="{{asset('public/backend/js/custom-js/edit-product.js')}}"></script>
 <script>
     // This will hold the handle of the child window
         var __CHILD_WINDOW_HANDLE = null;

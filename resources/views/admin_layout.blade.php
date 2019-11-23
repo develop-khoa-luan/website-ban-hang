@@ -289,12 +289,8 @@
   <!-- Custom scripts for all pages-->
   <script src="{{asset('public/backend/js/sb-admin-2.min.js')}}"></script>
   <!-- Page level plugins -->
-  <script src="{{asset('public/backend/vendor/chart.js/Chart.min.js')}}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{asset('public/backend/js/demo/chart-area-demo.js')}}"></script>
-  <script src="{{asset('public/backend/js/demo/chart-pie-demo.js')}}"></script>
-
   <!-- JS quản lý đơn hàng -->
 <script src="{{asset('public/backend/vendor/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('public/backend/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
