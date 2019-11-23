@@ -20,7 +20,7 @@ class CreateTblProduct extends Migration
             $table->string('product_name');
             $table->text('product_desc');
             $table->text('product_content');
-            $table->string('product_price');
+            $table->float('product_price', 13, 2);
             $table->string('product_image');
             $table->integer('product_status');
             $table->string('product_quantity');

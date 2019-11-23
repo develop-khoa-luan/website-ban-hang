@@ -18,7 +18,7 @@ class TblOrder extends Migration
             $table->integer('customer_id');
             $table->integer('shipping_id');
             $table->integer('payment_id');
-            $table->string('order_total');
+            $table->float('order_total', 20, 2);
             $table->string('order_status');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
