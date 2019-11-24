@@ -1,16 +1,15 @@
-@extends('layout')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
-@foreach ($details_product as $key => $value)
+<?php $__currentLoopData = $details_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
 <div class="product-details">
-    <meta name="_token" content="{{csrf_token()}}" />
+    <meta name="_token" content="<?php echo e(csrf_token()); ?>" />
     <div class="col-sm-5">
         <div class="view-product">
-            <img src="{{URL::to('/public/uploads/product/'.$value ->product_image)}}" alt="" />
-            {{-- <h3>ZOOM</h3> --}}
+            <img src="<?php echo e(URL::to('/public/uploads/product/'.$value ->product_image)); ?>" alt="" />
+            
         </div>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
@@ -46,12 +45,12 @@
             <form>
                 <div class="card-header">
                     <input id="product_id_hidden" name="product_id_hidden" type="hidden"
-                        value="{{$value->product_id}}" />
-                    <h2 style="font-size: 40px; color: #FE980F">{{$value->product_name}}</h2>
+                        value="<?php echo e($value->product_id); ?>" />
+                    <h2 style="font-size: 40px; color: #FE980F"><?php echo e($value->product_name); ?></h2>
                 </div>
                 <div class="card-body">
                     <div class="card-title" style="margin-top: 20px">
-                        <span style="font-size: 25px">{{number_format($value->product_price).' '.'VND'}}</span>
+                        <span style="font-size: 25px"><?php echo e(number_format($value->product_price).' '.'VND'); ?></span>
                     </div>
                     <div class="card-text">
                         <div class="row">
@@ -59,9 +58,9 @@
                                 <div class="form-group ">
                                     <label for="product-size">Size: </label>
                                     <select class="form-control product-size" style="width: 100px" id="product-size">
-                                        @foreach ($all_product_detail as $item)
-                                        <option value="{{$item->product_size}}">{{$item->product_size}}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $all_product_detail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($item->product_size); ?>"><?php echo e($item->product_size); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                                 <label for="quantity">Số lượng:</label>
@@ -82,10 +81,10 @@
                     </div>
                 </div>
             </form>
-            {{-- <p><b>Số lượng:</b> {{$value->product_quantity}}</p> --}}
+            
             <p><b>Trạng thái: <span class="show-quantity"></span><span class="sold-out text-danger"></span></b></p>
-            <p><b>Thương hiệu:</b> {{$value->brand_name}} </p>
-            <p><b>Danh mục:</b> {{$value->category_name}} </p>
+            <p><b>Thương hiệu:</b> <?php echo e($value->brand_name); ?> </p>
+            <p><b>Danh mục:</b> <?php echo e($value->category_name); ?> </p>
         </div>
         <!--/product-information-->
     </div>
@@ -103,7 +102,7 @@
     </div>
     <div class="tab-content ">
         <div class="tab-pane fade active in" id="details">
-            <p>{!!$value->product_content!!}</p>
+            <p><?php echo $value->product_content; ?></p>
 
         </div>
 
@@ -139,7 +138,7 @@
     </div>
 </div>
 
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 <div class="recommended_items">
     <!--recommended_items-->
@@ -148,18 +147,18 @@
     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="item active">
-                @foreach ($related_product as $key => $relate)
+                <?php $__currentLoopData = $related_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $relate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="../public/uploads/product/{{$relate->product_image}}" class="card-img-top"
+                                <img src="../public/uploads/product/<?php echo e($relate->product_image); ?>" class="card-img-top"
                                     alt="" />
                                 <input id="quantity_relate"  type="number" min="0" max="" value="1" hidden />
                                 <input id="product_id_relate"  type="hidden"
-                                    value="{{$relate->product_id}}" />
-                                <h2>{{number_format($relate->product_price).' '.'VND'}}</h2>
-                                <p>{{$relate->product_name}}</p>
+                                    value="<?php echo e($relate->product_id); ?>" />
+                                <h2><?php echo e(number_format($relate->product_price).' '.'VND'); ?></h2>
+                                <p><?php echo e($relate->product_name); ?></p>
                                 <a href="#" class="btn btn-default btn-add-to-cart-relate"><i
                                         class="fa fa-shopping-cart"></i>Thêm
                                     vào giỏ hàng</a>
@@ -167,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
         <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
@@ -178,7 +177,7 @@
         </a>
     </div>
 </div>
-<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
+<script src="<?php echo e(asset('public/frontend/js/jquery.js')); ?>"></script>
 <script>
     $(document).ready(function(){
         //add-to-cart at product relate
@@ -190,7 +189,7 @@
 		}
         });
 		$.ajax({
-		url: "{{ url('/save-cart') }}",
+		url: "<?php echo e(url('/save-cart')); ?>",
 		method: 'post',
 		data: {
 			product_id_hidden: $(this).parent()[0].children[2].value,
@@ -214,7 +213,7 @@
 		}
         });
 		$.ajax({
-		url: "{{ url('/save-cart-with-size') }}",
+		url: "<?php echo e(url('/save-cart-with-size')); ?>",
 		method: 'post',
 		data: {
 			product_id_hidden: $("#product_id_hidden").val(),
@@ -223,7 +222,7 @@
 		},
 		success: function(result){
 			$(".count_cart").text(result.cart_count);
-			window.open("{{URL::to('/show-cart')}}", "_self");
+			window.open("<?php echo e(URL::to('/show-cart')); ?>", "_self");
 		},
 		error: function(result){
 			alert("Thêm sản phẩm vô giỏ hàng thất bại!");
@@ -239,7 +238,7 @@
 		}
         });
 		$.ajax({
-		url: "{{ url('/save-cart-with-size') }}",
+		url: "<?php echo e(url('/save-cart-with-size')); ?>",
 		method: 'post',
 		data: {
 			product_id_hidden: $("#product_id_hidden").val(),
@@ -260,7 +259,7 @@
             var product_id = $("#product_id_hidden").val();
             var product_size = $('#product-size :selected').val();
             $.ajax({
-				url: "{{ url('/get-quantity') }}",
+				url: "<?php echo e(url('/get-quantity')); ?>",
 		        method: 'get',
 		        data: {
 			        product_id: product_id,
@@ -286,7 +285,7 @@
 
             //get quantity auto show without click
             $.ajax({
-				url: "{{ url('/get-quantity') }}",
+				url: "<?php echo e(url('/get-quantity')); ?>",
 		        method: 'get',
 		        data: {
 			        product_id: $("#product_id_hidden").val(),
@@ -311,4 +310,5 @@
         
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/product/show_details.blade.php ENDPATH**/ ?>

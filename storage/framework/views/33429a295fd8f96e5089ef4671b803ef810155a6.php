@@ -12,13 +12,13 @@
         <div class="table-responsive cart_info">
             <?php
                 $content = Cart::content();
- 
             ?>
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
                         <td class="description">Tên sản phẩm</td>
                         <td class="price">Giá</td>
+                        <td class="size">Size</td>
                         <td class="quantity">Số lượng</td>
                         <td class="total">Tổng tiền</td>
                         <td></td>
@@ -26,7 +26,6 @@
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $content; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v_content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              
                     <tr>
                         
                         <td class="cart_description">
@@ -36,12 +35,14 @@
                             <?php echo e(number_format($v_content->price).' '.'VND'); ?>
 
                         </td>
+                        <td class="cart_size">&nbsp;&nbsp;<?php echo e($v_content->options->size); ?>
+
+                        </td>
                         <td class="cart_quantity">
                             <form action="<?php echo e(URL::to('/update-cart-quanlity')); ?>" method="POST">
                                 <?php echo e(csrf_field()); ?>
 
-            
-                                <input class="cart_quantity_input" type="number" min="0"  name="cart_qty" value="<?php echo e($v_content->qty); ?>">
+                                <input class="cart_quantity_input" type="number" min="0" max="" name="cart_qty" value="<?php echo e($v_content->qty); ?>">
                                 
                                 <input type="hidden" value="<?php echo e($v_content->rowId); ?>" name="rowId_cart" id="">
                                 <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
@@ -59,7 +60,6 @@
                             <a class="cart_quantity_delete" href="<?php echo e(URL::to('/delete-to-cart/'.$v_content->rowId)); ?>"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
-        
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>

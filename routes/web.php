@@ -85,6 +85,7 @@ Route::get('/delete-product/{product_id}','ProductController@delete_product' );
 
 // Cart Product
 Route::post('/save-cart','CartController@save_cart' );
+Route::post('/save-cart-with-size','CartController@save_cart_with_size' );
 Route::get('/show-cart','CartController@show_cart' );
 
 Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart' );
@@ -121,6 +122,7 @@ Route::get('add-gallery','ImageUploadController@add_gallery');
 
 //API for website
 Route::get('/count-cart', 'APIController@count_cart'  );
+Route::get('/get-quantity', 'APIController@get_quantity'  );
 
 
 

@@ -20,17 +20,10 @@
 							<img style="height:250px" src="public/uploads/product/<?php echo e($product->product_image); ?>" alt="" />
 							<h2><?php echo e(number_format($product->product_price).' '.'VND'); ?></h2>
 							<p><?php echo e($product->product_name); ?></p>
-							<?php
-							if($product->product_quantity <=0 ) { ?>
-							<div class="btn btn-default">Sản phẩm hết hàng</div>
-							<?php
-							}else{
-							?>
 							<button class="btn btn-default btn-add-to-cart">
 								<i class="fa fa-shopping-cart"></i>
 								Thêm vào giỏ hàng
 							</button>
-							<?php }?>
 						</div>
 					</div>
 				</a>
