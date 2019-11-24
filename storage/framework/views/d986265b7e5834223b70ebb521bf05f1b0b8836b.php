@@ -141,7 +141,7 @@
 </form>
 <script type="text/javascript" src="<?php echo e(asset('public/backend/ckeditor/ckeditor.js')); ?>"></script>
 <script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
-<script src="<?php echo e(asset('public/backend/js/custom-js/product.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/add-product.js')); ?>"></script>
 <script>
     // This will hold the handle of the child window
         var __CHILD_WINDOW_HANDLE = null;

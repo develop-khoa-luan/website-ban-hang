@@ -13,13 +13,13 @@
         <div class="table-responsive cart_info">
             <?php
                 $content = Cart::content();
- 
             ?>
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
                         <td class="description">Tên sản phẩm</td>
                         <td class="price">Giá</td>
+                        <td class="size">Size</td>
                         <td class="quantity">Số lượng</td>
                         <td class="total">Tổng tiền</td>
                         <td></td>
@@ -27,7 +27,6 @@
                 </thead>
                 <tbody>
                     @foreach ($content as $v_content)
-              
                     <tr>
                         {{-- <td class="cart_product">
                             <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" width="20"  alt="" /></a>
@@ -39,11 +38,12 @@
                         <td class="cart_price">
                             {{number_format($v_content->price).' '.'VND'}}
                         </td>
+                        <td class="cart_size">&nbsp;&nbsp;{{$v_content->options->size}}
+                        </td>
                         <td class="cart_quantity">
                             <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
                                 {{ csrf_field() }}
-            
-                                <input class="cart_quantity_input" type="number" min="0"  name="cart_qty" value="{{$v_content->qty}}">
+                                <input class="cart_quantity_input" type="number" min="0" max="" name="cart_qty" value="{{$v_content->qty}}">
                                 {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
                                 <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
                                 <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
@@ -61,7 +61,6 @@
                             <a class="cart_quantity_delete" href="{{URL::to('/delete-to-cart/'.$v_content->rowId)}}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
-        
                     @endforeach
                 </tbody>
             </table>

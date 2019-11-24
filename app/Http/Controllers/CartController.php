@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 
 use App\Http\Requests;
+use ArrayObject;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -31,12 +32,38 @@ class CartController extends Controller
         return response()->json(['cart_count'=>$cart_count]);
     }
 
+    public function save_cart_with_size(Request $request){
+        $product_Id = $request->product_id_hidden;
+        $quanlity = $request->qty;
+        $size = $request->product_size;
+        $product_info = DB::table('tbl_product')->where('product_id',$product_Id)->first();
+        $data['id'] = $product_info->product_id;
+        $data['qty'] = $quanlity;
+        $data['name'] = $product_info->product_name;
+        $data['price'] = $product_info->product_price;
+        $data['weight'] = $product_info->product_price;
+        $data['options']['image'] = $product_info->product_image;
+        $data['options']['size'] = $size;
+        Cart::add($data);
+        $cart_count = Cart::content()->count();
+        return response()->json(['cart_count'=>$cart_count]);
+    }
+
+
     public function show_cart(){
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.cart.show_cart')->with('category', $cate_product)->with('brand', $brand_product);
+        $get_cart = Cart::content();
+
+        $product_detail = array();
+        foreach($get_cart as $cart){
+            $get_product_detail = DB::table('tbl_product_detail')->where('product_id', $cart->id)->get();
+            array_push($product_detail, $get_product_detail);
+        }
+
+        return view('pages.cart.show_cart')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product_detail', $product_detail);
     }
 
     public function delete_to_cart($rowId){ 
