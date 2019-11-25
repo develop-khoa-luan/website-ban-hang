@@ -56,7 +56,7 @@
                     <div class="card-text">
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="form-group ">
+                                <div class="form-group">
                                     <label for="product-size">Size: </label>
                                     <select class="form-control product-size" style="width: 100px" id="product-size">
                                         @foreach ($all_product_detail as $item)

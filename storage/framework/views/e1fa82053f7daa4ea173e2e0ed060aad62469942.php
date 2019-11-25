@@ -129,7 +129,7 @@
                                     <tr class="text-center">
                                         <th class="text-primary">Tên sản phẩm</th>
                                         <th class="text-primary">Số lượng</th>
-                                        <th class="text-primary">Hàng Trong Kho</th>
+                                        <th class="text-primary">Size:</th>
                                         <th class="text-primary">Giá</th>
                                         <th class="text-primary">Chú ý</th>
                                         <th class="text-primary">Tổng tiền</th>
@@ -141,14 +141,9 @@
                                     <tr>
                                         <td><?php echo e($item->product_name); ?></td>
                                         <td><?php echo e(number_format($item->product_sales_quantity, 0)); ?></td>
-                                        <td><?php echo e(number_format($item->product_quantity, 0)); ?></td>
+                                        <td><?php echo e($item->product_size); ?></td>
                                         <td><?php echo e(number_format($item->product_price, 2)); ?></td>
-                                        <?php if($item->product_quantity <= 10){ ?>
-                                        <td class="text-danger">Sản phẩm sắp hết hàng</td>
-                                        <?php } 
-                                        else { ?>
                                         <td></td>
-                                        <?php } ?>
                                         <td><?php echo e(number_format($item->product_price*$item->product_sales_quantity, 2)); ?>
 
                                         </td>

@@ -39,7 +39,7 @@
                             <a href="<?php echo e(URL::to('/chi-tiet-san-pham/'.$v_content->id)); ?>"><h5><?php echo e($v_content->name); ?></h5></a>
                     </td>
                     <td class="cart_price">
-                        <?php echo e(number_format($v_content->price).' '.'VND'); ?>
+                        <?php echo e(number_format($v_content->price, 2).' '.'VND'); ?>
 
                     </td>
                     <td class="cart_quantity">
@@ -59,7 +59,7 @@
                             <?php
                                         $subtotal = $v_content->price *  $v_content->qty;
                                         $total_order = $total_order + $subtotal;
-                                        echo number_format($subtotal).' '.'VND';
+                                        echo number_format($subtotal, 2).' '.'VND';
                                     ?>
                         </p>
                     </td>
@@ -80,7 +80,7 @@
                         <div class="total_area" style="    padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền <span><?php echo e(number_format($total_order).' '.'VND'); ?></span></li>
+                                <li>Tổng Tiền <span><?php echo e(number_format($total_order, 2).' '.'VND'); ?></span></li>
                             </ul>
                         </div>
                     </div>

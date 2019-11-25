@@ -20,6 +20,7 @@ class TblOrderDetail extends Migration
             $table->string('product_name');
             $table->float('product_price', 13, 2);
             $table->integer('product_sales_quantity');
+            $table->string('product_size');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
