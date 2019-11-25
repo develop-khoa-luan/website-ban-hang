@@ -119,6 +119,7 @@ class CheckoutController extends Controller
             $order_detail_data['product_name'] = $v_content->name;
             $order_detail_data['product_price'] = $v_content->price;
             $order_detail_data['product_sales_quantity'] = $v_content->qty;
+            $order_detail_data['product_size'] = $v_content->options->size;
             DB::table('tbl_order_detail')->insert($order_detail_data);
         }
 
@@ -160,7 +161,7 @@ class CheckoutController extends Controller
             ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->where('order_id', $order_id)->first();
             
         $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
-        ->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*', 'tbl_product.product_quantity')->get();
+        ->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*')->get();
 
         $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
 

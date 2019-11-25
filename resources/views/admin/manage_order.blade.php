@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{ $order -> customer_name }}</td>
                         <td>{{ $order -> created_at }}</td>
-                        <td>{{ $order -> order_total }}</td>
+                        <td>{{number_format($order -> order_total, 0) }} VND</td>
                         <td>{{ $order -> order_status }}</td>
                         <td>...</td>
                         <td >

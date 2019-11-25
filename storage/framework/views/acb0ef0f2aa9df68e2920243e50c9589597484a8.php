@@ -31,7 +31,7 @@
                     <tr>
                         <td><?php echo e($order -> customer_name); ?></td>
                         <td><?php echo e($order -> created_at); ?></td>
-                        <td><?php echo e($order -> order_total); ?></td>
+                        <td><?php echo e(number_format($order -> order_total, 0)); ?> VND</td>
                         <td><?php echo e($order -> order_status); ?></td>
                         <td>...</td>
                         <td >
