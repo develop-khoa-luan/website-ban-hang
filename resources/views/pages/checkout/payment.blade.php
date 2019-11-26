@@ -10,15 +10,12 @@
         </div>
     </div>
     <div class="review-payment">
-        <h2>Xem lại giỏ hàng</h2>
+        <h2>Thông tin đơn hàng</h2>
     </div>
     <div class="table-responsive cart_info">
         <?php
-                    $content = Cart::content();
-                    // echo '<pre>';
-                    // print_r($content);
-                    // echo '<pre>';
-                ?>
+            $content = Cart::content();       
+        ?>
         <table class="table table-condensed">
             <thead>
                 <tr class="cart_menu" style="text-align:center">
@@ -60,10 +57,10 @@
                     <td class="cart_total">
                         <p class="cart_total_price">
                             <?php
-                                        $subtotal = $v_content->price *  $v_content->qty;
-                                        $total_order = $total_order + $subtotal;
-                                        echo number_format($subtotal, 2).' '.'VND';
-                                    ?>
+                                $subtotal = $v_content->price *  $v_content->qty;
+                                $total_order = $total_order + $subtotal;
+                                echo number_format($subtotal, 2).' '.'VND';
+                            ?>
                         </p>
                     </td>
                     <td class="cart_delete">
