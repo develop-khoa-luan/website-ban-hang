@@ -113,6 +113,21 @@
             </div>
           </li>
 
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#coupon" aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fas fa-cart-arrow-down"></i>
+              <span>Quản lý khuyến mãi</span>
+            </a>
+            <div id="coupon" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý khuyến mãi</h6>
+                <a class="collapse-item" href="{{URL::to('/add-coupon')}}">Thêm mã khuyến mãi</a>
+                <a class="collapse-item" href="{{URL::to('/all-coupon')}}">Danh sách mã khuyến mãi</a>
+              </div>
+            </div>
+          </li>
+
           <!-- Quản lý thương hiệu -->
       <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#images" aria-expanded="true" aria-controls="collapseUtilities">

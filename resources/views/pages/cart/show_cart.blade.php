@@ -16,8 +16,9 @@
             ?>
             <table class="table table-condensed">
                 <thead>
-                    <tr class="cart_menu">
+                    <tr class="cart_menu" style="text-align:center">
                         <td class="description">Tên sản phẩm</td>
+                        {{-- <td class="img">Hình ảnh</td> --}}
                         <td class="price">Giá</td>
                         <td class="size">Size</td>
                         <td class="quantity">Số lượng</td>
@@ -26,15 +27,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $total_order = 0 ?>
                     @foreach ($content as $v_content)
-                    <tr>
-                        {{-- <td class="cart_product">
-                            <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" width="20"  alt="" /></a>
-                           
-                        </td> --}}
+                    <tr style="text-align:center">
+                        
                         <td class="cart_description">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                         </td>
+                        {{-- <td class="cart_product">
+                                <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" width="50px" height="50px"  alt="" /></a>    
+                        </td> --}}
                         <td class="cart_price">
                             {{number_format($v_content->price).' '.'VND'}}
                         </td>
@@ -46,14 +48,15 @@
                                 <input class="cart_quantity_input" type="number" min="0" max="" name="cart_qty" value="{{$v_content->qty}}">
                                 {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
                                 <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
-                                <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
+                                <input type="submit" style="margin-left: -20px" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
                             </form>
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">
                                 <?php
                                     $subtotal = $v_content->price *  $v_content->qty;
-                                    echo number_format($subtotal).' '.'VND';
+                                    $total_order = $total_order + $subtotal;
+                                    echo number_format($subtotal, 0).' '.'VND';
                                 ?>
                             </p>
                         </td>
@@ -75,11 +78,8 @@
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
-                        {{-- <li>Tổng <span>{{Cart::subtotal().' '.'VND'}}</span></li> --}}
-                        {{-- <li>Thuế <span>{{Cart::tax().' '.'VND'}}</span></li> --}}
                         <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Tổng Tiền <span>{{Cart::subtotal().' '.'VND'}}</span></li>
-                        {{-- <li>Tổng tiền <span>{{Cart::total().' '.'VND'}}</span></li> --}}
+                        <li>Tổng Tiền <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
                     </ul>
                         <?php
                             $customer_id = Session::get('customer_id');

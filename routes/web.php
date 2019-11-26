@@ -128,3 +128,21 @@ Route::get('/get-quantity', 'APIController@get_quantity'  );
 
 //delete order 
 Route::get('/delete-order/{order_id}','CheckoutController@delete_order' );
+
+
+// add-update coupon code management
+
+Route::get('/add-coupon','CouponController@add_coupon' );
+Route::get('/all-coupon','CouponController@all_coupon' );
+Route::post('/save-coupon','CouponController@save_coupon' );
+
+Route::get('/unactive-coupon/{coupon_id}','CouponController@unactive_coupon' );
+Route::get('/active-coupon/{coupon_id}','CouponController@active_coupon' );
+
+//edit coupon
+
+Route::get('/edit-coupon/{coupon_id}','CouponController@edit_brand_product' );
+Route::post('/update-coupon/{brand_product_id}','CouponController@coupon_product' );
+
+//delete coupon
+Route::get('/delete-coupon/{coupon_id}','CouponController@coupon_product' );
