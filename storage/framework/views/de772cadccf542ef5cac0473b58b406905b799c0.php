@@ -3,8 +3,10 @@
 <div class="features_items">
 	<!--features_items-->
 	<meta name="_token" content="<?php echo e(csrf_token()); ?>" />
-	<h2 class="title text-center" style="margin-top: 10px">Sản phẩm mới</h2>
-	<?php $__currentLoopData = $all_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	<?php $__currentLoopData = $category_name; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key =>$category_name_show): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <h2 class="title text-center" style="margin-top: 10px"><?php echo e($category_name_show->category_name); ?></h2>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+	<?php $__currentLoopData = $category_by_id; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 	<form>
 		<div class="col-sm-4">
 			<div class="product-image-wrapper">
@@ -13,7 +15,7 @@
 				<a href="<?php echo e(URL::to('/chi-tiet-san-pham/'.$product->product_id)); ?>">
 					<div class="single-products">
 						<div class="productinfo text-center">
-							<img style="height:250px" src="public/uploads/product/<?php echo e($product->product_image); ?>" alt="" />
+							<img style="height:250px" src="../public/uploads/product/<?php echo e($product->product_image); ?>" alt="" />
 							<h2><?php echo e(number_format($product->product_price).' '.'VND'); ?></h2>
 							<p><strong><?php echo e($product->product_name); ?><strong></strong></p>
 							<p><?php echo e($product->brand_name); ?> </p>
@@ -108,7 +110,7 @@
 					},  
 					success: function(data) {
 						$("#modal-product-name").text(data.product[0].product_name);
-						$("#modal-product-image").attr('src', 'public/uploads/product/'+data.product[0].product_image);
+						$("#modal-product-image").attr('src', '../public/uploads/product/'+data.product[0].product_image);
 						$("#modal-product-brand").text(data.product[0].brand_name);
 						$("#modal-product-category").text(data.product[0].category_name);
 						$("#modal-product-id").val(data.product[0].product_id);
@@ -163,4 +165,4 @@
 	});
 </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/category/show_category.blade.php ENDPATH**/ ?>

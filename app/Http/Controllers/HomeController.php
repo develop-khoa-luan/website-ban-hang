@@ -36,7 +36,10 @@ class HomeController extends Controller
         $keywords = $request->keywords_submit;
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        $search_product = DB::table('tbl_product')->where('product_name', 'like', '%'.$keywords.'%')->get();
+        $search_product = DB::table('tbl_product')
+        ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        ->where('product_name', 'like', '%'.$keywords.'%')->get();
 
         return view('pages.product.search')->with('category', $cate_product)->with('brand', $brand_product)->with('search_product', $search_product);
     }
