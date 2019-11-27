@@ -124,7 +124,6 @@
                                         <th class="text-primary">Số lượng</th>
                                         <th class="text-primary">Size:</th>
                                         <th class="text-primary">Giá</th>
-                                        <th class="text-primary">Chú ý</th>
                                         <th class="text-primary">Tổng tiền</th>
                                     </tr>
                                 </thead>
@@ -135,9 +134,8 @@
                                         <td>{{$item->product_name}}</td>
                                         <td>{{ number_format($item->product_sales_quantity, 0) }}</td>
                                         <td>{{$item->product_size}}</td>
-                                        <td>{{ number_format($item->product_price, 2) }}</td>
-                                        <td></td>
-                                        <td>{{ number_format($item->product_price*$item->product_sales_quantity, 2) }}
+                                        <td>{{ number_format($item->product_price, 0) }}</td>
+                                        <td>{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -145,11 +143,10 @@
                                 <tfoot>
                                     <tr class="text-center">
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($count_quantity, 2)}}</th>
+                                        <th class="text-danger">{{number_format($count_quantity, 0)}}</th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($order_by_id->order_total, 2)}}</th>
+                                        <th class="text-danger">{{number_format($order_by_id->order_total, 0)}}</th>
                                         {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
                                         </th> --}}
                                     </tr>

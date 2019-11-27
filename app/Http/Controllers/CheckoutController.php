@@ -161,7 +161,8 @@ class CheckoutController extends Controller
             ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->where('order_id', $order_id)->first();
             
         $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
-        ->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*')->get();
+        ->where('order_id', $order_id)
+        ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*')->get();
 
         $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
 
@@ -172,7 +173,6 @@ class CheckoutController extends Controller
     }
     public function update_order(Request $request, $order_id)
     {
-        //dd($order_id);
         $this->AuthLogin();
         $get_order = DB::table('tbl_order')->where('order_id', $order_id)->first();
         $get_status = $get_order->order_status;
@@ -189,7 +189,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product')->where('product_id', $order_datail->product_id)->decrement('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
+                            ->decrement('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Xác nhận đơn hàng');
@@ -199,7 +200,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product')->where('product_id', $order_datail->product_id)->decrement('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
+                            ->decrement('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Xác nhận thanh toán');
@@ -223,7 +225,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product')->where('product_id', $order_datail->product_id)->increment('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
+                            ->increment('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Đang chờ xử lý');
@@ -244,7 +247,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product')->where('product_id', $order_datail->product_id)->increment('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
+                            ->increment('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Hủy đơn hàng');
