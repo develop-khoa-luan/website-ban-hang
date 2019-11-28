@@ -131,7 +131,6 @@
                                         <th class="text-primary">Số lượng</th>
                                         <th class="text-primary">Size:</th>
                                         <th class="text-primary">Giá</th>
-                                        <th class="text-primary">Chú ý</th>
                                         <th class="text-primary">Tổng tiền</th>
                                     </tr>
                                 </thead>
@@ -142,9 +141,8 @@
                                         <td><?php echo e($item->product_name); ?></td>
                                         <td><?php echo e(number_format($item->product_sales_quantity, 0)); ?></td>
                                         <td><?php echo e($item->product_size); ?></td>
-                                        <td><?php echo e(number_format($item->product_price, 2)); ?></td>
-                                        <td></td>
-                                        <td><?php echo e(number_format($item->product_price*$item->product_sales_quantity, 2)); ?>
+                                        <td><?php echo e(number_format($item->product_price, 0)); ?></td>
+                                        <td><?php echo e(number_format($item->product_price*$item->product_sales_quantity, 0)); ?>
 
                                         </td>
                                     </tr>
@@ -153,11 +151,10 @@
                                 <tfoot>
                                     <tr class="text-center">
                                         <th class="text-danger"></th>
-                                        <th class="text-danger"><?php echo e(number_format($count_quantity, 2)); ?></th>
+                                        <th class="text-danger"><?php echo e(number_format($count_quantity, 0)); ?></th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger"></th>
-                                        <th class="text-danger"><?php echo e(number_format($order_by_id->order_total, 2)); ?></th>
+                                        <th class="text-danger"><?php echo e(number_format($order_by_id->order_total, 0)); ?></th>
                                         
                                     </tr>
                                 </tfoot>

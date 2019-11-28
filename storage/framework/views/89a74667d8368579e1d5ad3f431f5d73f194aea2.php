@@ -3,8 +3,8 @@
 <div class="features_items">
 	<!--features_items-->
 	<meta name="_token" content="<?php echo e(csrf_token()); ?>" />
-	<h2 class="title text-center" style="margin-top: 10px">Sản phẩm mới</h2>
-	<?php $__currentLoopData = $all_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	<h2 class="title text-center" style="margin-top: 10px">Kết quả tìm kiếm</h2>
+	<?php $__currentLoopData = $search_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 	<form>
 		<div class="col-sm-4">
 			<div class="product-image-wrapper">
@@ -163,4 +163,4 @@
 	});
 </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/pages/product/search.blade.php ENDPATH**/ ?>

@@ -41,7 +41,7 @@
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                     </td>
                     <td class="cart_price">
-                        {{number_format($v_content->price, 2).' '.'VND'}}
+                        {{number_format($v_content->price, 0).' '.'VND'}}
                     </td>
                     <td class="cart_quantity">
                         <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
@@ -59,7 +59,7 @@
                             <?php
                                 $subtotal = $v_content->price *  $v_content->qty;
                                 $total_order = $total_order + $subtotal;
-                                echo number_format($subtotal, 2).' '.'VND';
+                                echo number_format($subtotal, 0).' '.'VND';
                             ?>
                         </p>
                     </td>
@@ -80,7 +80,7 @@
                         <div class="total_area" style="    padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền <span>{{  number_format($total_order, 2).' '.'VND'}}</span></li>
+                                <li>Tổng Tiền <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
                             </ul>
                         </div>
                     </div>
