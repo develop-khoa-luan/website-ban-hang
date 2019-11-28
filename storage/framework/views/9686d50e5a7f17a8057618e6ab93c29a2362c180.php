@@ -1,8 +1,8 @@
-@extends('admin_layout')
-@section('admin_content')
-@foreach ($edit_coupon as $key => $edit_coupon)
-<form role="form" action="{{URL::to('/update-coupon/'.$edit_coupon ->coupon_id)}}" method="POST">
-    {{csrf_field()}}
+<?php $__env->startSection('admin_content'); ?>
+<?php $__currentLoopData = $edit_coupon; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $edit_coupon): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<form role="form" action="<?php echo e(URL::to('/update-coupon/'.$edit_coupon ->coupon_id)); ?>" method="POST">
+    <?php echo e(csrf_field()); ?>
+
     <?php
                 $message = Session::get('message');
                 if($message){
@@ -21,14 +21,14 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên thương hiệu</label>
                         <input type="text" name="coupon_name" class="form-control" id="exampleInputEmail1"
-                        value="{{$edit_coupon->coupon_name}}">
+                        value="<?php echo e($edit_coupon->coupon_name); ?>">
                     </div>
                     
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Phần trăm chiết khấu</label>
                         <input type="text" name="coupon_amount" class="form-control" id="exampleInputEmail1"
-                            placeholder="Phần trăm chiết khấu..." value="{{$edit_coupon->coupon_amount}}">
+                            placeholder="Phần trăm chiết khấu..." value="<?php echo e($edit_coupon->coupon_amount); ?>">
                     </div>
 
                     <div class="form-group">
@@ -53,14 +53,15 @@
                         <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
                     </div>
                     <div class="col-12">
-                        <a href="{{URL::to('/all-coupon')}}"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
+                        <a href="<?php echo e(URL::to('/all-coupon')); ?>"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('public/backend/js/custom-js/coupon.js')}}"></script>
-@endforeach
-@endsection
+<script src="<?php echo e(asset('public/backend/vendor/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/custom-js/coupon.js')); ?>"></script>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\website-online\resources\views/admin/edit_coupon.blade.php ENDPATH**/ ?>

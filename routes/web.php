@@ -123,6 +123,8 @@ Route::get('add-gallery','ImageUploadController@add_gallery');
 //API for website
 Route::get('/count-cart', 'APIController@count_cart'  );
 Route::get('/get-quantity', 'APIController@get_quantity'  );
+Route::get('/get-product-detail', 'APIController@get_product_detail'  );
+Route::get('/get-product', 'APIController@get_product'  );
 
 
 
@@ -139,10 +141,14 @@ Route::post('/save-coupon','CouponController@save_coupon' );
 Route::get('/unactive-coupon/{coupon_id}','CouponController@unactive_coupon' );
 Route::get('/active-coupon/{coupon_id}','CouponController@active_coupon' );
 
-//edit coupon
+    //edit coupon
 
-Route::get('/edit-coupon/{coupon_id}','CouponController@edit_brand_product' );
-Route::post('/update-coupon/{brand_product_id}','CouponController@coupon_product' );
+Route::get('/edit-coupon/{coupon_id}','CouponController@edit_coupon' );
+Route::post('/update-coupon/{coupon_id}','CouponController@update_coupon' );
 
-//delete coupon
-Route::get('/delete-coupon/{coupon_id}','CouponController@coupon_product' );
+    //delete coupon
+Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon' );
+
+    //apply coupon
+
+Route::post('/apply-coupon','CouponController@apply_coupon' );

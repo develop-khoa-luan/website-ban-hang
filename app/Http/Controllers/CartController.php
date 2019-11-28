@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 session_start();
 
-    use Cart;
+use Cart;
 
 class CartController extends Controller
 {

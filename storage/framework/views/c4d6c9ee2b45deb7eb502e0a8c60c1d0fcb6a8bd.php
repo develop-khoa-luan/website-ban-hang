@@ -14,7 +14,6 @@
 	<link href="<?php echo e(asset('public/frontend/css/animate.css')); ?>" rel="stylesheet">
 	<link href="<?php echo e(asset('public/frontend/css/main.css')); ?>" rel="stylesheet">
 	<link href="<?php echo e(asset('public/frontend/css/responsive.css')); ?>" rel="stylesheet">
-
 	<link rel="shortcut icon" href="images/ico/favicon.ico">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -486,7 +485,6 @@
 					if(data.count_cart>0){
 						$(".count_cart").text(data.count_cart);
 					}
-					
 				}
 			});
 		});

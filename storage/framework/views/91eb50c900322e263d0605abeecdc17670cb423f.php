@@ -8,16 +8,20 @@
             </ol>
         </div>
     </div>
+    <?php
+                                        $message = Session::get('message');
+                                        if($message){
+                                            echo '<span style="color:red">' .$message. '</span>';
+                                            Session::put('message',null);
+                                        }
+                                ?>
     <div class="review-payment">
-        <h2>Xem lại giỏ hàng</h2>
+        <h2>Thông tin đơn hàng</h2>
     </div>
     <div class="table-responsive cart_info">
         <?php
-                    $content = Cart::content();
-                    // echo '<pre>';
-                    // print_r($content);
-                    // echo '<pre>';
-                ?>
+            $content = Cart::content();       
+        ?>
         <table class="table table-condensed">
             <thead>
                 <tr class="cart_menu" style="text-align:center">
@@ -39,7 +43,7 @@
                             <a href="<?php echo e(URL::to('/chi-tiet-san-pham/'.$v_content->id)); ?>"><h5><?php echo e($v_content->name); ?></h5></a>
                     </td>
                     <td class="cart_price">
-                        <?php echo e(number_format($v_content->price, 2).' '.'VND'); ?>
+                        <?php echo e(number_format($v_content->price, 0).' '.'VND'); ?>
 
                     </td>
                     <td class="cart_quantity">
@@ -57,10 +61,10 @@
                     <td class="cart_total">
                         <p class="cart_total_price">
                             <?php
-                                        $subtotal = $v_content->price *  $v_content->qty;
-                                        $total_order = $total_order + $subtotal;
-                                        echo number_format($subtotal, 2).' '.'VND';
-                                    ?>
+                                $subtotal = $v_content->price *  $v_content->qty;
+                                $total_order = $total_order + $subtotal;
+                                echo number_format($subtotal, 0).' '.'VND';
+                            ?>
                         </p>
                     </td>
                     <td class="cart_delete">
@@ -76,11 +80,35 @@
     <section id="do_action">
             <div class="container">
                 <div class="row">
+                    
+                        <div class="col-sm-3">
+                                
+                                <div class="chose_area">
+                                        
+                                    <label for="">Nhập mã khuyến mãi</label>
+                                    <form action="<?php echo e(URL::to('/apply-coupon')); ?>" method="POST">
+                                        <?php echo e(csrf_field()); ?>
+
+                                        <div style="display:flex">
+                                            <input type="text" name="coupon_name" style="height: 30px">
+                                            <input style="margin: -2px 0 0 5px" type="submit" value="Áp dụng" class="btn btn-default">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
                     <div class="col-sm-6">
-                        <div class="total_area" style="    padding: 20px 25px 30px 0;margin-bottom: 20px">
+                        <div class="total_area" style="padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
+                                <?php if(!empty(Session::get('CouponAmount'))): ?>
+                                <li>Tổng Tiền <span><?php echo e(number_format($total_order, 0).' '.'VND'); ?></span></li>
+                                <li>Tiền chiết khấu<span><?php echo e(number_format($total_amount ?? '', 0).' '.'VND'); ?></span></li>
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền <span><?php echo e(number_format($total_order, 2).' '.'VND'); ?></span></li>
+                                <li>Tổng Tiền Thanh Toán <span><?php echo e(number_format($total_order, 0).' '.'VND'); ?></span></li>
+                                <?php else: ?>
+                                <li>Phí vận chuyển <span>Free</span></li>
+                                <li>Tổng Tiền Thanh Toán <span><?php echo e(number_format($total_order, 0).' '.'VND'); ?></span></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>

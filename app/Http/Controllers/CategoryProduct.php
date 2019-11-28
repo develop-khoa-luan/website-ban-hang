@@ -98,7 +98,10 @@ class CategoryProduct extends Controller
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        $category_by_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id',$category_id)->get();
+        $category_by_id = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
+        ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->where('tbl_product.category_id',$category_id)->get();
 
         $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
 

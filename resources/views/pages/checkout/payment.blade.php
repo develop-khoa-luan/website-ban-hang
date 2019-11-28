@@ -9,6 +9,13 @@
             </ol>
         </div>
     </div>
+    <?php
+                                        $message = Session::get('message');
+                                        if($message){
+                                            echo '<span style="color:red">' .$message. '</span>';
+                                            Session::put('message',null);
+                                        }
+                                ?>
     <div class="review-payment">
         <h2>Thông tin đơn hàng</h2>
     </div>
@@ -41,7 +48,7 @@
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                     </td>
                     <td class="cart_price">
-                        {{number_format($v_content->price, 2).' '.'VND'}}
+                        {{number_format($v_content->price, 0).' '.'VND'}}
                     </td>
                     <td class="cart_quantity">
                         <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
@@ -59,7 +66,7 @@
                             <?php
                                 $subtotal = $v_content->price *  $v_content->qty;
                                 $total_order = $total_order + $subtotal;
-                                echo number_format($subtotal, 2).' '.'VND';
+                                echo number_format($subtotal, 0).' '.'VND';
                             ?>
                         </p>
                     </td>
@@ -76,11 +83,34 @@
     <section id="do_action">
             <div class="container">
                 <div class="row">
+                    
+                        <div class="col-sm-3">
+                                
+                                <div class="chose_area">
+                                        
+                                    <label for="">Nhập mã khuyến mãi</label>
+                                    <form action="{{URL::to('/apply-coupon')}}" method="POST">
+                                        {{csrf_field()}}
+                                        <div style="display:flex">
+                                            <input type="text" name="coupon_name" style="height: 30px">
+                                            <input style="margin: -2px 0 0 5px" type="submit" value="Áp dụng" class="btn btn-default">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
                     <div class="col-sm-6">
-                        <div class="total_area" style="    padding: 20px 25px 30px 0;margin-bottom: 20px">
+                        <div class="total_area" style="padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
+                                @if(!empty(Session::get('CouponAmount')))
+                                <li>Tổng Tiền <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
+                                <li>Tiền chiết khấu<span>{{  number_format($total_amount ?? '', 0).' '.'VND'}}</span></li>
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền <span>{{  number_format($total_order, 2).' '.'VND'}}</span></li>
+                                <li>Tổng Tiền Thanh Toán <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
+                                @else
+                                <li>Phí vận chuyển <span>Free</span></li>
+                                <li>Tổng Tiền Thanh Toán <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
