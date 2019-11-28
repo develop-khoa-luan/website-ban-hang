@@ -123,6 +123,8 @@ Route::get('add-gallery','ImageUploadController@add_gallery');
 //API for website
 Route::get('/count-cart', 'APIController@count_cart'  );
 Route::get('/get-quantity', 'APIController@get_quantity'  );
+Route::get('/get-product-detail', 'APIController@get_product_detail'  );
+Route::get('/get-product', 'APIController@get_product'  );
 
 
 
