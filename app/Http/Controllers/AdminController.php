@@ -8,6 +8,8 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Size;
+
 session_start();
 
 class AdminController extends Controller
@@ -28,7 +30,31 @@ class AdminController extends Controller
 
     public function show_dashboard(){
         $this -> AuthLogin();
-        return view ('admin.dashboard');
+        $current_month = date('m');
+        $current_year = date('Y');
+
+        $earning_current_month = DB::table('tbl_order')->whereMonth('updated_at', $current_month)->whereYear('updated_at', $current_year)
+        ->where('order_status', '=', 'Xác nhận thanh toán')->sum('order_total');
+
+        $avg_earning_per_month = DB::table('tbl_order')
+        ->select(DB::raw('sum(order_total) as avg_total, MONTH(updated_at) as month'))
+        ->where('order_status', '=', 'Xác nhận thanh toán')
+        ->groupBy(DB::raw('YEAR(updated_at) ASC, MONTH(updated_at) ASC'))->get();
+
+        $sum_avg = 0;
+        foreach ($avg_earning_per_month as $key => $value) {
+            $sum_avg = $sum_avg + $value->avg_total;
+        };
+        $avg_earning = $sum_avg/Count($avg_earning_per_month);
+
+        $bills_current_month = DB::table('tbl_order')->whereMonth('created_at', $current_month)->whereYear('created_at', $current_year)
+        ->count('order_id');
+
+        $bills_pending = DB::table('tbl_order')->where('order_status', '=', 'Đang chờ xử lý')
+        ->count('order_id');
+
+        return view ('admin.dashboard')->with('earning_current_month',$earning_current_month)->with('avg_earning', $avg_earning)
+        ->with('avg_earning_per_month', $avg_earning_per_month)->with('bills_current_month', $bills_current_month)->with('bills_pending', $bills_pending);
     }
 
     public function dashboard(Request $request){
