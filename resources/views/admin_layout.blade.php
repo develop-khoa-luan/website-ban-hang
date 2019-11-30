@@ -150,10 +150,25 @@
       <div class="sidebar-heading">
         Thống kê
       </div>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href={{URL::to( '/apriori')}}>
+          <i class="fas fa-calculator"></i>
+          <span>Apriori</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
       <div class="text-center d-none d-md-inline">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     </ul>
+    
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->

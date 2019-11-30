@@ -152,3 +152,5 @@ Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon' );
     //apply coupon
 
 Route::post('/apply-coupon','CouponController@apply_coupon' );
+//Apriori Algorithm
+Route::get('apriori','AprioriController@apriori');
