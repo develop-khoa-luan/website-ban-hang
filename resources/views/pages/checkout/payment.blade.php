@@ -36,6 +36,7 @@
             </thead>
             <tbody style="text-align:center">
                 <?php $total_order = 0 ?>
+                <?php $after_coupon = 0 ?>
                 @foreach ($content as $v_content)
 
                 <tr>
@@ -120,7 +121,6 @@
                                             echo '<li> Tổng tiền  <span>' .number_format($after_coupon,0).' '.'VND'.  ' </span> </li>';
                                             Session::put('total_after_discount',null);
                                         }
-
                                 ?>
                                
                                 @else
@@ -149,7 +149,11 @@
                     Thanh toán thẻ ghi nợ
                 </option>
             </select>
+            @if(!empty(Session::get('CouponAmount')))
+            <input type="number" name="total_order" value={{$after_coupon}} hidden>
+            @else
             <input type="number" name="total_order" value={{$total_order}} hidden>
+            @endif
             <input type="submit" value="Đặt hàng" style="width: 80px; height: 30px; font-size: 14px; margin: 5px 0 0 50px" name="send_order_place" class="btn btn-primary btn-sm">
             <button style=" width: auto; height: 30px; font-size: 14px; margin: 5px 0 0 20px; border: none; background-color: #FE980F" ><a style="color: white" href="{{URL::to('/trang-chu')}}">Tiếp tục mua sắm</a></button>
         </div>

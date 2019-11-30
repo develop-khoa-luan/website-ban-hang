@@ -22,7 +22,7 @@
                         <th>Tên người đặt</th>
                         <th>Ngày đặt</th>
                         <th>Tổng giá tiền</th>
-                        <th>tình trạng</th>
+                        <th>Tình trạng</th>
                         <th>Chú ý</th>
                         <th class="text-center">Xem -- Xóa</th>
                     </tr>

@@ -43,7 +43,7 @@
       <li class="nav-item active">
         <a class="nav-link" href={{URL::to( '/dashboard')}}>
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Bảng tin</span></a>
+          <span>Tổng quan</span></a>
       </li>
 
       <!-- Divider -->

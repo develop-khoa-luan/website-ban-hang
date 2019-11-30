@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Bảng tin</h1>
+        <h1 class="h3 mb-0 text-gray-800">Tổng quan doanh thu</h1>
         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
     </div>
@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng Tiền (Tháng)
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3">Tổng doanh thu (Tháng)
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{number_format($earning_current_month)}} VND</div>
@@ -38,8 +38,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tổng tiền (Trung
-                                bình)</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-3">Doanh thu bình quân (năm)</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{number_format($avg_earning)}} VND
                             </div>
                         </div>
@@ -57,7 +56,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tổng số hóa đơn (tháng)
+                            <div class="text-xs font-weight-bold text-info text-uppercase ">Tổng số đơn hàng (tháng hiện tại)
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col">
@@ -86,7 +85,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Hóa đơn chờ xử lý
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-3">Đơn hàng chờ xử lý
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">
                                 {{number_format($bills_pending)}}</div>
@@ -109,7 +108,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tổng quan thu nhập</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Tổng quan doanh thu (theo tháng)</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -282,40 +281,40 @@
     dataAvgOrder.forEach(element => {
         switch(element.month){
             case 1:
-            arrayMonth.push("Th. Một");
+            arrayMonth.push("Tháng 1");
                 break;
             case 2:
-            arrayMonth.push("Th. Hai");
+            arrayMonth.push("Tháng 2");
                 break;
             case 3:
-            arrayMonth.push("Th. Ba");
+            arrayMonth.push("Tháng 3");
                 break;
             case 4:
-            arrayMonth.push("Th. Tư");
+            arrayMonth.push("Tháng 4");
                 break;
             case 5:
-            arrayMonth.push("Th. Năm");
+            arrayMonth.push("Tháng 5");
                 break;
             case 6:
-            arrayMonth.push("Th. Sáu");
+            arrayMonth.push("Tháng 6");
                 break;
             case 7:
-            arrayMonth.push("Th. Bảy");
+            arrayMonth.push("Tháng 7");
                 break;
             case 8:
-            arrayMonth.push("Th. Tám");
+            arrayMonth.push("Tháng 8");
                 break;
             case 9:
-            arrayMonth.push("Th. Chín");
+            arrayMonth.push("Tháng 9");
                 break;
             case 10:
-            arrayMonth.push("Th. Mườn");
+            arrayMonth.push("Tháng 10");
                 break;
             case 11:
-            arrayMonth.push("Th. Mười một");
+            arrayMonth.push("Tháng 11");
                 break;
             case 12:
-            arrayMonth.push("Th. Mười hai");
+            arrayMonth.push("Tháng 12");
                 break;
             default:
                 break;
