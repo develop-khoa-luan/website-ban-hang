@@ -51,7 +51,6 @@
 						<label for="product-size">Size: </label>
 						<select class="form-control modal-product-size" style="width: 85px" id="product-size">
 						</select>
-
 						<label for="quantity">Số lượng:</label>
 						<input style="width: 85px" class="form-control modal-product-quantity" id="quantity" name="qty"
 							type="number" min="0" max="" value="1" />
@@ -73,30 +72,6 @@
 <script src="<?php echo e(asset('public/frontend/js/jquery.js')); ?>"></script>
 <script>
 	$(document).ready(function(){
-		$('.btn-add-to-cart').click(function(e){
-			e.preventDefault();
-			$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-			}
-			});
-			$.ajax({
-			url: "<?php echo e(url('/save-cart')); ?>",
-			method: 'post',
-			data: {
-					product_id_hidden: $(this).parents()[3].children[0].value,
-					qty: $(this).parents()[3].children[1].value
-				},
-				success: function(result){
-					$(".count_cart").text(result.cart_count);
-					debugger;
-					alert("Thêm sản phẩm vô giỏ hàng thành công!");
-				},
-				error: function(result){
-					alert("Thêm sản phẩm vô giỏ hàng thất bại!");
-				}});
-		});
-
 		$('.show-modal-product-detail').click(function(e){
 			$("#modal-product-detail").modal('show');
 			

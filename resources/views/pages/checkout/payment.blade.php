@@ -9,16 +9,20 @@
             </ol>
         </div>
     </div>
+    <?php
+                                        $message = Session::get('message');
+                                        if($message){
+                                            echo '<span style="color:red">' .$message. '</span>';
+                                            Session::put('message',null);
+                                        }
+                                ?>
     <div class="review-payment">
-        <h2>Xem lại giỏ hàng</h2>
+        <h2>Thông tin đơn hàng</h2>
     </div>
     <div class="table-responsive cart_info">
         <?php
-                    $content = Cart::content();
-                    // echo '<pre>';
-                    // print_r($content);
-                    // echo '<pre>';
-                ?>
+            $content = Cart::content();       
+        ?>
         <table class="table table-condensed">
             <thead>
                 <tr class="cart_menu" style="text-align:center">
@@ -32,6 +36,7 @@
             </thead>
             <tbody style="text-align:center">
                 <?php $total_order = 0 ?>
+                <?php $after_coupon = 0 ?>
                 @foreach ($content as $v_content)
 
                 <tr>
@@ -44,7 +49,7 @@
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                     </td>
                     <td class="cart_price">
-                        {{number_format($v_content->price, 2).' '.'VND'}}
+                        {{number_format($v_content->price, 0).' '.'VND'}}
                     </td>
                     <td class="cart_quantity">
                         <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
@@ -60,10 +65,10 @@
                     <td class="cart_total">
                         <p class="cart_total_price">
                             <?php
-                                        $subtotal = $v_content->price *  $v_content->qty;
-                                        $total_order = $total_order + $subtotal;
-                                        echo number_format($subtotal, 2).' '.'VND';
-                                    ?>
+                                $subtotal = $v_content->price *  $v_content->qty;
+                                $total_order = $total_order + $subtotal;
+                                echo number_format($subtotal, 0).' '.'VND';
+                            ?>
                         </p>
                     </td>
                     <td class="cart_delete">
@@ -79,11 +84,49 @@
     <section id="do_action">
             <div class="container">
                 <div class="row">
+                    
+                        <div class="col-sm-3">
+                                
+                                <div class="chose_area">
+                                        
+                                    <label for="">Nhập mã khuyến mãi</label>
+                                    <form action="{{URL::to('/apply-coupon')}}" method="POST">
+                                        {{csrf_field()}}
+                                        <div style="display:flex">
+                                            <input type="text" name="coupon_name" style="height: 30px">
+                                            <input style="margin: -2px 0 0 5px" type="submit" value="Áp dụng" class="btn btn-default">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
                     <div class="col-sm-6">
-                        <div class="total_area" style="    padding: 20px 25px 30px 0;margin-bottom: 20px">
+                        <div class="total_area" style="padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
+                                @if(!empty(Session::get('CouponAmount')))
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền <span>{{  number_format($total_order, 2).' '.'VND'}}</span></li>
+                                <?php
+                                        $coupon = Session::get('CouponAmount');
+                                        if($coupon){
+                                             
+                                            echo '<li> Tiền chiết khấu  <span>' .number_format($coupon,0).' '.'VND'.  ' </span> </li>';
+                                            Session::put('CouponAmount',null);
+                                        }
+
+                                        
+
+                                        $after_coupon = Session::get('total_after_discount');
+                                        if($after_coupon){
+                                             
+                                            echo '<li> Tổng tiền  <span>' .number_format($after_coupon,0).' '.'VND'.  ' </span> </li>';
+                                            Session::put('total_after_discount',null);
+                                        }
+                                ?>
+                               
+                                @else
+                                <li>Phí vận chuyển <span>Free</span></li>
+                                <li>Tổng Tiền Thanh Toán <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -106,7 +149,11 @@
                     Thanh toán thẻ ghi nợ
                 </option>
             </select>
+            @if(!empty(Session::get('CouponAmount')))
+            <input type="number" name="total_order" value={{$after_coupon}} hidden>
+            @else
             <input type="number" name="total_order" value={{$total_order}} hidden>
+            @endif
             <input type="submit" value="Đặt hàng" style="width: 80px; height: 30px; font-size: 14px; margin: 5px 0 0 50px" name="send_order_place" class="btn btn-primary btn-sm">
             <button style=" width: auto; height: 30px; font-size: 14px; margin: 5px 0 0 20px; border: none; background-color: #FE980F" ><a style="color: white" href="{{URL::to('/trang-chu')}}">Tiếp tục mua sắm</a></button>
         </div>

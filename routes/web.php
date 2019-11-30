@@ -131,5 +131,26 @@ Route::get('/get-product', 'APIController@get_product'  );
 //delete order 
 Route::get('/delete-order/{order_id}','CheckoutController@delete_order' );
 
+
+// add-update coupon code management
+
+Route::get('/add-coupon','CouponController@add_coupon' );
+Route::get('/all-coupon','CouponController@all_coupon' );
+Route::post('/save-coupon','CouponController@save_coupon' );
+
+Route::get('/unactive-coupon/{coupon_id}','CouponController@unactive_coupon' );
+Route::get('/active-coupon/{coupon_id}','CouponController@active_coupon' );
+
+    //edit coupon
+
+Route::get('/edit-coupon/{coupon_id}','CouponController@edit_coupon' );
+Route::post('/update-coupon/{coupon_id}','CouponController@update_coupon' );
+
+    //delete coupon
+Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon' );
+
+    //apply coupon
+
+Route::post('/apply-coupon','CouponController@apply_coupon' );
 //Apriori Algorithm
 Route::get('apriori','AprioriController@apriori');

@@ -279,7 +279,9 @@
 #48 C:\\xampp\\htdocs\\website-online\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #49 {main}
 "} 
-[2019-11-25 14:29:20] local.ERROR: syntax error, unexpected '}', expecting ')' (View: C:\xampp\htdocs\website-online\resources\views\admin\manage_order.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): syntax error, unexpected '}', expecting ')' (View: C:\\xampp\\htdocs\\website-online\esources\\views\\admin\\manage_order.blade.php) at C:\\xampp\\htdocs\\website-online\esources\\views/admin/manage_order.blade.php:34)
+[2019-11-25 14:29:20] local.ERROR: syntax error, unexpected '}', expecting ')' (View: C:\xampp\htdocs\website-online\resources\views\admin\manage_order.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): syntax error, unexpected '}', expecting ')' (View: C:\\xampp\\htdocs\\website-online\
+esources\\views\\admin\\manage_order.blade.php) at C:\\xampp\\htdocs\\website-online\
+esources\\views/admin/manage_order.blade.php:34)
 [stacktrace]
 #0 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(59): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
 #1 C:\\xampp\\htdocs\\website-online\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(36): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
@@ -591,9 +593,12 @@
 #48 C:\\xampp\\htdocs\\website-online\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #49 {main}
 "} 
-[2019-11-25 14:30:47] local.ERROR: Undefined property: stdClass::$product_quantity (View: C:\xampp\htdocs\website-online\resources\views\admin\view_order.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined property: stdClass::$product_quantity (View: C:\\xampp\\htdocs\\website-online\esources\\views\\admin\\view_order.blade.php) at C:\\xampp\\htdocs\\website-online\esources\\views/admin/view_order.blade.php:146)
+[2019-11-25 14:30:47] local.ERROR: Undefined property: stdClass::$product_quantity (View: C:\xampp\htdocs\website-online\resources\views\admin\view_order.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined property: stdClass::$product_quantity (View: C:\\xampp\\htdocs\\website-online\
+esources\\views\\admin\\view_order.blade.php) at C:\\xampp\\htdocs\\website-online\
+esources\\views/admin/view_order.blade.php:146)
 [stacktrace]
-#0 C:\\xampp\\htdocs\\website-online\esources\\views/admin/view_order.blade.php(146): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined prope...', 'C:\\\\xampp\\\\htdocs...', 146, Array)
+#0 C:\\xampp\\htdocs\\website-online\
+esources\\views/admin/view_order.blade.php(146): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined prope...', 'C:\\\\xampp\\\\htdocs...', 146, Array)
 #1 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(43): include('C:\\\\xampp\\\\htdocs...')
 #2 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(59): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
 #3 C:\\xampp\\htdocs\\website-online\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(36): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
@@ -1415,9 +1420,12 @@
 #15 C:\\xampp\\htdocs\\website-online\\index.php(60): Illuminate\\Foundation\\Http\\Kernel->terminate(Object(Illuminate\\Http\\Request), Object(Illuminate\\Http\\JsonResponse))
 #16 {main}
 "} 
-[2019-11-25 18:45:55] local.ERROR: Undefined variable: current_url (View: C:\xampp\htdocs\website-online\resources\views\pages\home.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined variable: current_url (View: C:\\xampp\\htdocs\\website-online\esources\\views\\pages\\home.blade.php) at C:\\xampp\\htdocs\\website-online\esources\\views/pages/home.blade.php:9)
+[2019-11-25 18:45:55] local.ERROR: Undefined variable: current_url (View: C:\xampp\htdocs\website-online\resources\views\pages\home.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined variable: current_url (View: C:\\xampp\\htdocs\\website-online\
+esources\\views\\pages\\home.blade.php) at C:\\xampp\\htdocs\\website-online\
+esources\\views/pages/home.blade.php:9)
 [stacktrace]
-#0 C:\\xampp\\htdocs\\website-online\esources\\views/pages/home.blade.php(9): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined varia...', 'C:\\\\xampp\\\\htdocs...', 9, Array)
+#0 C:\\xampp\\htdocs\\website-online\
+esources\\views/pages/home.blade.php(9): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined varia...', 'C:\\\\xampp\\\\htdocs...', 9, Array)
 #1 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(43): include('C:\\\\xampp\\\\htdocs...')
 #2 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(59): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
 #3 C:\\xampp\\htdocs\\website-online\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(36): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
@@ -1515,9 +1523,12 @@
 #45 C:\\xampp\\htdocs\\website-online\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #46 {main}
 "} 
-[2019-11-25 19:03:58] local.ERROR: Undefined property: stdClass::$brand_name (View: C:\xampp\htdocs\website-online\resources\views\pages\home.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined property: stdClass::$brand_name (View: C:\\xampp\\htdocs\\website-online\esources\\views\\pages\\home.blade.php) at C:\\xampp\\htdocs\\website-online\esources\\views/pages/home.blade.php:45)
+[2019-11-25 19:03:58] local.ERROR: Undefined property: stdClass::$brand_name (View: C:\xampp\htdocs\website-online\resources\views\pages\home.blade.php) {"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): Undefined property: stdClass::$brand_name (View: C:\\xampp\\htdocs\\website-online\
+esources\\views\\pages\\home.blade.php) at C:\\xampp\\htdocs\\website-online\
+esources\\views/pages/home.blade.php:45)
 [stacktrace]
-#0 C:\\xampp\\htdocs\\website-online\esources\\views/pages/home.blade.php(45): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined prope...', 'C:\\\\xampp\\\\htdocs...', 45, Array)
+#0 C:\\xampp\\htdocs\\website-online\
+esources\\views/pages/home.blade.php(45): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Undefined prope...', 'C:\\\\xampp\\\\htdocs...', 45, Array)
 #1 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(43): include('C:\\\\xampp\\\\htdocs...')
 #2 C:\\xampp\\htdocs\\website-online\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(59): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
 #3 C:\\xampp\\htdocs\\website-online\\vendor\\facade\\ignition\\src\\Views\\Engines\\CompilerEngine.php(36): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
