@@ -130,3 +130,6 @@ Route::get('/get-product', 'APIController@get_product'  );
 
 //delete order 
 Route::get('/delete-order/{order_id}','CheckoutController@delete_order' );
+
+//Apriori Algorithm
+Route::get('apriori','AprioriController@apriori');
