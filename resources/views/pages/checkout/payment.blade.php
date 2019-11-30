@@ -103,10 +103,26 @@
                         <div class="total_area" style="padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
                                 @if(!empty(Session::get('CouponAmount')))
-                                <li>Tổng Tiền <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
-                                <li>Tiền chiết khấu<span>{{  number_format($total_amount ?? '', 0).' '.'VND'}}</span></li>
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền Thanh Toán <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
+                                <?php
+                                        $coupon = Session::get('CouponAmount');
+                                        if($coupon){
+                                             
+                                            echo '<li> Tiền chiết khấu  <span>' .number_format($coupon,0).' '.'VND'.  ' </span> </li>';
+                                            Session::put('CouponAmount',null);
+                                        }
+
+                                        
+
+                                        $after_coupon = Session::get('total_after_discount');
+                                        if($after_coupon){
+                                             
+                                            echo '<li> Tổng tiền  <span>' .number_format($after_coupon,0).' '.'VND'.  ' </span> </li>';
+                                            Session::put('total_after_discount',null);
+                                        }
+
+                                ?>
+                               
                                 @else
                                 <li>Phí vận chuyển <span>Free</span></li>
                                 <li>Tổng Tiền Thanh Toán <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>

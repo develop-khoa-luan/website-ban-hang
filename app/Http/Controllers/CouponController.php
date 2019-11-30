@@ -91,6 +91,10 @@ class CouponController extends Controller
 
     public function apply_coupon(Request $request){
         $this->AuthLogin();
+        Session::forget('CouponAmount');
+        Session::forget('total_after_discount');
+        Session::forget('coupon_name');
+
         $data = $request->all();
         // echo "<pre>"; print_r($data); die;
         $test = DB::table('tbl_coupon')->where('coupon_name',$data['coupon_name'])->count();
@@ -132,12 +136,17 @@ class CouponController extends Controller
 
             $couponAmount = $total_amount * ($couponDetails->coupon_amount/100);
 
+            $total_after_discount = $total_amount - $couponAmount;
+
             Session::put('CouponAmount',$couponAmount);
-            Session::put('CouponCode',$data['coupon_name']);
+            Session::put('total_after_discount',$total_after_discount);
+            Session::put('coupon_name',$data['coupon_name']);
+            
             Session::put('message','Mã khuyến mãi áp dụng thành công');
-            //     return Redirect::to('payment');
-            return redirect()->back();
-            // echo $couponAmount; die;
+            return Redirect::to('payment');
+            // return redirect()->back();
+            echo $couponAmount; 
+            // echo $total_amount;
         } 
     }
 
