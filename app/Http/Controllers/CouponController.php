@@ -90,7 +90,7 @@ class CouponController extends Controller
     }
 
     public function apply_coupon(Request $request){
-        $this->AuthLogin();
+
         Session::forget('CouponAmount');
         Session::forget('total_after_discount');
         Session::forget('coupon_name');

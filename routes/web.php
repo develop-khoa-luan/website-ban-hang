@@ -154,3 +154,12 @@ Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon' );
 Route::post('/apply-coupon','CouponController@apply_coupon' );
 //Apriori Algorithm
 Route::get('apriori','AprioriController@apriori');
+
+
+//view info customer -- Admin Management
+
+Route::get('/all-customer','CustomerController@all_customer' );
+
+Route::get('/view-customer/{customer_id}','CustomerController@view_customer' );
+
+Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_customer_order_detail' );

@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="{{URL::to('/trang-chu')}}"><img src="{{asset('public/frontend/images/logo.png')}}"
+							<a href="{{URL::to('/trang-chu')}}"><img style="width:40%" src="{{asset('public/frontend/images/logo_1997store.png')}}"
 									alt="" /></a>
 						</div>
 

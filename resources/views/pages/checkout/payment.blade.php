@@ -46,21 +46,14 @@
 
                     </td> --}}
                     <td class="cart_description">
-                            <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
+                            <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><p>{{$v_content->name}}</p></a>
                     </td>
                     <td class="cart_price">
-                        {{number_format($v_content->price, 0).' '.'VND'}}
+                        <p>{{number_format($v_content->price, 0).' '.'VND'}}</p>
                     </td>
-                    <td class="cart_quantity">
-                        <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
-                            {{ csrf_field() }}
-                            <input style="border:none; font-weight: bold; font-size: 18px"  class="cart_quantity_input" type="text" name="cart_qty" value="{{$v_content->qty}}">
-                            {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
-                            <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
-                            {{-- <input type="submit" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm"> --}}
-
-
-                        </form>
+                    <td class="cart_quantity" >
+                        
+                        <p style="font-size:20px">{{$v_content->qty}}</p>
                     </td>
                     <td class="cart_total">
                         <p class="cart_total_price">
@@ -71,10 +64,7 @@
                             ?>
                         </p>
                     </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href="{{URL::to('/delete-to-cart/'.$v_content->rowId)}}"><i
-                                class="fa fa-times"></i></a>
-                    </td>
+
                 </tr>
                 @endforeach
             </tbody>
