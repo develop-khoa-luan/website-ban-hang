@@ -44,4 +44,15 @@ class HomeController extends Controller
         return view('pages.product.search')->with('category', $cate_product)->with('brand', $brand_product)->with('search_product', $search_product);
     }
 
+    public function contact(){
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $cart_count = Cart::count();
+            
+
+        return view('pages.contact.contact')->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product);
+    }
+
 }
