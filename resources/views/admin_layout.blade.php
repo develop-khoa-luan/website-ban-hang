@@ -123,6 +123,7 @@
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quản lý khách hàng</h6>
                 <a class="collapse-item" href="{{URL::to('/all-customer')}}">Danh sách khách hàng</a>
+                <a class="collapse-item" href="{{URL::to('/all-contact-info')}}">Thông tin cần liên hệ</a>
               </div>
             </div>
           </li>
