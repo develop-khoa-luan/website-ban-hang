@@ -35,4 +35,11 @@ class APIController extends Controller
         return response()->json(['product'=>$product]);
     }
 
+    // function get_contact_info(Request $request){
+    //     $contact_id = $request->contact_id;
+    //     $contact = DB::table('tbl_contact_info')
+    //         ->where('tbl_contact_info.contact_id', $contact_id)->get();
+    //     return response()->json(['contact'=>$contact]);
+    // }
+
 }

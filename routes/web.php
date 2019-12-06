@@ -19,6 +19,8 @@ Route::get('/trang-chu', 'HomeController@index'  );
 
 Route::post('/tim-kiem', 'HomeController@search'  );
 
+Route::get('/contact', 'HomeController@contact'  );
+
 // Category Index page
 Route::get('/danh-muc-san-pham/{category_id}', 'CategoryProduct@show_category_home'  );
 
@@ -152,7 +154,9 @@ Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon' );
     //apply coupon
 
 Route::post('/apply-coupon','CouponController@apply_coupon' );
+
 //Apriori Algorithm
+
 Route::get('apriori','AprioriController@apriori');
 
 
@@ -163,3 +167,16 @@ Route::get('/all-customer','CustomerController@all_customer' );
 Route::get('/view-customer/{customer_id}','CustomerController@view_customer' );
 
 Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_customer_order_detail' );
+
+
+// contact page
+
+    //add cotact info from customer
+
+    Route::post('/save-contact-info','ContactController@save_contact_info' );
+
+    //view all contact info
+
+    Route::get('/all-contact-info','ContactController@all_contact_info' );
+    
+    // Route::get('/get-contact-info', 'APIController@get_contact_info'  );
