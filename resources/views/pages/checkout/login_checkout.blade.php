@@ -10,8 +10,8 @@
                     <h2>Đăng nhập</h2>
                     <form action="{{URL::to('/login-customer')}}" method="POST" >
                         {{@csrf_field()}}
-                        <input type="text" name="email_account" placeholder="Nhập tài khoản" />
-                        <input type="password" name="password_account" placeholder="Nhập mật khẩu" />
+                        <input type="text" name="email_account" required="required" placeholder="Nhập tài khoản" />
+                        <input type="password" name="password_account" required="required" placeholder="Nhập mật khẩu" />
                         <span>
                             <input type="checkbox" class="checkbox">
                             Ghi nhớ tài khoản
@@ -30,10 +30,11 @@
                     <h2>Đăng kí tài khoản</h2>
                     <form action="{{URL::to('/add-customer')}}" method="POST">
                         {{ csrf_field()}}
-                        <input type="text" name="customer_name" placeholder="Nhập họ tên" />
-                        <input type="email" name="customer_email" placeholder="Nhập email" />
-                        <input type="password" name="customer_password" placeholder="Nhập mật khẩu" />
-                        <input type="text" name="customer_phone" placeholder="Nhập số điện thoại" />
+                        <input type="text" name="customer_name"  required="required" placeholder="Nhập họ tên" />
+                        <input type="email" name="customer_email" required="required" placeholder="Nhập email" />
+                        <input type="password" name="customer_password" id="password" required="required" placeholder="Nhập mật khẩu" />
+                        <input type="password" name="customer_password_confirm" id="password_confirm" required="required" placeholder="Nhập lại mật khẩu" oninput="check(this)" />
+                        <input type="text" name="customer_phone" required="required" placeholder="Nhập số điện thoại" />
                         <button type="submit" class="btn btn-default">Đăng kí</button>
                     </form>
                 </div>
@@ -44,3 +45,15 @@
 </section>
 
 @endsection
+
+
+<script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Mật khẩu không khớp. Xin vui lòng nhập lại.');
+        } else {
+
+            input.setCustomValidity('');
+        }
+    }
+</script>

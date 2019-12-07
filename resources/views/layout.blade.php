@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="{{URL::to('/trang-chu')}}"><img src="{{asset('public/frontend/images/logo.png')}}"
+							<a href="{{URL::to('/trang-chu')}}"><img style="width:40%" src="{{asset('public/frontend/images/logo_1997store.png')}}"
 									alt="" /></a>
 						</div>
 
@@ -153,7 +153,7 @@
 									</ul>
 								</li>
 								{{-- <li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li> --}}
-								<li><a href="contact-us.html">Liên hệ</a></li>
+								<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>
