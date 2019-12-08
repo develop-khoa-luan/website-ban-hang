@@ -35,7 +35,7 @@ class AdminController extends Controller
 
         $earning_current_month = DB::table('tbl_order')->whereMonth('updated_at', $current_month)->whereYear('updated_at', $current_year)
         ->where('order_status', '=', 'Xác nhận thanh toán')->sum('order_total');
-
+        //dd($earning_current_month);
         $avg_earning_per_month = DB::table('tbl_order')
         ->select(DB::raw('sum(order_total) as avg_total, MONTH(updated_at) as month'))
         ->where('order_status', '=', 'Xác nhận thanh toán')
@@ -60,7 +60,8 @@ class AdminController extends Controller
         ->count('order_id');
 
         return view ('admin.dashboard')->with('earning_current_month',$earning_current_month)->with('avg_earning', $avg_earning)
-        ->with('avg_earning_per_month', $avg_earning_per_month)->with('bills_current_month', $bills_current_month)->with('bills_pending', $bills_pending);
+        ->with('avg_earning_per_month', $avg_earning_per_month)->with('bills_current_month', $bills_current_month)
+        ->with('bills_pending', $bills_pending);
     }
 
     public function dashboard(Request $request){

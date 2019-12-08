@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="<?php echo e(URL::to('/trang-chu')); ?>"><img src="<?php echo e(asset('public/frontend/images/logo.png')); ?>"
+							<a href="<?php echo e(URL::to('/trang-chu')); ?>"><img style="width:40%" src="<?php echo e(asset('public/frontend/images/logo_1997store.png')); ?>"
 									alt="" /></a>
 						</div>
 
@@ -141,14 +141,10 @@
 
 									</ul>
 								</li>
-								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-									</ul>
+								<li class="dropdown"><a href="<?php echo e(URL::to('/blogs')); ?>">Tin tức<i class="fa fa-angle-down"></i></a>
 								</li>
 								
-								<li><a href="contact-us.html">Liên hệ</a></li>
+								<li><a href="<?php echo e(URL::to('/contact')); ?>">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>

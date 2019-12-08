@@ -146,11 +146,7 @@
 
 									</ul>
 								</li>
-								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-									</ul>
+								<li class="dropdown"><a href="{{URL::to('/blogs')}}">Tin tức<i class="fa fa-angle-down"></i></a>
 								</li>
 								{{-- <li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li> --}}
 								<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
