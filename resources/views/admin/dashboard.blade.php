@@ -450,5 +450,4 @@ var myLineChart = new Chart(ctx, {
     }
 });
 </script>
-
 @endsection

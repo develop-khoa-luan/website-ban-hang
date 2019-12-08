@@ -180,3 +180,17 @@ Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_cus
     Route::get('/all-contact-info','ContactController@all_contact_info' );
     
     // Route::get('/get-contact-info', 'APIController@get_contact_info'  );
+
+//Blog page
+Route::get('/blogs','BlogController@blogs' );
+Route::get('/blog/{id}','BlogController@blog_detail' );
+
+//Blog manager
+Route::get('/all-blog','BlogController@all_blog' );
+Route::get('/edit-blog-detail/{id}','BlogController@get_edit_blog_detail' );
+Route::get('/add-blog','BlogController@get_add_blog' );
+Route::post('/save-blog-detail/{id}','BlogController@post_edit_blog_detail' );
+Route::post('/save-blog','BlogController@post_add_blog' );
+Route::get('/unactive-blog/{id}','BlogController@unactive_blog' );
+Route::get('/active-blog/{id}','BlogController@active_blog' );
+Route::get('/delete-blog/{id}','BlogController@delete_blog' );
