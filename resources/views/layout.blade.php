@@ -147,11 +147,7 @@
 
 									</ul>
 								</li>
-								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-									</ul>
+								<li class="dropdown"><a href="{{URL::to('/blogs')}}">Tin tức<i class="fa fa-angle-down"></i></a>
 								</li>
 								{{-- <li><a href="{{URL::to('/show-cart')}}">Giỏ hàng</a></li> --}}
 								<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
@@ -180,15 +176,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
+					
 					<div  id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
 							{{-- @foreach($all_slide as $key => $tt)
 							<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
 							@endforeach --}}
 
+							
+							
+							
+							
+							
+							
+							
 							@foreach($all_slide as $key => $tt)
 
-							@if(!empty(Session::get('category_by_id_1')))
+								@if(!empty(Session::get('category_by_id_1')))
 									<?php
 											$cat_tt = Session::get('category_by_id_1');
 											if($cat_tt){
@@ -200,17 +204,16 @@
 												
 											}	
 									?>
-									{{-- @foreach($all_slide as $key => $tt) --}}
+	
 									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-									{{-- @endforeach --}}
+									
 								@else
 									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
 								@endif
-								@endforeach			
 
-							{{-- @foreach($all_slide_cover as $key => $ttt)
-							<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-							@endforeach --}}
+							@endforeach			
+
+							
 						</ol>
 
 						<div style="height:410px" class="carousel-inner">
@@ -312,31 +315,68 @@
 								
 								@if(!empty(Session::get('all_product')))
                                 <?php
-                                        $cat = Session::get('all_product_asc');
-                                        if($cat){
+                                        // $cat = Session::get('all_product_asc');
+                                        // if($cat){
+										// 	echo '<h2>Lọc theo</h2>';
+										// 	echo '<div class="brands-name">
+										// 		<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
+										// 			<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
+										// 			<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
+										// 		</ul>
+										// 	</div>';
+
+										// 	Session::put('all_product_asc',null);
+										// }
+
+										$sort_title = Session::get('all_product_t');
+                                        if($sort_title){
+											echo '<h2>Lọc theo</h2>';
+											
+											Session::put('all_product_t',null);
+										}
+										
+										$cat_desc = Session::get('all_product_desc_t');
+                                        if($cat_desc){
+											// echo '<h2>Lọc theo</h2>';
+											echo '<div class="brands-name">
+												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
+													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
+												</ul>
+											</div>';
+											
+											Session::put('all_product_desc',null);
+										}
+										
+										$cat_asc = Session::get('all_product_asc_t');
+                                        if($cat_desc){
+											// echo '<h2>Lọc theo</h2>';
+											echo '<div class="brands-name">
+												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
+													<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
+												</ul>
+											</div>';
+											
+											Session::put('all_product_asc',null);
+										}
+										
+										$cat_desc = Session::get('all_product_desc');
+                                        if($cat_desc){
 											echo '<h2>Lọc theo</h2>';
 											echo '<div class="brands-name">
 												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
 													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
-													<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
 												</ul>
 											</div>';
-
-			
-											Session::put('all_product_asc',null);
-                                        }	
+											
+											Session::put('all_product_desc',null);
+										}
 
                                         
 
                                 ?>
                                
                                 @else
-									{{-- <div class="brands-name">
-										<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-											<li><a href="/"> <span class="pull-right"></span>Giá giảm dần</a></li>
-											<li><a href="/"> <span class="pull-right"></span>Giá tăng dần</a></li>
-										</ul>
-									</div> --}}
+									
                                 @endif
 
 										

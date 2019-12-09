@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('admin_content')
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" id="admin_hidden">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -449,6 +449,5 @@ var myLineChart = new Chart(ctx, {
         }
     }
 });
-
 </script>
 @endsection

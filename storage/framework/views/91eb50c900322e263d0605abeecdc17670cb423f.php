@@ -35,6 +35,7 @@
             </thead>
             <tbody style="text-align:center">
                 <?php $total_order = 0 ?>
+                <?php $after_coupon = 0 ?>
                 <?php $__currentLoopData = $content; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v_content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                 <tr>
@@ -101,10 +102,25 @@
                         <div class="total_area" style="padding: 20px 25px 30px 0;margin-bottom: 20px">
                             <ul>
                                 <?php if(!empty(Session::get('CouponAmount'))): ?>
-                                <li>Tổng Tiền <span><?php echo e(number_format($total_order, 0).' '.'VND'); ?></span></li>
-                                <li>Tiền chiết khấu<span><?php echo e(number_format($total_amount ?? '', 0).' '.'VND'); ?></span></li>
                                 <li>Phí vận chuyển <span>Free</span></li>
-                                <li>Tổng Tiền Thanh Toán <span><?php echo e(number_format($total_order, 0).' '.'VND'); ?></span></li>
+                                <?php
+                                        $coupon = Session::get('CouponAmount');
+                                        if($coupon){
+                                             
+                                            echo '<li> Tiền chiết khấu  <span>' .number_format($coupon,0).' '.'VND'.  ' </span> </li>';
+                                            Session::put('CouponAmount',null);
+                                        }
+
+                                        
+
+                                        $after_coupon = Session::get('total_after_discount');
+                                        if($after_coupon){
+                                             
+                                            echo '<li> Tổng tiền  <span>' .number_format($after_coupon,0).' '.'VND'.  ' </span> </li>';
+                                            Session::put('total_after_discount',null);
+                                        }
+                                ?>
+                               
                                 <?php else: ?>
                                 <li>Phí vận chuyển <span>Free</span></li>
                                 <li>Tổng Tiền Thanh Toán <span><?php echo e(number_format($total_order, 0).' '.'VND'); ?></span></li>
@@ -132,7 +148,11 @@
                     Thanh toán thẻ ghi nợ
                 </option>
             </select>
+            <?php if(!empty(Session::get('CouponAmount'))): ?>
+            <input type="number" name="total_order" value=<?php echo e($after_coupon); ?> hidden>
+            <?php else: ?>
             <input type="number" name="total_order" value=<?php echo e($total_order); ?> hidden>
+            <?php endif; ?>
             <input type="submit" value="Đặt hàng" style="width: 80px; height: 30px; font-size: 14px; margin: 5px 0 0 50px" name="send_order_place" class="btn btn-primary btn-sm">
             <button style=" width: auto; height: 30px; font-size: 14px; margin: 5px 0 0 20px; border: none; background-color: #FE980F" ><a style="color: white" href="<?php echo e(URL::to('/trang-chu')); ?>">Tiếp tục mua sắm</a></button>
         </div>

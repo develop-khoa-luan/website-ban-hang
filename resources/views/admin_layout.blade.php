@@ -13,7 +13,9 @@
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('public/backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="{{asset('public/backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
@@ -56,7 +58,8 @@
 
       <!-- Quản lý doanh mục sản phẩm -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bill" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bill" aria-expanded="true"
+          aria-controls="collapseTwo">
           <i class="fas fa-file-invoice"></i>
           <span>Đơn hàng</span>
         </a>
@@ -70,7 +73,8 @@
 
       <!-- Quản lý sản phẩm -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product" aria-expanded="true"
+          aria-controls="collapseUtilities">
           <i class="fab fa-product-hunt"></i>
           <span>Quản lý sản phẩm</span>
         </a>
@@ -85,20 +89,21 @@
 
       <!-- Quản lý doanh mục -->
       <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="collapseUtilities">
-              <i class="fas fa-th-large"></i>
-              <span>Quản lý danh mục</span>
-            </a>
-            <div id="category" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Quản lý danh mục</h6>
-                <a class="collapse-item" href="{{URL::to('/add-category-product')}}">Thêm danh mục</a>
-                <a class="collapse-item" href="{{URL::to('/all-category-product')}}">Danh sách danh mục</a>
-              </div>
-            </div>
-          </li>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category" aria-expanded="true"
+          aria-controls="collapseUtilities">
+          <i class="fas fa-th-large"></i>
+          <span>Quản lý danh mục</span>
+        </a>
+        <div id="category" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Quản lý danh mục</h6>
+            <a class="collapse-item" href="{{URL::to('/add-category-product')}}">Thêm danh mục</a>
+            <a class="collapse-item" href="{{URL::to('/all-category-product')}}">Danh sách danh mục</a>
+          </div>
+        </div>
+      </li>
 
-          <!-- Quản lý thương hiệu -->
+      <!-- Quản lý thương hiệu -->
       <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brand" aria-expanded="true" aria-controls="collapseUtilities">
               <i class="fas fa-store-alt"></i>
@@ -176,6 +181,23 @@
               </div>
             </div>
           </li>
+        
+
+      <!-- Quản lý tin tức -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blog" aria-expanded="true"
+          aria-controls="collapseUtilities">
+          <i class="far fa-images"></i>
+          <span>Quản lý tin tức</span>
+        </a>
+        <div id="blog" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Quản lý tin tức</h6>
+            <a class="collapse-item" href="{{URL::to('/add-blog')}}">Thêm tin tức</a>
+            <a class="collapse-item" href="{{URL::to('/all-blog')}}">Danh sách tin tức</a>
+          </div>
+        </div>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -199,10 +221,10 @@
       <hr class="sidebar-divider">
 
       <div class="text-center d-none d-md-inline">
-          <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
     </ul>
-    
+
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -223,7 +245,8 @@
 
           {{-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
@@ -242,14 +265,17 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -261,9 +287,10 @@
             </li>
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                    <?php
+                  <?php
                     $name = Session::get('admin_name');
                     if($name){
                         echo $name;
@@ -301,70 +328,71 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-                <section>
+          <section>
 
-                        @yield('admin_content')
-        
-                    </section>
+            @yield('admin_content')
+
+          </section>
         </div>
-      <!-- End of Main Content -->
+        <!-- End of Main Content -->
 
-      
+
+      </div>
+      <!-- End of Content Wrapper -->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
-    <!-- End of Content Wrapper -->
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Your Website 2019</span>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="{{URL::to('/logout')}}">Logout</a>
+          </div>
         </div>
       </div>
-    </footer>
-    <!-- End of Footer -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{{URL::to('/logout')}}">Logout</a>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('public/backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('public/backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="{{asset('public/backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('public/backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="{{asset('public/backend/js/sb-admin-2.min.js')}}"></script>
-  <!-- Page level plugins -->
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('public/backend/js/sb-admin-2.min.js')}}"></script>
+    <!-- Page level plugins -->
 
-  <!-- Page level custom scripts -->
-  <!-- JS quản lý đơn hàng -->
-<script src="{{asset('public/backend/vendor/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{asset('public/backend/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
-<script src="{{asset('public/backend/js/demo/datatables-demo.js')}}"></script>
+    <!-- Page level custom scripts -->
+    <!-- JS quản lý đơn hàng -->
+    <script src="{{asset('public/backend/vendor/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('public/backend/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{asset('public/backend/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 

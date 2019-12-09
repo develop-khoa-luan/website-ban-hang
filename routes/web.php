@@ -19,6 +19,7 @@ Route::get('/trang-chu', 'HomeController@index'  );
 
 Route::get('/price-home-asc', 'HomeController@price_home_asc'  );
 
+Route::get('/price-home-desc', 'HomeController@price_home_desc'  );
 
 
 Route::post('/tim-kiem', 'HomeController@search'  );
@@ -196,3 +197,16 @@ Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_cus
     Route::get('/all-slide','SlideController@all_slide' );
     Route::get('/unactive-slide/{slide_id}','SlideController@unactive_slide' );
     Route::get('/active-slide/{slide_id}','SlideController@active_slide' );
+//Blog page
+Route::get('/blogs','BlogController@blogs' );
+Route::get('/blog/{id}','BlogController@blog_detail' );
+
+//Blog manager
+Route::get('/all-blog','BlogController@all_blog' );
+Route::get('/edit-blog-detail/{id}','BlogController@get_edit_blog_detail' );
+Route::get('/add-blog','BlogController@get_add_blog' );
+Route::post('/save-blog-detail/{id}','BlogController@post_edit_blog_detail' );
+Route::post('/save-blog','BlogController@post_add_blog' );
+Route::get('/unactive-blog/{id}','BlogController@unactive_blog' );
+Route::get('/active-blog/{id}','BlogController@active_blog' );
+Route::get('/delete-blog/{id}','BlogController@delete_blog' );
