@@ -71,28 +71,30 @@
 								<?php
 									// $customer_id = Session::get('customer_id');
 									// $shippping_id = Session::get('shipping_id');
-								//	if($customer_id != NULL && $shippping_id == NULL){
+									// if($customer_id != NULL && $shippping_id == NULL){
 								?>
 								{{-- <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
-								toán</a>
-								</li> --}}
+								toán</a> --}}
+								</li>
 								<?php
-								//	}elseif ($customer_id != NULL && $shippping_id != NULL) {
+									// }elseif ($customer_id != NULL && $shippping_id != NULL) {
 										?>
 								{{-- <li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh
 								toán</a>
 								</li> --}}
 								<?php
-								//}else{	
+								// }else{	
 								?>
 								{{-- <li><a href="{{URL::to('/login-checkout')}}"><i class="fa fa-crosshairs"></i> Thanh
 								toán</a></li> --}}
 								<?php
-								//}
+								// }
+
+
 								?>
 								<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
 												class="text-danger count_cart"
-												style="font-size: 17px"></sup></i> Giỏ
+												style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
 										hàng</a>
 								</li>
 
@@ -143,7 +145,6 @@
 										</li>
 										@endforeach
 
-
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -179,31 +180,65 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+					<div  id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li>
+							{{-- @foreach($all_slide as $key => $tt)
+							<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
+							@endforeach --}}
+
+							@foreach($all_slide as $key => $tt)
+
+							@if(!empty(Session::get('category_by_id_1')))
+									<?php
+											$cat_tt = Session::get('category_by_id_1');
+											if($cat_tt){
+												
+												// echo '<li data-target="#slider-carousel" data-slide-to="0" @if($key==1) class="active" @endif></li>';
+												
+												Session::put('category_by_id_1',null);
+											
+												
+											}	
+									?>
+									{{-- @foreach($all_slide as $key => $tt) --}}
+									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
+									{{-- @endforeach --}}
+								@else
+									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
+								@endif
+								@endforeach			
+
+							{{-- @foreach($all_slide_cover as $key => $ttt)
+							<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
+							@endforeach --}}
 						</ol>
 
-						<div class="carousel-inner">
-							<div class="item active">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-										incididunt ut labore et dolore magna
-										aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{asset('public/frontend/images/girl1.jpg')}}" class="girl img-responsive"
-										alt="" />
-									{{-- <img src="{{asset('public/frontend/imagespricing.png')}}" class="pricing"
-									alt="" /> --}}
-								</div>
+						<div style="height:410px" class="carousel-inner">
+
+
+							@foreach($all_slide as $key => $tt)
+							<div style="padding-left:1px"  class="item @if($key==0) active @endif">
+
+								@if(!empty(Session::get('category_by_id_cover')))
+									<?php
+											$cat_t = Session::get('category_by_id_cover');
+											if($cat_t){
+												
+												// echo '<img style="width:100%" src="../public/uploads/product/{{$tt->slide_image}}" /> '; 
+												Session::put('category_by_id_cover',null);
+												
+											}	
+									?>
+									@foreach($all_slide_cover as $key => $ttt)
+									<img style="width:100%" src="../public/uploads/product/{{$ttt->slide_image}}" alt="" />	
+									@endforeach
+								@else
+									<img style="width:100%" src="public/uploads/product/{{$tt->slide_image}}" alt="" />
+								@endif
+								{{-- <img style="width:100%" src="public/uploads/product/{{$tt->slide_image}}" alt="" /> --}}
 							</div>
-							<div class="item">
+							@endforeach
+							<div class="item">	
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
 									<h2>100% Responsive Design</h2>
@@ -214,22 +249,6 @@
 								</div>
 								<div class="col-sm-6">
 									<img src="{{asset('public/frontend/images/girl2.jpg')}}" class="girl img-responsive"
-										alt="" />
-									<img src="{{asset('public/frontend/images/pricing.png')}}" class="pricing" alt="" />
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="col-sm-6">
-									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-										incididunt ut labore et dolore magna
-										aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="{{asset('public/frontend/images/girl3.jpg')}}" class="girl img-responsive"
 										alt="" />
 									<img src="{{asset('public/frontend/images/pricing.png')}}" class="pricing" alt="" />
 								</div>
@@ -288,7 +307,44 @@
 						</div>
 						<!--/brands_products-->
 
-						<div class="price-range">
+
+						<div class="price-sort">
+								
+								@if(!empty(Session::get('all_product')))
+                                <?php
+                                        $cat = Session::get('all_product_asc');
+                                        if($cat){
+											echo '<h2>Lọc theo</h2>';
+											echo '<div class="brands-name">
+												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
+													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
+													<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
+												</ul>
+											</div>';
+
+			
+											Session::put('all_product_asc',null);
+                                        }	
+
+                                        
+
+                                ?>
+                               
+                                @else
+									{{-- <div class="brands-name">
+										<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
+											<li><a href="/"> <span class="pull-right"></span>Giá giảm dần</a></li>
+											<li><a href="/"> <span class="pull-right"></span>Giá tăng dần</a></li>
+										</ul>
+									</div> --}}
+                                @endif
+
+										
+								{{-- <h2>Price sort1111111</h2> --}}
+						</div>
+
+
+						{{-- <div class="price-range">
 							<!--price-range-->
 							<h2>Price Range</h2>
 							<div class="well text-center">
@@ -296,7 +352,7 @@
 									data-slider-step="5" data-slider-value="[200000,800000]" id="sl2"><br />
 								<b class="pull-left">0 VND</b> <b class="pull-right">1.000.000 VND</b>
 							</div>
-						</div>
+						</div> --}}
 						<!--/price-range-->
 
 						<div class="shipping text-center">

@@ -30,7 +30,9 @@ class CheckoutController extends Controller
 
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product);
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        return view('pages.checkout.login_checkout')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function add_customer(Request $request)
@@ -52,7 +54,9 @@ class CheckoutController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product);
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        return view('pages.checkout.show_checkout')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function save_checkout_customer(Request $request)
@@ -72,7 +76,10 @@ class CheckoutController extends Controller
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
-        return view('pages.checkout.payment')->with('category', $cate_product)->with('brand', $brand_product);
+
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        return view('pages.checkout.payment')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function logout_checkout()
@@ -126,18 +133,21 @@ class CheckoutController extends Controller
         if ($data['payment_method'] == 1) {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+            $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
             Cart::destroy();
-            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
+            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
         } elseif ($data['payment_method'] == 2) {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             Cart::destroy();
-            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
+            $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
         } else {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             Cart::destroy();
-            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
+            $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
         }
     }
     public function manage_order()

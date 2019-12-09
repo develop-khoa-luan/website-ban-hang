@@ -17,6 +17,10 @@ Route::get('/','HomeController@index' );
 
 Route::get('/trang-chu', 'HomeController@index'  );
 
+Route::get('/price-home-asc', 'HomeController@price_home_asc'  );
+
+
+
 Route::post('/tim-kiem', 'HomeController@search'  );
 
 Route::get('/contact', 'HomeController@contact'  );
@@ -180,3 +184,15 @@ Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_cus
     Route::get('/all-contact-info','ContactController@all_contact_info' );
     
     // Route::get('/get-contact-info', 'APIController@get_contact_info'  );
+
+// slide management
+
+    // add slide - insert DB
+    Route::get('/add-slide','SlideController@add_slide' );
+    Route::post('/save-slide','SlideController@save_slide' );
+
+    // slide list
+
+    Route::get('/all-slide','SlideController@all_slide' );
+    Route::get('/unactive-slide/{slide_id}','SlideController@unactive_slide' );
+    Route::get('/active-slide/{slide_id}','SlideController@active_slide' );

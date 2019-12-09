@@ -113,6 +113,7 @@
             </div>
           </li>
 
+          {{-- Quản lý khách hàng --}}
 
           <li  class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#customer" aria-expanded="true" aria-controls="collapseUtilities">
@@ -128,6 +129,7 @@
             </div>
           </li>
 
+          {{-- Quản lý mã khuyến mãi --}}
 
           <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#coupon" aria-expanded="true" aria-controls="collapseUtilities">
@@ -143,20 +145,37 @@
             </div>
           </li>
 
-          <!-- Quản lý thương hiệu -->
-      <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#images" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="far fa-images"></i>
-            <span>Quản lý hình ảnh</span>
-          </a>
-          <div id="images" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Quản lý hình ảnh</h6>
-              <a class="collapse-item" href="{{URL::to('/add-image')}}">Thêm hình ảnh</a>
-              <a class="collapse-item" href="{{URL::to('/all-image')}}">Danh sách hình ảnh</a>
+          <!-- Quản lý ảnh bìa -->
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#slide" aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="far fa-images"></i>
+              <span>Quản lý ảnh bìa</span>
+            </a>
+            <div id="slide" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý ảnh bìa</h6>
+                <a class="collapse-item" href="{{URL::to('/add-slide')}}">Thêm ảnh bìa</a>
+                <a class="collapse-item" href="{{URL::to('/all-slide')}}">Danh sách ảnh bìa</a>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+
+          {{-- Quản lý hình ảnh --}}
+
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#images" aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="far fa-folder"></i>
+              <span>Quản lý hình ảnh</span>
+            </a>
+            <div id="images" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý hình ảnh</h6>
+                <a class="collapse-item" href="{{URL::to('/add-image')}}">Thêm hình ảnh</a>
+                <a class="collapse-item" href="{{URL::to('/all-image')}}">Danh sách hình ảnh</a>
+              </div>
+            </div>
+          </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -201,7 +220,8 @@
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+          {{-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
@@ -210,7 +230,12 @@
                 </button>
               </div>
             </div>
-          </form>
+          </form> --}}
+
+          <div class="logo pull-left">
+            <a href="{{URL::to('/trang-chu')}}"><img style="width:40%" src="{{asset('public/frontend/images/logo_1997store.png')}}"
+                alt="" /></a>
+          </div>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">

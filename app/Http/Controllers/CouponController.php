@@ -105,23 +105,11 @@ class CouponController extends Controller
             $couponDetails = DB::table('tbl_coupon')->where('coupon_name',$data['coupon_name'])->first();
 
             if($couponDetails->coupon_status==0){
-                Session::put('message','Mã khuyến mãi không tồn tại hoat dong. Xin vui lòng nhập lại');
+                Session::put('message','Mã khuyến mãi không tồn tại. Xin vui lòng nhập lại');
                 return Redirect::to('payment');
             }
 
-            // $get_cart_coupon = Cart::content();
-            // $total_amount = 0;
-            // foreach($get_cart_coupon as $g_coupon){
-            //     $coupon_detail_data = array();
-            //     $coupon_detail_data['order_id'] = $g_coupon->order_id;
-            //     $coupon_detail_data['product_id'] = $g_coupon->id;
-            //     $coupon_detail_data['product_name'] = $g_coupon->name;
-            //     $coupon_detail_data['product_price'] = $g_coupon->price;
-            //     $coupon_detail_data['product_sales_quantity'] = $g_coupon->qty;
-            //     $coupon_detail_data['product_size'] = $g_coupon->options->size;
-
-            //     $total_amount = $total_amount + ($g_coupon->qty * $g_coupon->price); 
-            // }
+            
 
             $content = Cart::content();
             $total_amount = 0;
@@ -129,8 +117,6 @@ class CouponController extends Controller
 
                 $total_amount = $total_amount + ($v_content->qty * $v_content->price); 
             }
-
-
 
             // amount discount
 
