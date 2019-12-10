@@ -160,7 +160,9 @@ class ProductController extends Controller
             ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
             ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
-        return view('pages.product.show_details')->with('category', $cate_product)->with('brand', $brand_product)->with('details_product', $details_product)
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();          
+
+        return view('pages.product.show_details')->with('all_slide', $all_slide)  ->with('category', $cate_product)->with('brand', $brand_product)->with('details_product', $details_product)
         ->with('related_product', $related_product)->with("all_product_detail", $all_product_detail);
     }
 }

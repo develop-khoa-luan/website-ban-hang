@@ -57,13 +57,15 @@ class CartController extends Controller
 
         $get_cart = Cart::content();
 
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
         $product_detail = array();
         foreach($get_cart as $cart){
             $get_product_detail = DB::table('tbl_product_detail')->where('product_id', $cart->id)->get();
             array_push($product_detail, $get_product_detail);
         }
 
-        return view('pages.cart.show_cart')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product_detail', $product_detail);
+        return view('pages.cart.show_cart')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product)->with('all_product_detail', $product_detail);
     }
 
     public function delete_to_cart($rowId){ 

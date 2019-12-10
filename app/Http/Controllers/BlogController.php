@@ -104,7 +104,10 @@ class BlogController extends Controller
         $all_blog = DB::table('tbl_blogs')->join('tbl_admin','tbl_blogs.author_id','=','tbl_admin.admin_id')
         ->select('tbl_blogs.*', 'tbl_admin.admin_name')->where('status', 1)
         ->orderBy('updated_at', 'DESC')->get();
-        return view('pages.blog.blog')->with('category', $cate_product)->with('brand', $brand_product)
+
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        return view('pages.blog.blog')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product)
         ->with('all_blog', $all_blog);
     }
 

@@ -42,9 +42,6 @@ class CategoryProduct extends Controller
         $data['category_desc'] = $request->category_product_desc;
         $data['category_status'] = $request->category_product_status;
 
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
         DB::table('tbl_category_product')->insert($data);
         Session::put('message','Thêm danh mục sản phẩm thành công.');
         return Redirect::to('add-category-product');
@@ -103,8 +100,29 @@ class CategoryProduct extends Controller
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_product.category_id',$category_id)->get();
 
-        $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
+        $category_by_id_cover = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
+        ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->where('tbl_product.category_id',$category_id)->get();
 
-        return view('pages.category.show_category')->with('category', $cate_product)->with('brand', $brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name);    
+        $category_by_id_1 = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
+        ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->select('tbl_category_product.category_id')
+        ->where('tbl_product.category_id',$category_id)->get();
+
+        $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$category_id)->limit(1)->get();
+        
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        $all_slide_cover = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        Session::put('category_by_id_1',$category_by_id_1);
+        Session::put('category_by_id_cover',$category_by_id_cover);
+        // Session::forget('category_by_id');
+
+        // dd($all_slide);
+
+        return view('pages.category.show_category')->with('all_slide', $all_slide)->with('all_slide_cover', $all_slide_cover)->with('category', $cate_product)->with('brand', $brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name);    
     }
 }

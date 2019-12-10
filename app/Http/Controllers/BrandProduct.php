@@ -41,9 +41,6 @@ class BrandProduct extends Controller
         $data['brand_desc'] = $request->brand_product_desc;
         $data['brand_status'] = $request->brand_product_status;
 
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
         DB::table('tbl_brand')->insert($data);
         Session::put('message','Thêm thương hiệu sản phẩm thành công.');
         return Redirect::to('add-brand-product');
@@ -101,6 +98,10 @@ class BrandProduct extends Controller
 
         $brand_name = DB::table('tbl_brand')->where('tbl_brand.brand_id',$brand_id)->limit(1)->get();
 
-        return view('pages.brand.show_brand')->with('category', $cate_product)->with('brand', $brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name);    
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        // dd($all_slide);
+
+        return view('pages.brand.show_brand')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name);    
     }
 }
