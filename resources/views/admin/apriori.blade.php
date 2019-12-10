@@ -59,15 +59,8 @@
 <script>
 // Apriori.js
 
+console.log('This is the data: ');
 console.log({!! json_encode($itemsets) !!});
-
-// var _testDB = [
-//     '1, 2, 3, 4, 5',
-//     '1, 3',
-//     '1, 3, 2',
-//     '3, 4, 5',
-//     '4, 2, 1'
-// ];
 
 var _testDB = {!! json_encode($itemsets) !!};
 
@@ -140,12 +133,16 @@ function SetControlBehaviors() {
         AddResultLine(L.length + ' Large Itemsets (by Apriori):');
         AddResultLine(L.join('\n'));
         AddResultLine('');
+        console.log('This is the large itemsets: ');
+        console.log(L);
 
         // Step2: Build rules based on large itemsets and confidence threshold
         let confidenceThreshold = parseFloat($.trim($('#ConfidenceThresholdTextBox').val()));
         let allRules = AprioriMining.mine(db, L, confidenceThreshold);
         AddResultLine(allRules.length + " Association Rules");
         AddResultLine(allRules.join('\n'));
+        console.log('This is the all Rules: ');
+        console.log(allRules);
     });
 }
 

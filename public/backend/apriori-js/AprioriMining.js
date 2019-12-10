@@ -15,7 +15,6 @@ class AprioriMining {
 
         // Next iterations
         let k = 2;
-        debugger;
         while (Ci.length != 0) {
             // Set Li from Ci (pruning)
             Li.clear();
