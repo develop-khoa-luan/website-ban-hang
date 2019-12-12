@@ -163,6 +163,7 @@ Route::post('/apply-coupon','CouponController@apply_coupon' );
 //Apriori Algorithm
 
 Route::get('apriori','AprioriController@apriori');
+Route::post('save-apriori','AprioriController@save_apriori');
 
 
 //view info customer -- Admin Management

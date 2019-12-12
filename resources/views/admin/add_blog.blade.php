@@ -10,7 +10,7 @@
                 }
         ?>
     <div class="row">
-        <div class="col-lg-8 col-md-12">
+        <div class="col-lg-9 col-md-12">
             <div class="card m-1 border border-primary">
                 <div class="card-header p-2 text-primary border-botton border-primary">
                     Nhập thông tin bản tin
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-3 col-md-12">
             <div class="card m-1 border border-primary mt-1">
                 <div class="card-header p-2 text-primary border-botton border-primary">
                     Hành động
