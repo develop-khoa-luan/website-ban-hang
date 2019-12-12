@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+@extends('layout_update')
+@section('content_update')
 
 
 @foreach ($details_product as $key => $value)
@@ -66,7 +66,7 @@
                                 </div>
                                 <label for="quantity">Số lượng:</label>
                                 <input style="width: 100px" class="form-control" id="quantity" name="qty" type="number"
-                                    min="0" max="" value="1" />
+                                    min="0" max="{{$item->product_quantity}}" value="1" />
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">

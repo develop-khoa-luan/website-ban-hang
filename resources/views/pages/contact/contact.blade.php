@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+@extends('layout_update')
+@section('content_update')
 
 
 <?php
@@ -42,8 +42,8 @@ if($message){
                             <h2 class="title text-center">Thông tin liên hệ</h2>
                             <address>
                                 <p>1997 Store.</p>
-                                <p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-                                <p>Newyork USA</p>
+                                <p>KTX Khu B - ĐHQG TPHCM, Đông Hòa, Dĩ An, Bình Dương</p>
+                                {{-- <p>Newyork USA</p> --}}
                                 <p>Mobile: (+84) 978542629</p>
                                 <p>Email: 1997store@gmail.com</p>
                             </address>
@@ -51,7 +51,7 @@ if($message){
                                 <h2 class="title text-center">Mạng xã hội</h2>
                                 <ul>
                                     <li>
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.facebook.com/truongthinh.nguyen97"><i class="fa fa-facebook"></i></a>
                                     </li>
                                     <li>
                                         <a href="#"><i class="fa fa-twitter"></i></a>

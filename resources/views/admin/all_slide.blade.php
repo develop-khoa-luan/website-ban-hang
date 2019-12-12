@@ -47,10 +47,10 @@
                             <td>
                                 {{-- <a href="{{URL::to('/edit-product/'.$pro->product_id)}}}" class="active" ui-toggle-class="">
                                     <i class="fa fa-edit text-success text-active"></i>
-                                </a> -- 
-                                <a onclick="return confirm('Bạn có chắn chắc muốn xóa không ?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}}" class="active" ui-toggle-class="">
+                                </a> --  --}}
+                                <a onclick="return confirm('Bạn có chắn chắc muốn xóa không ?')" href="{{URL::to('/delete-slide/'.$slide->slide_id)}}}" class="active" ui-toggle-class="">
                                     <i class="fa fa-times text-danger text"></i>
-                                </a> --}}
+                                </a>
                             </td>
                     </tr>
                     @endforeach

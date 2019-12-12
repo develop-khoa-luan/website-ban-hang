@@ -41,9 +41,8 @@
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
@@ -60,77 +59,10 @@
 					<div class="">
 						<div class="logo pull-left">
 							<a href="{{URL::to('/trang-chu')}}"><img style="width:50%; margin:-10px" src="{{asset('public/frontend/images/logo_1997store.png')}}"
-											alt="" /></a>
+									alt="" /></a>
 						</div>
-					</div>
-					<div class="mainmenu pull-left" style="margin: 10px 0 0 -150px">
-						<ul class="nav navbar-nav collapse navbar-collapse">
-							<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
-							<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
-								<ul role="menu" class="sub-menu">
-									@foreach($category as $key => $cate)
-										<li><a
-											href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
-										</li>
-									@endforeach
-		
-								</ul>
-							</li>
-							<li class="dropdown"><a href="{{URL::to('/blogs')}}">Tin tức</a>
-							</li>
-								
-							<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
-						</ul>
-					</div>
-		
-					<div class="">
-								
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-										
-								<li ><a style="font-size:16px" href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
-														class="text-danger count_cart"
-														style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
-												hàng</a>
-								</li>
-		
-								<?php
-									$customer_id = Session::get('customer_id');
-									if($customer_id != NULL){
-								?>
-								<li><a style="font-size:16px" href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất</a>
-								</li>
-									<?php
-									}else{	
-									?>
-									<li><a style="font-size:16px" href="{{URL::to('/login-checkout')}}"><i class="fa fa-lock"></i> Đăng nhập</a>
-									</li>
-									<?php
-									}
-									?>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/header-middle-->
-
-		<div class="header-bottom" style="padding: 10px 0 5px 0">
-			<!--header-bottom-->
-			<div class="container">
-				<div class="row">
-					{{-- <div class="col-sm-7">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse"
-								data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
+                    </div>
+                    <div class="mainmenu pull-left" style="margin: 10px 0 0 -150px">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
@@ -143,14 +75,52 @@
 
 									</ul>
 								</li>
-								<li class="dropdown"><a href="{{URL::to('/blogs')}}">Tin tức<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="{{URL::to('/blogs')}}">Tin tức</a>
 								</li>
-					
+						
 								<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
 							</ul>
+                    </div>
+
+					<div class="">
+                        
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								
+								<li ><a style="font-size:16px" href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
+												class="text-danger count_cart"
+												style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
+										hàng</a>
+								</li>
+
+								<?php
+									$customer_id = Session::get('customer_id');
+									if($customer_id != NULL){
+								?>
+								<li><a style="font-size:16px" href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất</a>
+								</li>
+								<?php
+								}else{	
+								?>
+								<li><a style="font-size:16px" href="{{URL::to('/login-checkout')}}"><i class="fa fa-lock"></i> Đăng nhập</a>
+								</li>
+								<?php
+								}
+								?>
+							</ul>
 						</div>
-					</div> --}}
-					<div class="" style="align:right; margin-right:15px">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/header-middle-->
+
+		<div class="header-bottom" style="padding: 10px 0 0 0">
+			<!--header-bottom-->
+			<div class="container" >
+				<div class="row">
+					
+					<div class="" style="align:right">
 						<form action="{{URL::to('/tim-kiem')}}" method="POST">
 							{{ csrf_field() }}
 							<div class="search_box pull-right">
@@ -172,74 +142,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					
-					<div  id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							{{-- @foreach($all_slide as $key => $tt)
-							<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-							@endforeach --}}
-
-						
-							@foreach($all_slide as $key => $tt)
-
-								@if(!empty(Session::get('category_by_id_1')))
-									<?php
-											$cat_tt = Session::get('category_by_id_1');
-											if($cat_tt){
-												
-												// echo '<li data-target="#slider-carousel" data-slide-to="0" @if($key==1) class="active" @endif></li>';
-												
-												Session::put('category_by_id_1',null);
-											
-												
-											}	
-									?>
-	
-									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-									
-								@else
-									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-								@endif
-
-							@endforeach			
-
-							
-						</ol>
-
-						<div style="height:410px" class="carousel-inner">
-
-
-							@foreach($all_slide as $key => $tt)
-							<div style="padding-left:1px"  class="item @if($key==0) active @endif">
-
-								{{-- @if(!empty(Session::get('category_by_id_cover'))) --}}
-									<?php
-											// $cat_t = Session::get('category_by_id_cover');
-											// if($cat_t){
-												
-											// 	Session::put('category_by_id_cover',null);
-												
-											// }	
-									?>
-									{{-- @foreach($all_slide as $key => $tt)
-									<img style="width:100%" src="/public/uploads/product/{{$tt->slide_image}}" alt="" />	
-									@endforeach --}}
-								{{-- @else --}}
-									<img style="width:100%" src="public/uploads/product/{{$tt->slide_image}}" alt="" />
-								{{-- @endif --}}
-						
-							</div>
-							@endforeach
-
-						</div>
-
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</div>
 
 				</div>
 			</div>
@@ -252,7 +154,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Danh mục sản phâm</h2>
+						<h2>Danh mục sản phẩm</h2>
 						<div class="panel-group category-products" id="accordian">
 							<!--category-productsr-->
 							<div class="panel panel-default">
@@ -285,99 +187,7 @@
 						<!--/brands_products-->
 
 
-						<div class="price-sort">
-								
-								@if(!empty(Session::get('all_product')))
-                                <?php
-                                       
-
-										$sort_title = Session::get('all_product_t');
-                                        if($sort_title){
-											echo '<h2>Lọc theo</h2>';
-											echo '<div class="brands-name">
-												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
-													<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
-												</ul>
-											</div>';
-											
-											Session::put('all_product_t',null);
-										}
-										
-										// $cat_desc = Session::get('all_product_desc_t');
-                                        // if($cat_desc){
-									
-										// 	echo '<div class="brands-name">
-										// 		<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-										// 			<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
-										// 		</ul>
-										// 	</div>';
-											
-										// 	Session::put('all_product_desc_t',null);
-										// }
-										
-										// $cat_asc = Session::get('all_product_asc_t');
-                                        // if($cat_desc){
-									
-										// 	echo '<div class="brands-name">
-										// 		<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-										// 			<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
-										// 		</ul>
-										// 	</div>';
-											
-										// 	Session::put('all_product_asc_t',null);
-										// }
-										
-										$cat_desc_t = Session::get('all_product_desc');
-                                        if($cat_desc_t){
-											echo '<h2>Lọc theo</h2>';
-											echo '<div class="brands-name">
-												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
-													<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
-												</ul>
-											</div>';
-											
-											Session::put('all_product_desc',null);
-										}
-
-										$cat_asc_t = Session::get('all_product_asc');
-                                        if($cat_asc_t){
-											echo '<h2>Lọc theo</h2>';
-											echo '<div class="brands-name">
-												<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
-													<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá tăng dần</a></li>
-
-												</ul>
-											</div>';
-											
-											Session::put('all_product_asc',null);
-										}
-
-                                        
-
-                                ?>
-                               
-                                @else
-									
-                                @endif
-
-										
-								{{-- <h2>Price sort1111111</h2> --}}
-						</div>
-
-
-						{{-- <div class="price-range">
-							<!--price-range-->
-							<h2>Price Range</h2>
-							<div class="well text-center">
-								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000"
-									data-slider-step="5" data-slider-value="[200000,800000]" id="sl2"><br />
-								<b class="pull-left">0 VND</b> <b class="pull-right">1.000.000 VND</b>
-							</div>
-						</div> --}}
-						<!--/price-range-->
+		
 
 						<div class="shipping text-center">
 							<!--shipping-->
@@ -388,7 +198,7 @@
 				</div>
 				<div class="col-sm-9 padding-right">
 
-					@yield('content')
+					@yield('content_update')
 
 				</div>
 			</div>
@@ -399,7 +209,7 @@
 		<!--Footer-->
 		<div class="footer-top">
 			<div class="container">
-
+				
 			</div>
 		</div>
 

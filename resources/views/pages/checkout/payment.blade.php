@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+@extends('layou_update')
+@section('content_update')
 <section id="cart_items">
     <div class="container">
         <div class="breadcrumbs">
