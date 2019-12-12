@@ -140,7 +140,7 @@
     <script src="{{asset('public/backend/js/demo/datatables-demo.js')}}"></script>
     <script>
         function goBack() {
-            window.history.back();
+            window.location.replace('{{ URL::to('/gallery') }}');
         }
     </script>
 </body>

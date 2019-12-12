@@ -45,14 +45,7 @@ class AdminController extends Controller
         foreach ($avg_earning_per_month as $key => $value) {
             $sum_avg = $sum_avg + $value->avg_total;
         };
-        if($avg_earning_per_month == null)
-        {
-            $avg_earning = 0;
-        }else{
-            $avg_earning = $sum_avg/Count($avg_earning_per_month);
-        }
-        
-        
+            $avg_earning = $sum_avg/12;
         $bills_current_month = DB::table('tbl_order')->whereMonth('created_at', $current_month)->whereYear('created_at', $current_year)
         ->count('order_id');
 

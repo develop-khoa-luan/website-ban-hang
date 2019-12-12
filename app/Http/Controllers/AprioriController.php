@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Size;
@@ -25,13 +26,14 @@ class AprioriController extends Controller
     }
 
     public function apriori (){
+         $this->AuthLogin();
          $all_order = DB::table('tbl_order')->select('order_id')->get();//lấy hết order lên
          $list_itemset = array();
          $all_itemsets = array();
          $string_list = "";
          foreach ($all_order as $key => $value) {//loop order để lấy các order detail
             $all_order_detail = DB::table('tbl_order_detail')->select('product_id')
-            ->where('order_id', $value->order_id)->orderBy('product_id')->get('product_id');
+            ->where('order_id', $value->order_id)->orderBy('product_id', 'asc')->get('product_id');
             $string_list = ""; //nối các giá trị thành 1 string dạng (2, 3, 4, 5)
             $last_string = "";//không lấy giá trị bị trùng, vd(2,2,2)-> (2)
             foreach ($all_order_detail as $key => $value) {//nối các product id thành 1 string
@@ -56,4 +58,17 @@ class AprioriController extends Controller
         //dd($list_itemset);
         return view ('admin.apriori')->with('itemsets', $list_itemset);
     }
+
+    public function save_apriori(Request $request){
+        $data_apriori = $request->data_apriori;
+        $decode_json = 0;
+        DB::table('tbl_data_apriori')->delete();
+         foreach ($data_apriori as $key => $data) {
+             $decode_json = json_decode($data, true);
+             Log::info($decode_json);
+             DB::table('tbl_data_apriori')->insert($decode_json);
+         }
+        return $data_apriori;
+    }
+    
 }

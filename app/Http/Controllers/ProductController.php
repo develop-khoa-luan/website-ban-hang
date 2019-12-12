@@ -9,6 +9,7 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Size;
 
 session_start();
 
@@ -155,14 +156,35 @@ class ProductController extends Controller
         foreach ($details_product as $key => $value) {
             $category_id = $value->category_id;
         }
+        //get recommend from apriori data
+        
+        //attributes
+        $recommend_products = [];
+        $list_string_id = $product_id.',';
 
-        $related_product = DB::table('tbl_product')
+        $get_apriori_data = DB::table('tbl_data_apriori')->where('product_1', $product_id)->where('product_2', 0)
+        ->where('recommend_2', 0)->orderBy('recommend_1', 'desc')->get();
+        
+        foreach ($get_apriori_data as $key => $value) {
+            $list_string_id = $list_string_id.$value->recommend_1.',';
+        }
+        $list_id = explode(',', $list_string_id);
+
+        $recommend_products = DB::table('tbl_product')
+        ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->limit(6)->get();
+        
+        if(count($recommend_products)<6){
+            $recommend_products = 6 - count($recommend_products);
+            $recommend_products = DB::table('tbl_product')
+            ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
             ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-            ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
-
+            ->whereNotIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->limit(6)->get();
+        }
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();          
 
         return view('pages.product.show_details')->with('all_slide', $all_slide)  ->with('category', $cate_product)->with('brand', $brand_product)->with('details_product', $details_product)
-        ->with('related_product', $related_product)->with("all_product_detail", $all_product_detail);
+        ->with('related_product', $recommend_products)->with("all_product_detail", $all_product_detail);
     }
 }
