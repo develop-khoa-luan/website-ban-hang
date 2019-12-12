@@ -141,7 +141,7 @@
     <!--recommended_items-->
     <h2 class="title text-center">recommended items</h2>
 
-    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+     <div id="recommended-item-carousel" class="carousel slide">{{--id="recommended-item-carousel" class="carousel slide" data-ride="carousel" --}}
         <div class="carousel-inner">
             <div class="item active">
                 @foreach ($related_product as $key => $relate)
@@ -170,12 +170,12 @@
                 @endforeach
             </div>
         </div>
-        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+        {{-- <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
             <i class="fa fa-angle-left"></i>
         </a>
         <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
             <i class="fa fa-angle-right"></i>
-        </a>
+        </a> --}}
     </div>
     <!-- Central Modal Medium Info -->
 	<div class="modal fade" id="modal-product-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

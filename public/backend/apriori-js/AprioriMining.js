@@ -15,7 +15,6 @@ class AprioriMining {
 
         // Next iterations
         let k = 2;
-        debugger;
         while (Ci.length != 0) {
             // Set Li from Ci (pruning)
             Li.clear();
@@ -55,14 +54,13 @@ class AprioriMining {
                     itemset.removeItemset(subset).forEach(i => rule.Y.push(i));
                     rule.Support = db.findSupport(itemset);
                     rule.Confidence = confidence;
-
-                    if (rule.X.length > 0 && rule.Y.length > 0) {
+                    //rule.X.length <= 3 && rule.Y.length <= 10 giới hạn lại đồ lớn của product and recommend
+                    if (rule.X.length > 0 && rule.Y.length > 0 && rule.X.length <= 4 && rule.Y.length <= 4) {
                         allRules.push(rule);
                     }
                 }
             }
         }
-
         return allRules;
     }
 }
