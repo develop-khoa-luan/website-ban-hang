@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+@extends('layout_update')
+@section('content_update')
 
 <div class="features_items">
 	<!--features_items-->

@@ -63,4 +63,11 @@ class SlideController extends Controller
         return Redirect::to('all-slide');
     }
 
+    public function delete_slide($slide_id){
+        $this->AuthLogin();
+        DB::table('tbl_slide')->where('slide_id',$slide_id)->delete();
+        Session::put('message','Xóa ảnh bìa thành công.');
+        return Redirect::to('all-slide');
+    }
+
 }

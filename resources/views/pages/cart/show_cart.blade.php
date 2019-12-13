@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+@extends('layout_update')
+@section('content_update')
 {{-- @foreach ($details_product ?? ''_qty_cart as $key => $tt) --}}
 
 <section id="cart_items">
@@ -46,7 +46,6 @@
                             <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
                                 {{ csrf_field() }}
                                 <input class="cart_quantity_input" type="number" min="0" max="" name="cart_qty" value="{{$v_content->qty}}">
-                                {{-- <input class="cart_quantity_input" type="text" name="cart_qty_update" value=""> --}}
                                 <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
                                 <input type="submit" style="margin-left: -20px" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
                             </form>

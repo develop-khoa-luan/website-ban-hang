@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+@extends('layout_update')
+@section('content_update')
 <div class="col-sm-9">
     <div class="blog-post-area">
         <h2 class="title text-center">Bản tin mới nhất</h2>

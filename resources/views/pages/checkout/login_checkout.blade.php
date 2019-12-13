@@ -1,13 +1,13 @@
-@extends('layout')
-@section('content')
-<section id="form">
+@extends('layout_update')
+@section('content_update')
+
     <!--form-->
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form">
                     <!--login form-->
-                    <h2>Đăng nhập</h2>
+                    <h2 style="font-weight:bold">Đăng nhập</h2>
                     <form action="{{URL::to('/login-customer')}}" method="POST" >
                         {{@csrf_field()}}
                         <input type="text" name="email_account" required="required" placeholder="Nhập tài khoản" />
@@ -27,7 +27,7 @@
             <div class="col-sm-4">
                 <div class="signup-form">
                     <!--sign up form-->
-                    <h2>Đăng kí tài khoản</h2>
+                    <h2 style="font-weight:bold">Đăng kí tài khoản</h2>
                     <form action="{{URL::to('/add-customer')}}" method="POST">
                         {{ csrf_field()}}
                         <input type="text" name="customer_name"  required="required" placeholder="Nhập họ tên" />
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-</section>
+
 
 @endsection
 

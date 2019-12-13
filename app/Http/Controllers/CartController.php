@@ -59,6 +59,8 @@ class CartController extends Controller
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
+        // $all_product_detail_cart = DB::table('tbl_product_detail')->where('product_id', $product_id)->get();
+
         $product_detail = array();
         foreach($get_cart as $cart){
             $get_product_detail = DB::table('tbl_product_detail')->where('product_id', $cart->id)->get();

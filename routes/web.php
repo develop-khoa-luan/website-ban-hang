@@ -198,6 +198,12 @@ Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_cus
     Route::get('/all-slide','SlideController@all_slide' );
     Route::get('/unactive-slide/{slide_id}','SlideController@unactive_slide' );
     Route::get('/active-slide/{slide_id}','SlideController@active_slide' );
+
+    // delete slide
+
+    Route::get('/delete-slide/{slide_id}','SlideController@delete_slide' );
+
+
 //Blog page
 Route::get('/blogs','BlogController@blogs' );
 Route::get('/blog/{id}','BlogController@blog_detail' );
