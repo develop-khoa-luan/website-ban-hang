@@ -46,7 +46,7 @@ class CheckoutController extends Controller
         $customer_id = DB::table('tbl_customer')->insertGetId($data);
         Session::put('customer_id', $customer_id);
         Session::put('customer_name', $request->customer_name);
-        return Redirect::to('/checkout');
+        return Redirect::to('/payment');
     }
 
     public function checkout()
@@ -95,13 +95,24 @@ class CheckoutController extends Controller
         $result = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
         if ($result) {
             Session::put('customer_id', $result->customer_id);
-            return Redirect::to('/checkout');
+            return Redirect::to('/payment');
         } else {
             return Redirect::to('/login-checkout');
         }
     }
     public function order_place(Request $request)
     {
+        //insert info shipping
+        $datas = array();
+        $datas['shipping_name'] = $request->shipping_name;
+        $datas['shipping_email'] = $request->shipping_email;
+        $datas['shipping_address'] = $request->shipping_address;
+        $datas['shipping_phone'] = $request->shipping_phone;
+        $datas['shipping_notes'] = $request->shipping_notes;
+        $shipping_id = DB::table('tbl_shipping')->insertGetId($datas);
+        Session::put('shipping_id', $shipping_id);
+
+
         //get payment method
         $data = array();
         $data['payment_method'] = $request->payment_option;

@@ -1,9 +1,9 @@
 @extends('layout_update')
 @section('content_update')
-{{-- @foreach ($details_product ?? ''_qty_cart as $key => $tt) --}}
+
 
 <section id="cart_items">
-    <div class="container" style="width: 100%">
+    <div class="" style="width: 100%">
         <div class="breadcrumbs" >
             <ol class="breadcrumb">
                 <li><a href="{{URL::to('/')}}" >Home</a></li>
@@ -70,7 +70,7 @@
     </div>
 </section>
 <section id="do_action">
-    <div class="container">
+    <div class="">
 
         <div class="row">
 
@@ -84,7 +84,7 @@
                             $customer_id = Session::get('customer_id');
                             if($customer_id != NULL){
                         ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/checkout')}}">Thanh toán</a>
+                        <a class="btn btn-default check_out" href="{{URL::to('/payment')}}">Thanh toán</a>
                         <?php
                         }else{	
                         ?>
@@ -98,6 +98,6 @@
         </div>
     </div>
 </section>
-{{-- @endforeach --}}
+
 
 @endsection
