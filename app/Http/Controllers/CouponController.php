@@ -122,12 +122,18 @@ class CouponController extends Controller
 
             $couponAmount = $total_amount * ($couponDetails->coupon_amount/100);
 
+            // $couponAmount_1 = $total_amount * ($couponDetails->coupon_amount/100);
+
             $total_after_discount = $total_amount - $couponAmount;
 
             Session::put('CouponAmount',$couponAmount);
+
+            // Session::put('CouponAmount_1',$couponAmount_1);
+
+
             Session::put('total_after_discount',$total_after_discount);
             Session::put('coupon_name',$data['coupon_name']);
-            
+
             Session::put('message','Mã khuyến mãi áp dụng thành công');
             return Redirect::to('payment');
             // return redirect()->back();

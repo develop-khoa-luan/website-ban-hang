@@ -63,7 +63,7 @@
 
 				<!--Footer-->
 				<div class="modal-footer" style="margin-top: 0; border-bottom-right-radius: 1px">
-					<a type="button" class="btn btn-primary btn-add-to-cart-modal">Thêm ngay <i class="far fa-gem ml-1 text-white"></i></a>
+					<a type="button" style="margin: 15px 0 0 0" class="btn btn-success btn-add-to-cart-modal">Thêm ngay <i class="far fa-gem ml-1 text-white"></i></a>
 					<a type="button" class="btn btn-danger" data-dismiss="modal" style="margin-top: 15px">Hủy </a>
 				</div>
 			</div>

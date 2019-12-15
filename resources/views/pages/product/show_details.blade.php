@@ -10,12 +10,12 @@
     <div class="col-sm-5">
         <div class="view-product">
             <img src="{{URL::to('/public/uploads/product/'.$value ->product_image)}}" alt="" />
-            {{-- <h3>ZOOM</h3> --}}
+           
         </div>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
             <!-- Wrapper for slides -->
-            <div class="carousel-inner">
+            {{-- <div class="carousel-inner">
                 <div class="item active">
                     <a href=""><img src="../public/frontend/images/similar1.jpg" alt=""></a>
                     <a href=""><img src="../public/frontend/images/similar2.jpg" alt=""></a>
@@ -28,7 +28,7 @@
                 </div>
 
 
-            </div>
+            </div> --}}
 
             <!-- Controls -->
             <a class="left item-control" href="#similar-product" data-slide="prev">
@@ -70,11 +70,11 @@
                             </div>
                         </div>
                         <div class="row" style="margin-top: 20px">
-                            <button id="btn-buy-now" class="btn btn-fefault btn-danger cart btn-buy-now">
+                            <button id="btn-buy-now" class="btn btn-fefault btn-success cart btn-buy-now">
                                 <i class="fa fa-shopping-cart"></i>
                                 Mua ngay
                             </button>
-                            <button id="btn-add-to-cart" class="btn btn-fefault cart btn-add-to-cart">
+                            <button style="color:white" id="btn-add-to-cart" class="btn btn-info cart btn-add-to-cart">
                                 <i class="fa fa-shopping-cart"></i>
                                 Thêm vào giỏ hàng
                             </button>
