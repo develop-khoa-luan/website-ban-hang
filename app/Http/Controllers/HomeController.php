@@ -40,13 +40,27 @@ class HomeController extends Controller
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
+        // $selling_product = DB::table('tbl_product')->join('tbl_order_detail','tbl_product.product_id','=','tbl_order_detail.product_id')
+        // ->select('tbl_order_detail.product_name')->sum('tbl_order_detail.product_id')->groupBy('tbl_order_detail.product_name')
+        // ->get();
+
+         $selling_product = DB::table('tbl_order_detail')
+         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+         ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->get();
+
+        // dd($selling_product);
+        // dd($all_product_asc_t);
+
         Session::put('all_product',$all_product);
         Session::put('all_product_t',$all_product_t);
         Session::put('all_product_asc_t',$all_product_asc_t);
         Session::put('all_product_desc_t',$all_product_desc_t);
 
 
-        return view('pages.home')->with('all_slide', $all_slide)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product)->with('all_product', $all_product);
+        return view('pages.home')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product)->with('all_product', $all_product);
     }
 
     public function price_home_asc(){
@@ -65,15 +79,18 @@ class HomeController extends Controller
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->where('product_status', '1')->orderby('product_price', 'asc')->limit(50)->get();
 
-        // $all_product_desc = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-        // ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        // ->where('product_status', '1')->orderby('product_id', 'desc')->limit(50)->get();
-
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        $selling_product = DB::table('tbl_order_detail')
+         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+         ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->get();
 
         Session::put('all_product_asc',$all_product_asc);
        
-        return view('pages.home_price_asc')->with('all_slide', $all_slide)->with('all_product_asc', $all_product_asc)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product)->with('all_product', $all_product);
+        return view('pages.home_price_asc')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('all_product_asc', $all_product_asc)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product)->with('all_product', $all_product);
     }
 
     public function price_home_desc(){
@@ -94,9 +111,16 @@ class HomeController extends Controller
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
+        $selling_product = DB::table('tbl_order_detail')
+         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+         ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->get();
+
         Session::put('all_product_desc',$all_product_desc);
        
-        return view('pages.home_price_desc')->with('all_slide', $all_slide)->with('all_product_desc', $all_product_desc)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product)->with('all_product', $all_product);
+        return view('pages.home_price_desc')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('all_product_desc', $all_product_desc)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product)->with('all_product', $all_product);
     }
 
 
@@ -109,7 +133,14 @@ class HomeController extends Controller
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->where('product_name', 'like', '%'.$keywords.'%')->get();
 
-        return view('pages.product.search')->with('category', $cate_product)->with('brand', $brand_product)->with('search_product', $search_product);
+        $selling_product = DB::table('tbl_order_detail')
+         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+         ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->get();
+
+        return view('pages.product.search')->with('category', $cate_product)->with('selling_product', $selling_product)->with('brand', $brand_product)->with('search_product', $search_product);
     }
 
     public function contact(){
@@ -120,8 +151,15 @@ class HomeController extends Controller
         $cart_count = Cart::count();
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+
+        $selling_product = DB::table('tbl_order_detail')
+         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+         ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->get();
             
-        return view('pages.contact.contact')->with('all_slide', $all_slide)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product);
+        return view('pages.contact.contact')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product);
     }
 
 }
