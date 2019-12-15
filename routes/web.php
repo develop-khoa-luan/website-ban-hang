@@ -217,3 +217,7 @@ Route::post('/save-blog','BlogController@post_add_blog' );
 Route::get('/unactive-blog/{id}','BlogController@unactive_blog' );
 Route::get('/active-blog/{id}','BlogController@active_blog' );
 Route::get('/delete-blog/{id}','BlogController@delete_blog' );
+
+//Report page
+Route::get('/reports','ReportController@reports' );
+Route::post('/reports-detail','ReportController@reports_detail' );
