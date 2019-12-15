@@ -1,7 +1,7 @@
-@extends('layou_update')
+@extends('layout_update')
 @section('content_update')
 <section id="cart_items">
-    <div class="container">
+    <div class="">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
                 <li><a href="{{URL::to('/trang-chu')}}">Home</a></li>
@@ -72,7 +72,7 @@
     </div>
 
     <section id="do_action">
-            <div class="container">
+            <div class="">
                 <div class="row">
                     
                         <div class="col-sm-3">
