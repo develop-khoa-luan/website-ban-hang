@@ -119,7 +119,6 @@
 			<!--header-bottom-->
 			<div class="container" >
 				<div class="row">
-					
 					<div class="" style="align:right">
 						<form action="{{URL::to('/tim-kiem')}}" method="POST">
 							{{ csrf_field() }}
@@ -187,6 +186,8 @@
 						<!--/brands_products-->
 
 
+		
+
 						<div style="margin: 30px 0 50px 0">
 							
 							<h2>Sản phẩm bán chạy</h2>
@@ -199,7 +200,7 @@
 										<a href="{{URL::to('/chi-tiet-san-pham/'.$sell->product_id)}}">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img style="height:220px;width:100%" src="public/uploads/product/{{$sell->product_image}}" alt="" />
+													<img style="height:220px;width:100%" src="../public/uploads/product/{{$sell->product_image}}" alt="" />
 													<h2>{{number_format($sell->product_price).' '.'VND'}}</h2>
 													<p style="margin:-25px 0 0 0"><strong>{{$sell->product_name}}</strong></p>
 												</div>
