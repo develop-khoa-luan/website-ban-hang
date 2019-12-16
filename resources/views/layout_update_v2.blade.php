@@ -63,7 +63,7 @@
                     </div>
                     <div class="mainmenu pull-left" style="margin: 10px 0 0 -150px">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
+								<li><a href="{{URL::to('/trang-chu')}}" >Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
 										@foreach($category as $key => $cate)
@@ -151,50 +151,7 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				{{-- <div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Danh mục sản phẩm</h2>
-						<div class="panel-group category-products" id="accordian">
-							<!--category-productsr-->
-							<div class="panel panel-default">
-
-								@foreach($category as $key => $cate)
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title"><a
-												href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a>
-										</h4>
-									</div>
-								</div>
-								@endforeach
-							</div>
-						</div>
-						<!--/category-products-->
-
-						<div class="brands_products">
-							<!--brands_products-->
-							<h2>Thương hiệu sản phẩm</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									@foreach($brand as $key => $brand)
-									<li><a href="{{URL::to('/thuong-hieu-san-pham/'.$brand->brand_id)}}"> <span
-												class="pull-right"></span>{{$brand->brand_name}}</a></li>
-									@endforeach
-								</ul>
-							</div>
-						</div>
-						<!--/brands_products-->
-
-
-		
-
-						<div class="shipping text-center">
-							<!--shipping-->
-							<img src="{{asset('public/frontend/images/shipping.jpg')}}" alt="" />
-						</div>
-						<!--/shipping-->
-					</div>
-				</div> --}}
+			
 				<div class="col-sm-9 padding-right">
 
 					@yield('content_update_v2')

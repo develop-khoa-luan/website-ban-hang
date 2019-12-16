@@ -53,12 +53,12 @@
 
       <!-- Thống kê  -->
       <div class="sidebar-heading">
-        Thống kê
+        Thống kê 
       </div>
       <li class="nav-item ">
         <a class="nav-link" href={{URL::to( '/reports')}}>
           <i class="fas fa-calculator"></i>
-          <span>Thống kê</span></a>
+          <span>Báo cáo - Thống kê</span></a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href={{URL::to( '/apriori')}}>
@@ -184,6 +184,23 @@
             </div>
           </li>
 
+
+          <!-- Quản lý tin tức -->
+          <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blog" aria-expanded="true"
+              aria-controls="collapseUtilities">
+              <i class="far fa-newspaper"></i>
+              <span>Quản lý tin tức</span>
+            </a>
+            <div id="blog" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Quản lý tin tức</h6>
+                <a class="collapse-item" href="{{URL::to('/add-blog')}}">Thêm tin tức</a>
+                <a class="collapse-item" href="{{URL::to('/all-blog')}}">Danh sách tin tức</a>
+              </div>
+            </div>
+          </li>
+
           {{-- Quản lý hình ảnh --}}
 
           <li class="nav-item">
@@ -201,21 +218,6 @@
           </li>
         
 
-      <!-- Quản lý tin tức -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#blog" aria-expanded="true"
-          aria-controls="collapseUtilities">
-          <i class="far fa-images"></i>
-          <span>Quản lý tin tức</span>
-        </a>
-        <div id="blog" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Quản lý tin tức</h6>
-            <a class="collapse-item" href="{{URL::to('/add-blog')}}">Thêm tin tức</a>
-            <a class="collapse-item" href="{{URL::to('/all-blog')}}">Danh sách tin tức</a>
-          </div>
-        </div>
-      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -300,17 +302,22 @@
                 <i class="fas fa-user-alt fa-1x" ></i>
               </a>
               <!-- Dropdown - User Information -->
+
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+              
+                {{-- @foreach ($info_admin as $key => $z)
+                <a class="dropdown-item" href="{{URL::to('/info-admin/'.$z->admin_id)}}}">
+                @endforeach --}}
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Quản lý cá nhân
                 </a>
                 <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Đăng xuất
                 </a>
               </div>
+            
             </li>
 
           </ul>

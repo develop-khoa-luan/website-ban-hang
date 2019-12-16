@@ -122,7 +122,7 @@
                                     <label class="input-group-text" for="report_detail_1">Chọn</label>
                                 </div>
                                 <select class="report_detail_1" id="report_detail_1" name="report_detail_1">
-                                    <option value="san-pham-ban-chay" selected>sản phẩm bán chạy</option>
+                                    <option value="san-pham-ban-chay" selected>Sản phẩm bán chạy</option>
                                     <option value="san-pham-sap-het-hang">Sản phẩm sắp hết hàng</option>
                                 </select>
                             </div>

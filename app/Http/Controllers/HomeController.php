@@ -48,7 +48,7 @@ class HomeController extends Controller
          ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
          ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
          ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
          ->get();
 
         // dd($selling_product);
@@ -85,7 +85,7 @@ class HomeController extends Controller
          ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
          ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
          ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
          ->get();
 
         Session::put('all_product_asc',$all_product_asc);
@@ -115,7 +115,7 @@ class HomeController extends Controller
          ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
          ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
          ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
          ->get();
 
         Session::put('all_product_desc',$all_product_desc);
@@ -137,7 +137,7 @@ class HomeController extends Controller
          ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
          ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
          ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
          ->get();
 
         return view('pages.product.search')->with('category', $cate_product)->with('selling_product', $selling_product)->with('brand', $brand_product)->with('search_product', $search_product);
@@ -156,7 +156,7 @@ class HomeController extends Controller
          ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
          ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
          ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-         ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+         ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
          ->get();
             
         return view('pages.contact.contact')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('count_cart', $cart_count)->with('brand', $brand_product);

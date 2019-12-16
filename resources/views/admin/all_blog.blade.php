@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('admin_content')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+<h1 class="h3 mb-2 text-gray-800">Tin tức</h1>
 <?php
                 $message = Session::get('message');
                 if($message){
@@ -12,7 +12,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách tin tức</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -20,7 +20,7 @@
                 <thead>
                     <tr class="text-center">
                         <th>Tên bài viết</th>
-                        <th>Hình sản phẩm</th>
+                        <th>Hình ảnh</th>
                         <th>Tóm tắt</th>
                         <th>Tác giả</th>
                         <th>Hiển thị</th>

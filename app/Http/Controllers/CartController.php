@@ -63,7 +63,7 @@ class CartController extends Controller
         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
         ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-        ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
         ->get();
 
         $product_detail = array();

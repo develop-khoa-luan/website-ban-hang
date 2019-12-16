@@ -38,6 +38,9 @@ Route::get('/chi-tiet-san-pham/{product_id}', 'ProductController@details_product
 
 Route::get('/admin', 'AdminController@index');
 
+// Route::get('/dashboard', 'AdminController@index_layout');
+
+
 Route::get('/dashboard', 'AdminController@show_dashboard');
 
 // login Admin Management
@@ -221,3 +224,8 @@ Route::get('/delete-blog/{id}','BlogController@delete_blog' );
 //Report page
 Route::get('/reports','ReportController@reports' );
 Route::post('/reports-detail','ReportController@reports_detail' );
+
+
+//get info admin -admin management
+
+Route::get('/info-admin/{admin_id}','AdminController@info_admin' );

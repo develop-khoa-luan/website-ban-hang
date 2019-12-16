@@ -75,7 +75,7 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
-                        <button type="submit" id="btn-public" class="btn btn-success col-12">Cập nhập</button>
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Cập nhật</button>
                     </div>
 
                     <div class="col-12">

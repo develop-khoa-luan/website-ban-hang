@@ -2,6 +2,20 @@
 @section('admin_content')
 <!-- Begin Page Content -->
 <div class="container-fluid" id="admin_hidden">
+    {{-- <div>
+        @foreach ($info_admin as $key => $ad)
+        <a class="dropdown-item" href="{{URL::to('/info-admin/'.$ad->admin_id)}}}">
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Quản lý cá nhân
+          </a>
+          <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Đăng xuất
+          </a>
+        </div>
+        @endforeach
+    </div> --}}
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">

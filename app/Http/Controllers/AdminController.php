@@ -25,7 +25,17 @@ class AdminController extends Controller
     }
 
     public function index (){
+        
         return view ('admin_login');
+    }
+
+
+    public function info_admin($id){
+        $this->AuthLogin();
+        $get_info = DB::table('tbl_admin')->where('admin_id',$id)->get();
+        // dd($get_info);
+        $manager_info_admin = view('admin.get_info_admin')->with('get_info',$get_info);
+        return view('admin_layout')->with('admin.get_info_admin', $manager_info_admin);
     }
 
     public function show_dashboard(){
@@ -52,9 +62,16 @@ class AdminController extends Controller
         $bills_pending = DB::table('tbl_order')->where('order_status', '=', 'Đang chờ xử lý')
         ->count('order_id');
 
-        return view ('admin.dashboard')->with('earning_current_month',$earning_current_month)->with('avg_earning', $avg_earning)
+        
+
+        $info_admin = DB::table('tbl_admin')->get();
+
+        // dd($info_admin);
+
+        return view('admin.dashboard')->with('info_admin',$info_admin)->with('earning_current_month',$earning_current_month)->with('avg_earning', $avg_earning)
         ->with('avg_earning_per_month', $avg_earning_per_month)->with('bills_current_month', $bills_current_month)
         ->with('bills_pending', $bills_pending);
+
     }
 
     public function dashboard(Request $request){
@@ -62,9 +79,7 @@ class AdminController extends Controller
         $admin_password = md5($request->admin_password);
 
         $result = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
-        // echo '<pre>';
-        // print_r($result);
-        // echo '</pre>';
+    
         if($result){
             Session::put('admin_name',$result->admin_name);
             Session::put('admin_id',$result->admin_id);
