@@ -22,7 +22,7 @@
                         <th>Tên ảnh bìa</th>
                         <th>Hình ảnh</th>
                         <th>Hiển thị</th>
-                        <th>Sửa -- Xóa</th>
+                        <th> Xóa</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
