@@ -59,7 +59,12 @@ class CartController extends Controller
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
-        // $all_product_detail_cart = DB::table('tbl_product_detail')->where('product_id', $product_id)->get();
+        $selling_product = DB::table('tbl_order_detail')
+        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+        ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->get();
 
         $product_detail = array();
         foreach($get_cart as $cart){
@@ -67,7 +72,7 @@ class CartController extends Controller
             array_push($product_detail, $get_product_detail);
         }
 
-        return view('pages.cart.show_cart')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product)->with('all_product_detail', $product_detail);
+        return view('pages.cart.show_cart')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product)->with('all_product_detail', $product_detail);
     }
 
     public function delete_to_cart($rowId){ 

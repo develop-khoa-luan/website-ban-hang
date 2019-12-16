@@ -175,9 +175,18 @@ class ProductController extends Controller
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->limit(9)->get();
         
-        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();          
+        $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+        
+        $selling_product = DB::table('tbl_order_detail')
+        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+        ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->get();
 
-        return view('pages.product.show_details')->with('all_slide', $all_slide)  ->with('category', $cate_product)->with('brand', $brand_product)->with('details_product', $details_product)
+        Session::put('all_product_detail',$all_product_detail);
+
+        return view('pages.product.show_details')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product)->with('details_product', $details_product)
         ->with('related_product', $recommend_products)->with("all_product_detail", $all_product_detail);
     }
 }

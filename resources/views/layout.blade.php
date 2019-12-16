@@ -175,59 +175,20 @@
 					
 					<div  id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
-							{{-- @foreach($all_slide as $key => $tt)
-							<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-							@endforeach --}}
 
-						
-							@foreach($all_slide as $key => $tt)
-
-								@if(!empty(Session::get('category_by_id_1')))
-									<?php
-											$cat_tt = Session::get('category_by_id_1');
-											if($cat_tt){
-												
-												// echo '<li data-target="#slider-carousel" data-slide-to="0" @if($key==1) class="active" @endif></li>';
-												
-												Session::put('category_by_id_1',null);
-											
-												
-											}	
-									?>
-	
+							@foreach($all_slide as $key => $tt)					
 									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-									
-								@else
-									<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-								@endif
-
 							@endforeach			
-
-							
+					
 						</ol>
 
 						<div style="height:410px" class="carousel-inner">
 
-
 							@foreach($all_slide as $key => $tt)
 							<div style="padding-left:1px"  class="item @if($key==0) active @endif">
 
-								{{-- @if(!empty(Session::get('category_by_id_cover'))) --}}
-									<?php
-											// $cat_t = Session::get('category_by_id_cover');
-											// if($cat_t){
-												
-											// 	Session::put('category_by_id_cover',null);
-												
-											// }	
-									?>
-									{{-- @foreach($all_slide as $key => $tt)
-									<img style="width:100%" src="/public/uploads/product/{{$tt->slide_image}}" alt="" />	
-									@endforeach --}}
-								{{-- @else --}}
 									<img style="width:100%" src="public/uploads/product/{{$tt->slide_image}}" alt="" />
-								{{-- @endif --}}
-						
+													
 							</div>
 							@endforeach
 
@@ -252,7 +213,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Danh mục sản phâm</h2>
+						<h2>Danh mục sản phẩm</h2>
 						<div class="panel-group category-products" id="accordian">
 							<!--category-productsr-->
 							<div class="panel panel-default">
@@ -304,29 +265,7 @@
 											Session::put('all_product_t',null);
 										}
 										
-										// $cat_desc = Session::get('all_product_desc_t');
-                                        // if($cat_desc){
 									
-										// 	echo '<div class="brands-name">
-										// 		<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-										// 			<li><a href="/website-online/price-home-desc"> <span class="pull-right"></span>Giá giảm dần</a></li>
-										// 		</ul>
-										// 	</div>';
-											
-										// 	Session::put('all_product_desc_t',null);
-										// }
-										
-										// $cat_asc = Session::get('all_product_asc_t');
-                                        // if($cat_desc){
-									
-										// 	echo '<div class="brands-name">
-										// 		<ul style="font-weight:bold" class="nav nav-pills nav-stacked">
-										// 			<li><a href="/website-online/price-home-asc"> <span class="pull-right"></span>Giá tăng dần</a></li>
-										// 		</ul>
-										// 	</div>';
-											
-										// 	Session::put('all_product_asc_t',null);
-										// }
 										
 										$cat_desc_t = Session::get('all_product_desc');
                                         if($cat_desc_t){
@@ -363,26 +302,37 @@
 									
                                 @endif
 
-										
-								{{-- <h2>Price sort1111111</h2> --}}
+									
 						</div>
 
-
-						{{-- <div class="price-range">
-							<!--price-range-->
-							<h2>Price Range</h2>
-							<div class="well text-center">
-								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000"
-									data-slider-step="5" data-slider-value="[200000,800000]" id="sl2"><br />
-								<b class="pull-left">0 VND</b> <b class="pull-right">1.000.000 VND</b>
+					
+						<div style="margin: 30px 0 50px 0">
+							
+							<h2>Sản phẩm bán chạy</h2>
+							<div  id="slider-carousel" class="carousel slide" data-ride="carousel">
+		
+								<div style="height:auto" class="carousel-inner">
+		
+									@foreach($selling_product as $key => $sell)
+									<div style="padding-left:1px;height:300px"  class="item @if($key==0) active @endif">
+										<a href="{{URL::to('/chi-tiet-san-pham/'.$sell->product_id)}}">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img style="height:220px;width:100%" src="public/uploads/product/{{$sell->product_image}}" alt="" />
+													<h2>{{number_format($sell->product_price).' '.'VND'}}</h2>
+													<p style="margin:-25px 0 0 0"><strong>{{$sell->product_name}}</strong></p>
+												</div>
+											</div>
+										</a>				
+									</div>
+									@endforeach
+	
+								</div>
+									
 							</div>
-						</div> --}}
-						<!--/price-range-->
-
-						<div class="shipping text-center">
-							<!--shipping-->
-							<img src="{{asset('public/frontend/images/shipping.jpg')}}" alt="" />
+								
 						</div>
+
 						<!--/shipping-->
 					</div>
 				</div>

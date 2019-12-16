@@ -1,4 +1,4 @@
-@extends('layout_update')
+@extends('layout_update_v3')
 @section('content_update')
 
 

@@ -32,7 +32,14 @@ class CheckoutController extends Controller
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
-        return view('pages.checkout.login_checkout')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
+        $selling_product = DB::table('tbl_order_detail')
+        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+        ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->get();
+
+        return view('pages.checkout.login_checkout')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function add_customer(Request $request)
@@ -145,20 +152,38 @@ class CheckoutController extends Controller
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
+            $selling_product = DB::table('tbl_order_detail')
+            ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+            ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+            ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+            ->get();
             Cart::destroy();
-            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
+            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         } elseif ($data['payment_method'] == 2) {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             Cart::destroy();
             $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
-            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
+            $selling_product = DB::table('tbl_order_detail')
+            ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+            ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+            ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+            ->get();
+            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         } else {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             Cart::destroy();
             $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
-            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
+            $selling_product = DB::table('tbl_order_detail')
+            ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+            ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+            ->selectRaw('SUM(tbl_order_detail.product_id) AS sum_a')->limit(3)
+            ->get();
+            return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         }
     }
     public function manage_order()
