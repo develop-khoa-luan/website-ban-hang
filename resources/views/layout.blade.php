@@ -33,7 +33,7 @@
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> (+84) 0903768379</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> 1997Store@gmail.com</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> 1997store@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -41,10 +41,9 @@
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+							
 							</ul>
 						</div>
 					</div>
@@ -353,60 +352,49 @@
 			</div>
 		</div>
 
-		<div class="footer-widget">
+		<div class="footer-widget" style="margin-bottom:20px">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>Service</h2>
+							<h2>Thông tin liên hệ</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li><a style=" font-size:16px" href="#"><i class="fa fa-map-marker"></i>KTX Khu B - ĐHQG TPHCM,<br> Đông Hòa, Dĩ An, Bình Dương</a></li>
+								<li><a style=" font-size:16px" href="#"><i class="fa fa-phone"></i>(+84) 97 854 2629 - (+84) 0903768379</a></li>
+								<li><a style=" font-size:16px" href="#"><i class="fa fa-envelope-o"></i>1997store@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-2">
+					
+					<div class="col-sm-2" style="padding: 0 0 0 50px">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
+							<h2>Về chúng tôi</h2>
+							<ul class="nav nav-pills nav-stacked" style="padding: 0 0 0 15px">
+								<li><a style=" font-size:16px" href="#">Trang chủ</a></li>
+								<li><a style=" font-size:16px" href="{{URL::to('/blogs')}}">Tin tức</a></li>	
+								<li><a style=" font-size:16px" href="{{URL::to('/contact')}}">Liên hệ</a></li>
 							</ul>
+							
 						</div>
 					</div>
-					<div class="col-sm-2">
+
+					<div class="col-sm-2" style="padding: 0 0 0 80px">
 						<div class="single-widget">
-							<h2>Policies</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+							<h2>Mạng xã hội</h2>
+							<ul style="padding: 0 0 0 10px" class="nav nav-pills nav-stacked">
+								<li style="display:flex"><a style="font-size:22px" href="#"><i class="fa fa-facebook"></i></a>
+									<a style="font-size:22px" href="#"><i class="fa fa-instagram"></i></a>
+									<a style="font-size:22px" href="#"><i class="fa fa-youtube"></i></a>
+								</li>
+								
 							</ul>
+								
 						</div>
 					</div>
-					<div class="col-sm-2">
+
+					<div class="col-sm-3 col-sm-offset-1" style="padding: 0 0 0 20px">
 						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>Address Maps</h2>
+							<h2>Bản đồ cửa hàng</h2>
 							<div class="address">
 								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.067502534812!2d106.77973971446636!3d10.882470492249647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d88556fa38e7%3A0x9746dea7851b826a!2zS8OtIHTDumMgeMOhIGtodSBiIMSR4bqhaSBo4buNYyBxdeG7kWMgZ2lhIEhDTQ!5e0!3m2!1svi!2s!4v1574355966020!5m2!1svi!2s" width="300" height="200px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 							</div>

@@ -208,7 +208,7 @@ class CheckoutController extends Controller
             
         $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
         ->where('order_id', $order_id)
-        ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*')->get();
+        ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*','tbl_product.product_image')->get();
 
         $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
 

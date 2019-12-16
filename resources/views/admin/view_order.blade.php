@@ -121,6 +121,7 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th class="text-primary">Tên sản phẩm</th>
+                                        <th class="text-primary">Ảnh</th>
                                         <th class="text-primary">Số lượng</th>
                                         <th class="text-primary">Size:</th>
                                         <th class="text-primary">Giá</th>
@@ -132,6 +133,7 @@
                                     
                                     <tr>
                                         <td>{{$item->product_name}}</td>
+                                        <td><img src="../public/uploads/product/{{ $item->product_image}}" width="75" height="75"></td>
                                         <td>{{ number_format($item->product_sales_quantity, 0) }}</td>
                                         <td>{{$item->product_size}}</td>
                                         <td>{{ number_format($item->product_price, 0) }}</td>
