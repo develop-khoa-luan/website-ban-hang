@@ -259,7 +259,6 @@
                             $('.row-date-table').remove();
                             $('.dataTables_empty').remove();
                             result.data.forEach(element => {
-                                if(element.count_quantity <= report_detail_2){
                                     var data_table = `<tr class="row-date-table">
                                         <td>`+element.product_id+`</td>
                                         <td>`+element.product_name+`</td>
@@ -268,7 +267,6 @@
                                         <td>--</td>
                                     </tr>`
                                     $('.table_body_data').append(data_table);
-                                }
                             });
                         } 
                         if(result.status == 'hoa-don'){

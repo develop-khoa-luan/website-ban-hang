@@ -112,7 +112,7 @@ class ReportController extends Controller
             //sản phẩm bán chạy
             if ($report_detail_1 == 'san-pham-ban-chay') {
                 $top_product = DB::table('tbl_order_detail')
-                    ->select(DB::raw('COUNT(tbl_order_detail.order_id) as count_product'), 'tbl_product.*')
+                    ->select(DB::raw('SUM(tbl_order_detail.product_sales_quantity) as count_product'), 'tbl_product.*')
                     ->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
                     ->where('tbl_order_detail.created_at', '>=', $report_detail_3)->where('tbl_order_detail.created_at', '<=', $report_detail_4)
                     ->groupBy('tbl_order_detail.product_id')->orderBy('count_product', 'DESC')
@@ -129,8 +129,14 @@ class ReportController extends Controller
                     ->select(DB::raw('sum(tbl_product_detail.product_quantity) as count_quantity'), 'tbl_product.*')
                     ->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_product_detail.product_id')
                     ->groupBy('tbl_product_detail.product_id')->orderBy('tbl_product.product_id', 'ASC')->get();
+                $product_nearly_soldout = array();
+                foreach ($lack_product as $key => $value) {
+                    if($value->count_quantity<=$report_detail_2){
+                        array_push($product_nearly_soldout, $value);
+                    }
+                }
                 return response()->json([
-                    'data' => $lack_product,
+                    'data' => $product_nearly_soldout,
                     'status' => 'san-pham-het-hang',
                     'message' => 'Khách hàng đăng kí theo tháng'
                 ]);
