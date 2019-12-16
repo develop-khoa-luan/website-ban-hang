@@ -55,7 +55,6 @@ class AprioriController extends Controller
                 array_push($list_itemset, $value);
             }
         }
-        //dd($list_itemset);
         return view ('admin.apriori')->with('itemsets', $list_itemset);
     }
 

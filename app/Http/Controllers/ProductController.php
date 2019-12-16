@@ -160,7 +160,7 @@ class ProductController extends Controller
         
         //attributes
         $recommend_products = [];
-        $list_string_id = $product_id.',';
+        $list_string_id = '';
 
         $get_apriori_data = DB::table('tbl_data_apriori')->where('product_1', $product_id)->where('product_2', 0)
         ->where('recommend_2', 0)->orderBy('recommend_1', 'desc')->get();
@@ -173,15 +173,8 @@ class ProductController extends Controller
         $recommend_products = DB::table('tbl_product')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->limit(6)->get();
+        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->limit(9)->get();
         
-        if(count($recommend_products)<6){
-            $recommend_products = 6 - count($recommend_products);
-            $recommend_products = DB::table('tbl_product')
-            ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-            ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-            ->whereNotIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->limit(6)->get();
-        }
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
         
         $selling_product = DB::table('tbl_order_detail')
