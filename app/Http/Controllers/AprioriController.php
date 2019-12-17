@@ -25,7 +25,7 @@ class AprioriController extends Controller
         }
     }
 
-    public function apriori (){
+    public function run_apriori (){
          $this->AuthLogin();
          $all_order = DB::table('tbl_order')->select('order_id')->get();//lấy hết order lên
          $list_itemset = array();
@@ -55,7 +55,7 @@ class AprioriController extends Controller
                 array_push($list_itemset, $value);
             }
         }
-        return view ('admin.apriori')->with('itemsets', $list_itemset);
+        return view ('admin.run_apriori')->with('itemsets', $list_itemset);
     }
 
     public function save_apriori(Request $request){
@@ -70,4 +70,65 @@ class AprioriController extends Controller
         return $data_apriori;
     }
     
+    public function apriori (){
+        $this->AuthLogin();
+        $all_data_apriori = DB::table('tbl_data_apriori')->get();
+        $all_product = DB::table('tbl_product')->get();
+        foreach ($all_data_apriori as $key => $value) {
+            if($value->product_1 == 0){
+                $value->product_1 = "";
+            }
+            if($value->product_2 == 0){
+                $value->product_2 = "";
+            }
+            if($value->product_3 == 0){
+                $value->product_3 = "";
+            }
+            if($value->product_4 == 0){
+                $value->product_4 = "";
+            }
+            if($value->recommend_1 == 0){
+                $value->recommend_1 = "";
+            }
+            if($value->recommend_2 == 0){
+                $value->recommend_2 = "";
+            }
+            if($value->recommend_3 == 0){
+                $value->recommend_3 = "";
+            }
+            if($value->recommend_4 == 0){
+                $value->recommend_4 = "";
+            }
+        }
+        foreach ($all_product as $key => $product) {
+            foreach ($all_data_apriori as $key => $value) {
+                if($product->product_id == $value->product_1){
+                    $value->product_1 = '['.$product->product_name.']';
+                }
+                if($product->product_id == $value->product_2){  
+                    $value->product_2 = ', ['.$product->product_name.']';
+                }
+                if($product->product_id == $value->product_3){
+                    $value->product_3 = ', ['.$product->product_name.']';
+                }
+                if($product->product_id == $value->product_4){
+                    $value->product_4 = ', ['.$product->product_name.']';
+                }
+                if($product->product_id == $value->recommend_1){
+                    $value->recommend_1 = '['.$product->product_name.']';
+                }
+                if($product->product_id == $value->recommend_2){
+                    $value->recommend_2 = ', ['.$product->product_name.']';
+                }
+                if($product->product_id == $value->recommend_3){
+                    $value->recommend_3 = ', ['.$product->product_name.']';
+                }
+                if($product->product_id == $value->recommend_4){
+                    $value->recommend_4 = ', ['.$product->product_name.']';
+                }
+            }
+        }
+       return view ('admin.apriori')->with('data_apriori', $all_data_apriori);
+   }
+
 }
