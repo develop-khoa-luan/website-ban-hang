@@ -357,7 +357,7 @@
         data: {
             labels: arrayMonth,
             datasets: [{
-            label: "Lợi nhuận: ",
+            label: "Doanh thu ",
             backgroundColor: "#4e73df",
             hoverBackgroundColor: "#2e59d9",
             borderColor: "#4e73df",

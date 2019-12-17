@@ -50,10 +50,21 @@ class CheckoutController extends Controller
         $data['customer_password'] = md5($request->customer_password);
         $data['customer_phone'] = $request->customer_phone;
 
-        $customer_id = DB::table('tbl_customer')->insertGetId($data);
-        Session::put('customer_id', $customer_id);
-        Session::put('customer_name', $request->customer_name);
-        return Redirect::to('/payment');
+        $duplicate = DB::table('tbl_customer')->where('customer_email',$data['customer_email'])->first();
+        // dd($duplicate);
+        if($duplicate == null){
+            $customer_id = DB::table('tbl_customer')->insertGetId($data);
+            Session::put('customer_id', $customer_id);
+            Session::put('customer_name', $request->customer_name);
+            return Redirect::to('/payment');
+            
+        }
+        else{
+            Session::put('message1', 'Email đăng kí đã có trên hệ thống. Xin vui lòng nhập lại');
+            return Redirect::to('/login-checkout');
+            
+        }
+        
     }
 
     public function checkout()

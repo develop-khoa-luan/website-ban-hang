@@ -297,6 +297,7 @@
                     if($name){
                         echo $name;
                     }
+                    $admin_id = Session::get('admin_id');
                 ?>
                 </span>
                 <i class="fas fa-user-alt fa-1x" ></i>
@@ -305,11 +306,11 @@
 
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               
-                {{-- @foreach ($info_admin as $key => $z)
-                <a class="dropdown-item" href="{{URL::to('/info-admin/'.$z->admin_id)}}}">
-                @endforeach --}}
+                
+                <a class="dropdown-item" href="{{URL::to('/info-admin/'.$admin_id)}}}">
+                
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Quản lý cá nhân
+                  Thông tin tài khoản
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">

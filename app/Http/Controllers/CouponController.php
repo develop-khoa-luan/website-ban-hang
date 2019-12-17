@@ -96,7 +96,6 @@ class CouponController extends Controller
         Session::forget('coupon_name');
 
         $data = $request->all();
-        // echo "<pre>"; print_r($data); die;
         $test = DB::table('tbl_coupon')->where('coupon_name',$data['coupon_name'])->count();
         if ($test == 0){
             Session::put('message','Mã khuyến mãi không tồn tại. Xin vui lòng nhập lại');
@@ -130,15 +129,13 @@ class CouponController extends Controller
 
             // Session::put('CouponAmount_1',$couponAmount_1);
 
-
+            Session::put('total_amount',$total_amount);
             Session::put('total_after_discount',$total_after_discount);
             Session::put('coupon_name',$data['coupon_name']);
 
             Session::put('message','Mã khuyến mãi áp dụng thành công');
             return Redirect::to('payment');
-            // return redirect()->back();
             echo $couponAmount; 
-            // echo $total_amount;
         } 
     }
 

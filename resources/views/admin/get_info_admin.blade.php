@@ -2,23 +2,22 @@
 @section('admin_content')
 
 
-@foreach ($get_info as $key => $aq)
 <div class="row">
     <div class="col-12 col-sm-12 col-md-12">
-        <div class="row">
+        <div class="row" style="margin: 0 auto">
             <div class="col-12 col-sm-6 col-md-6">
                 <div class="card border border-primary mb-3">
                     <div class="card-header p-2 text-primary border-botton border-primary text-center">
-                        Thông tin khách hàng
+                        Thông tin tài khoản
                     </div>
                     <div class="card-body">
                         <div class="card-form p-2">
                             <div class="row border-bottom">
                                 <div class="col-12 col-sm-6 col-md-6 text-danger">
-                                    Tên khách hàng:
+                                    Tên tài khoản:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$aq->admin_name}}
+                                    {{$info_admin->admin_name}}
                                 </div>
                             </div>
                         </div>
@@ -28,7 +27,7 @@
                                     Email:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$aq->admin_email}}
+                                    {{$info_admin->admin_email}}
                                 </div>
                             </div>
                         </div>
@@ -38,7 +37,7 @@
                                     Số điện thoại:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$aq->admin_phone}}
+                                    {{$info_admin->admin_phone}}
                                 </div>
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                                     Ngày tạo:
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 text-dark">
-                                    {{$aq->created_at}}
+                                    {{$info_admin->created_at}}
                                 </div>
                             </div>
                         </div>
@@ -60,7 +59,6 @@
     </div>
 </div>
 
-@endforeach
 
 {{-- <div class="card-body">
 

@@ -30,11 +30,11 @@ class AdminController extends Controller
     }
 
 
-    public function info_admin($id){
+    public function info_admin($admin_id){
         $this->AuthLogin();
-        $get_info = DB::table('tbl_admin')->where('admin_id',$id)->get();
+        $info_admin = DB::table('tbl_admin')->where('admin_id',$admin_id)->first();
         // dd($get_info);
-        $manager_info_admin = view('admin.get_info_admin')->with('get_info',$get_info);
+        $manager_info_admin = view('admin.get_info_admin')->with('info_admin',$info_admin);
         return view('admin_layout')->with('admin.get_info_admin', $manager_info_admin);
     }
 
@@ -63,8 +63,8 @@ class AdminController extends Controller
         ->count('order_id');
 
         
-
-        $info_admin = DB::table('tbl_admin')->get();
+        $admin_id = Session::get('admin_id');
+        $info_admin = DB::table('tbl_admin')->where('admin_id',$admin_id)->first();
 
         // dd($info_admin);
 
