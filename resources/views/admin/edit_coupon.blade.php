@@ -10,16 +10,16 @@
                     Session::put('message',null);
                 }
         ?>
-        <h3 class="h3 text-primary mt-4 mb-4">Cập nhập thương hiệu sản phẩm</h3>
+        <h3 class="h3 text-primary mt-4 mb-4">Cập nhập mã khuyến mãi</h3>
     <div class="row">
         <div class="col-lg-9 col-md-8">
             <div class="card m-1 border border-primary">
                 <div class="card-header p-2 text-primary border-botton border-primary">
-                    Nhập thông tin thương hiệu
+                    Nhập thông tin mã khuyến mãi
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Tên thương hiệu</label>
+                        <label for="exampleInputEmail1">Mã khuyến mãi</label>
                         <input type="text" name="coupon_name" class="form-control" id="exampleInputEmail1"
                         value="{{$edit_coupon->coupon_name}}">
                     </div>

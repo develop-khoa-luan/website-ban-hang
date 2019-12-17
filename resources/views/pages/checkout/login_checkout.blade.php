@@ -3,6 +3,7 @@
 
     <!--form-->
     <div class="container" >
+        
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form">
@@ -27,9 +28,17 @@
             <div class="col-sm-4">
                 <div class="signup-form">
                     <!--sign up form-->
+                    <?php
+                            $message = Session::get('message1');
+                            if($message){
+                                echo '<span style="color:red">' .$message. '</span>';
+                                Session::put('message1',null);
+                            }
+                        ?>
                     <h2 style="font-weight:bold">Đăng kí tài khoản</h2>
                     <form action="{{URL::to('/add-customer')}}" method="POST">
                         {{ csrf_field()}}
+                        
                         <input type="text" name="customer_name"  required="required" placeholder="Nhập họ tên" />
                         <input type="email" name="customer_email" required="required" placeholder="Nhập email" />
                         <input type="password" name="customer_password" id="password" required="required" placeholder="Nhập mật khẩu" />

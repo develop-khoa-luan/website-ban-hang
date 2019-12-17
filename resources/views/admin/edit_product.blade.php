@@ -14,7 +14,7 @@
         <div class="col-lg-8 col-md-12">
             <div class="card m-1 border border-primary">
                 <div class="card-header p-2 text-primary border-botton border-primary">
-                    Nhập thông tin sản phẩm
+                 Cập nhật thông tin sản phẩm
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -144,10 +144,7 @@
                 </div>
                 <div class="card-body">
                     <div class="col-12">
-                        <button type="submit" id="btn-public" class="btn btn-success col-12">Hiển thị</button>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
+                        <button type="submit" id="btn-public" class="btn btn-success col-12">Cập nhật</button>
                     </div>
                     <div class="col-12">
                         <a href="{{URL::to('/all-product')}}"><input type="button" class="btn btn-danger col-12 mt-2"

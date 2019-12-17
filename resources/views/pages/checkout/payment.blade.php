@@ -11,7 +11,6 @@
         </div>
     </div>
 
-
     <form action="{{URL::to('/order-place')}}" method="POST">
         {{ csrf_field() }}
         <div style="display:flex; margin: -50px 0 0">
@@ -55,12 +54,12 @@
                     </select>
                     <?php
                         $content = Cart::content();       
-                        ?>
+                    ?>
                     @foreach ($content as $v_content1)
                     <?php
-                                        $subtotal = $v_content1->price *  $v_content1->qty;
-                                        $total_order = $total_order + $subtotal;
-                        ?>
+                        $subtotal = $v_content1->price *  $v_content1->qty;
+                        $total_order = $total_order + $subtotal;
+                    ?>
 
                     @endforeach
                     @if(!empty(Session::get('CouponAmount')))
@@ -80,8 +79,8 @@
                     <input type="number" name="total_order" value={{$total_order}} hidden>
                     @endif
                     <div>
-                        <input type="submit" value="Đặt hàng"
-                            style="width: 80px; height: 30px; font-size: 14px;margin: 0" name="send_order_place"
+                        <input type="submit" value="Thanh toán" 
+                            style=" height: 30px; font-size: 14px;margin: 0" name="send_order_place"
                             class="btn btn-primary btn-sm">
 
                         <button
@@ -113,8 +112,8 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr class="cart_menu" style="text-align:center">
-                                {{-- <td class="image">Hình ảnh </td> --}}
-                                <td class="description">Tên sản phẩm</td>
+                                <td class="image"></td>
+                                <td class="description">Sản phẩm</td>
                                 <td class="price">Giá</td>
                                 <td class="quantity">Số lượng</td>
                                 <td class="total">Tổng tiền</td>
@@ -127,14 +126,10 @@
                             @foreach ($content as $v_content)
 
                             <tr>
-                                {{-- <td class="cart_product">
-                                        <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}"
-                                width="20" alt="" /></a>
-
-                                </td> --}}
+                                <td><img src="public/uploads/product/{{ $v_content->options->image}}" width="60" height="60"></td>
                                 <td class="cart_description">
                                     <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}">
-                                        <p>{{$v_content->name}}</p>
+                                        <p>{{$v_content->id}}</p>
                                     </a>
                                 </td>
                                 <td class="cart_price">
@@ -186,6 +181,13 @@
                                         @if(!empty(Session::get('CouponAmount')))
                                         <li>Phí vận chuyển <span>Free</span></li>
                                         <?php
+                                                $total_temp = Session::get('total_amount');
+                                                if($total_temp){
+                                                    
+                                                    echo '<li> Tổng tiền ( Tạm tính )  <span>' .number_format($total_temp,0).' '.'VND'.  ' </span> </li>';
+                                                    Session::put('total_amount',null);
+                                                }
+
                                                 $coupon = Session::get('CouponAmount');
                                                 if($coupon){
                                                     
@@ -214,35 +216,6 @@
                         </div>
                     </div>
                 </section>
-
-                {{-- <h4>Chọn hình thức thanh toán</h4>
-            <form action="{{URL::to('/order-place')}}" method="POST">
-                {{ csrf_field() }} --}}
-                {{-- <div style="margin:20px 10px; display: flex" class="payment-options">
-                    <select  name="payment_option" style="height: 40px; width: 40%">
-                        <option value="1" >
-                            Thanh toán qua thẻ ATM
-                        </option>
-                        <option value="2" selected>
-                            Thanh toán khi nhận hàng
-                        </option>
-                        <option value="3">
-                            Thanh toán thẻ ghi nợ
-                        </option>
-                    </select>
-                    @if(!empty(Session::get('CouponAmount')))
-                    <input type="number" name="total_order" value={{$after_coupon}} hidden>
-                @else
-                <input type="number" name="total_order" value={{$total_order}} hidden>
-                @endif
-                <input type="submit" value="Đặt hàng"
-                    style="width: 80px; height: 30px; font-size: 14px; margin: 5px 0 0 50px" name="send_order_place"
-                    class="btn btn-primary btn-sm">
-                <button
-                    style=" width: auto; height: 30px; font-size: 14px; margin: 5px 0 0 20px; border: none; background-color: #FE980F"><a
-                        style="color: white" href="{{URL::to('/trang-chu')}}">Tiếp tục mua sắm</a></button>
-            </div> --}}
-            {{-- </form> --}}
         </div>
         </div>
     </form>

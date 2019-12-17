@@ -17,7 +17,8 @@
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu" style="text-align:center">
-                        <td class="description">Tên sản phẩm</td>
+                        <td></td>
+                        <td class="description">Sản phẩm</td>
                         {{-- <td class="img">Hình ảnh</td> --}}
                         <td class="price">Giá</td>
                         <td class="size">Size</td>
@@ -30,7 +31,7 @@
                     <?php $total_order = 0 ?>
                     @foreach ($content as $v_content)
                     <tr style="text-align:center">
-                        
+                        <td><img src="public/uploads/product/{{ $v_content->options->image}}" width="75" height="75"></td>
                         <td class="cart_description">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                         </td>
@@ -78,17 +79,17 @@
                 <div class="total_area">
                     <ul>
                         <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Tổng Tiền <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
+                        <li>Tổng Tiền ( Tạm tính ) <span>{{  number_format($total_order, 0).' '.'VND'}}</span></li>
                     </ul>
                         <?php
                             $customer_id = Session::get('customer_id');
                             if($customer_id != NULL){
                         ?>
-                        <a class="btn btn-default check_out" href="{{URL::to('/payment')}}">Thanh toán</a>
+                        <a class="btn btn-default check_out" href="{{URL::to('/payment')}}">Đặt hàng</a>
                         <?php
                         }else{	
                         ?>
-                         <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Thanh toán</a>
+                         <a class="btn btn-default check_out" href="{{URL::to('/login-checkout')}}">Đặt hàng</a>
                         <?php
                         }
                         ?>
