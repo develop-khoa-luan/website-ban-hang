@@ -162,6 +162,7 @@ Route::post('/apply-coupon','CouponController@apply_coupon' );
 
 //Apriori Algorithm
 
+Route::get('run-apriori','AprioriController@run_apriori');
 Route::get('apriori','AprioriController@apriori');
 Route::post('save-apriori','AprioriController@save_apriori');
 
