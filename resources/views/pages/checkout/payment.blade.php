@@ -109,12 +109,12 @@
                 <div class="table-responsive cart_info">
                     <?php
                     $content = Cart::content();       
-                ?>
+                    ?>
                     <table class="table table-condensed">
                         <thead>
                             <tr class="cart_menu" style="text-align:center">
-                                {{-- <td class="image">Hình ảnh </td> --}}
-                                <td class="description">Tên sản phẩm</td>
+                                <td class="image"> </td>
+                                <td class="description">Sản phẩm</td>
                                 <td class="price">Giá</td>
                                 <td class="quantity">Số lượng</td>
                                 <td class="total">Tổng tiền</td>
@@ -127,14 +127,12 @@
                             @foreach ($content as $v_content)
 
                             <tr>
-                                {{-- <td class="cart_product">
-                                        <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}"
-                                width="20" alt="" /></a>
+                                <td><img src="public/uploads/product/{{ $v_content->options->image}}" width="60" height="60"></td>
 
-                                </td> --}}
+                                </td>
                                 <td class="cart_description">
                                     <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}">
-                                        <p>{{$v_content->name}}</p>
+                                        <p><b>{{$v_content->name}}</b></p>
                                     </a>
                                 </td>
                                 <td class="cart_price">

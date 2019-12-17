@@ -145,6 +145,7 @@ class CheckoutController extends Controller
             $order_detail_data['product_price'] = $v_content->price;
             $order_detail_data['product_sales_quantity'] = $v_content->qty;
             $order_detail_data['product_size'] = $v_content->options->size;
+            $order_detail_data['product_image'] = $v_content->options->image;
             DB::table('tbl_order_detail')->insert($order_detail_data);
         }
 

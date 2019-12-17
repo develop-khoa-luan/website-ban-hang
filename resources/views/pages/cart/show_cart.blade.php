@@ -17,8 +17,8 @@
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu" style="text-align:center">
-                        <td class="description">Tên sản phẩm</td>
-                        {{-- <td class="img">Hình ảnh</td> --}}
+                        <td class="description">Sản phẩm</td>
+                        <td class="img">Hình ảnh</td>
                         <td class="price">Giá</td>
                         <td class="size">Size</td>
                         <td class="quantity">Số lượng</td>
@@ -34,9 +34,7 @@
                         <td class="cart_description">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}"><h5>{{$v_content->name}}</h5></a>
                         </td>
-                        {{-- <td class="cart_product">
-                                <a href=""><img  src="{{URL::to('public/uploads/product/'.$v_content->options->image)}}" width="50px" height="50px"  alt="" /></a>    
-                        </td> --}}
+                        <td><img src="public/uploads/product/{{ $v_content->options->image}}" width="75" height="75"></td>
                         <td class="cart_price">
                             {{number_format($v_content->price).' '.'VND'}}
                         </td>
