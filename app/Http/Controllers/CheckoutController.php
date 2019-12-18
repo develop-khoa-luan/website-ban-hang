@@ -97,7 +97,13 @@ class CheckoutController extends Controller
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
-        return view('pages.checkout.payment')->with('all_slide', $all_slide)->with('category', $cate_product)->with('brand', $brand_product);
+        $customer_id = Session::get('customer_id');
+
+        $get_last_order = DB::table('tbl_order')->where('customer_id', $customer_id)->orderBy('created_at', 'DESC')->first();
+        $get_last_shipping = DB::table('tbl_shipping')->where('shipping_id', $get_last_order->shipping_id)->first();
+
+        return view('pages.checkout.payment')->with('all_slide', $all_slide)->with('shipping_info', $get_last_shipping)
+        ->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function logout_checkout()

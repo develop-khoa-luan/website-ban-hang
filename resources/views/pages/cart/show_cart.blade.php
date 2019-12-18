@@ -1,7 +1,7 @@
 @extends('layout_update')
 @section('content_update')
 
-
+<meta name="_token" content="{{csrf_token()}}" />
 <section id="cart_items">
     <div class="" style="width: 100%">
         <div class="breadcrumbs" >
@@ -44,12 +44,8 @@
                         <td class="cart_size">&nbsp;&nbsp;{{$v_content->options->size}}
                         </td>
                         <td class="cart_quantity">
-                            <form action="{{URL::to('/update-cart-quanlity')}}" method="POST">
-                                {{ csrf_field() }}
                                 <input class="cart_quantity_input" type="number" min="0" max="" name="cart_qty" value="{{$v_content->qty}}">
-                                <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" id="">
-                                <input type="submit" style="margin-left: -20px" value="Cập nhật" name="update_qty" class="btn btn-default btn-sm">
-                            </form>
+                                <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="rowId_cart" id="">
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">
@@ -99,6 +95,30 @@
         </div>
     </div>
 </section>
-
-
+<script type="text/javascript" src="{{asset('public/backend/apriori-js/jquery/jquery-1.7.2.min.js')}}"></script>
+<script>
+$('.cart_quantity_input').on('change', function(e){
+        var quantity = $(this)[0].value;
+        var rowId = $(this).parent()[0].children[1].value;
+        e.preventDefault();
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+        });
+        $.ajax({
+        url: "{{ url('/update-cart-quanlity') }}",
+        method: 'post',
+        data: {
+                cart_qty: quantity,
+                rowId_cart: rowId
+            },
+            success: function(result){
+                location.reload();
+            },
+            error: function(result){
+                alert("Cập nhập thất bại!");
+            }});
+        });
+</script>
 @endsection

@@ -22,13 +22,13 @@
                     <form>
 
                         <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Email*" rows="1"></textarea>
+                            placeholder="Email*" rows="1">{{$shipping_info->shipping_email}}</textarea>
                         <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
-                            rows="1"></textarea>
+                            rows="1">{{$shipping_info->shipping_name}}</textarea>
                         <textarea name="shipping_address" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Địa chỉ*" rows="1"></textarea>
+                            placeholder="Địa chỉ*" rows="1">{{$shipping_info->shipping_address}}</textarea>
                         <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Số điện thoại*" rows="1"></textarea>
+                            placeholder="Số điện thoại*" rows="1">{{$shipping_info->shipping_phone}}</textarea>
                         <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
                             rows="5"></textarea>
 
@@ -79,9 +79,8 @@
                     <input type="number" name="total_order" value={{$total_order}} hidden>
                     @endif
                     <div>
-                        <input type="submit" value="Thanh toán" 
-                            style=" height: 30px; font-size: 14px;margin: 0" name="send_order_place"
-                            class="btn btn-primary btn-sm">
+                        <input type="submit" value="Thanh toán" style=" height: 30px; font-size: 14px;margin: 0"
+                            name="send_order_place" class="btn btn-primary btn-sm">
 
                         <button
                             style=" width: auto; height: 30px; font-size: 14px; margin: 20px 0 20px 20px; border: none; background-color: #FE980F"><a
@@ -126,10 +125,11 @@
                             @foreach ($content as $v_content)
 
                             <tr>
-                                <td><img src="public/uploads/product/{{ $v_content->options->image}}" width="60" height="60"></td>
+                                <td><img src="public/uploads/product/{{ $v_content->options->image}}" width="60"
+                                        height="60"></td>
                                 <td class="cart_description">
                                     <a href="{{URL::to('/chi-tiet-san-pham/'.$v_content->id)}}">
-                                        <p>{{$v_content->id}}</p>
+                                        <p>{{$v_content->name}}</p>
                                     </a>
                                 </td>
                                 <td class="cart_price">
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                 </section>
-        </div>
+            </div>
         </div>
     </form>
 </section>
