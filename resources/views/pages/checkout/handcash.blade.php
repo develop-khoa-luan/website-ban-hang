@@ -11,10 +11,14 @@
                     if($customer_id ){
                         echo $customer_id;
                     }
+                    $name1 = Session::get('name1');
+                    if($name1 ){
+                        echo $name1;
+                    }
                  
                 ?>
     <div style="display:flex">
-        <a href="{{URL::to('/order-place')}}"><button  style="display:block" class="btn btn-warning">
+        <a href="{{URL::to('/trang-chu ')}}"><button  style="display:block" class="btn btn-warning">
             Tiếp tục mua sắm
         </button></a>
         <a style="margin: 0 0 0 15px" href="{{URL::to('/get-order-detail/'.$customer_id)}}"><button  style="display:block" class="btn btn-success">

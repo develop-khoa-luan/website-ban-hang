@@ -122,8 +122,14 @@ class CheckoutController extends Controller
         $email = $request->email_account;
         $password = md5($request->password_account);
         $result = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
+
         if ($result) {
             Session::put('customer_id', $result->customer_id);
+            $name = DB::table('tbl_customer')->where('customer_id', $result->customer_id)->select('customer_name')->first();
+            if($name){
+                Session::put('name1', $name->customer_name);
+            }
+           
             return Redirect::to('/payment');
         } else {
             return Redirect::to('/login-checkout');
@@ -355,12 +361,12 @@ class CheckoutController extends Controller
         $get_order_detail = DB::table('tbl_order')
         ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
         ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
-        ->select('tbl_order.*','tbl_customer.*')
+        ->select('tbl_order.*','tbl_customer.*','tbl_order_detail.*')
         ->where('tbl_customer.customer_id',$customer_id)
         ->orderby('tbl_order.order_id', 'desc')
         ->first();
 
-        // dd($get_order_detail);
+        dd($get_order_detail);
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
