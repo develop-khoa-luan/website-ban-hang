@@ -230,3 +230,6 @@ Route::post('/reports-detail','ReportController@reports_detail' );
 //get info admin -admin management
 
 Route::get('/info-admin/{admin_id}','AdminController@info_admin' );
+
+
+Route::get('/get-order-detail/{customer_id}','CheckoutController@get_order_detail' );

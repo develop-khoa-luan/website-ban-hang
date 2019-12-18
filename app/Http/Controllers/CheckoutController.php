@@ -349,4 +349,29 @@ class CheckoutController extends Controller
         Session::put('message', 'Xóa danh mục sản phẩm thành công.');
         return Redirect::to('manage-order');
     }
+
+    public function get_order_detail($customer_id){
+        $view_customer = DB::table('tbl_customer')->where('customer_id',$customer_id)->get();
+        $get_order_detail = DB::table('tbl_order')
+        ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+        ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
+        ->select('tbl_order.*','tbl_customer.*')
+        ->where('tbl_customer.customer_id',$customer_id)
+        ->orderby('tbl_order.order_id', 'desc')
+        ->first();
+
+        // dd($get_order_detail);
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $selling_product = DB::table('tbl_order_detail')
+        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+        ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->get();
+
+        return view('pages.checkout.get_order_detail')->with('get_order_detail', $get_order_detail)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
+    
+    }
 }
