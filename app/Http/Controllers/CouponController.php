@@ -99,13 +99,15 @@ class CouponController extends Controller
         $test = DB::table('tbl_coupon')->where('coupon_name',$data['coupon_name'])->count();
         if ($test == 0){
             Session::put('message','Mã khuyến mãi không tồn tại. Xin vui lòng nhập lại');
-            return Redirect::to('payment');
+            $message = 'Mã khuyến mãi không tồn tại. Xin vui lòng nhập lại';
+            return $message;
         }else{
             $couponDetails = DB::table('tbl_coupon')->where('coupon_name',$data['coupon_name'])->first();
 
             if($couponDetails->coupon_status==0){
+                $message = 'Mã khuyến mãi không tồn tại. Xin vui lòng nhập lại';
                 Session::put('message','Mã khuyến mãi không tồn tại. Xin vui lòng nhập lại');
-                return Redirect::to('payment');
+                return $message;
             }
 
             
@@ -132,10 +134,9 @@ class CouponController extends Controller
             Session::put('total_amount',$total_amount);
             Session::put('total_after_discount',$total_after_discount);
             Session::put('coupon_name',$data['coupon_name']);
-
+            $message = 'Mã khuyến mãi áp dụng thành công!';
             Session::put('message','Mã khuyến mãi áp dụng thành công');
-            return Redirect::to('payment');
-            echo $couponAmount; 
+            return $message;
         } 
     }
 

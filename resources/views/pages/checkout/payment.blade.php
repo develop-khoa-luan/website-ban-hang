@@ -1,6 +1,7 @@
 @extends('layout_update_v2')
 @section('content_update_v2')
 <section id="cart_items" style="margin: -50px 0 0 0">
+    <meta name="_token" content="{{csrf_token()}}" />
     <div class="" style="width:100%">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
@@ -18,30 +19,30 @@
                 @if($shipping_info != "null")
                 <div class="form-one" style="width:300px; margin: -10px 0 0 15px">
                     <p style="font-weight:bold; font-size: 18px">Điền thông tin giao hàng</p>
-                        <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Email*" rows="1">{{$shipping_info->shipping_email}}</textarea>
-                        <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
-                            rows="1">{{$shipping_info->shipping_name}}</textarea>
-                        <textarea name="shipping_address" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Địa chỉ*" rows="1">{{$shipping_info->shipping_address}}</textarea>
-                        <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Số điện thoại*" rows="1">{{$shipping_info->shipping_phone}}</textarea>
-                        <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
-                            rows="5"></textarea>
+                    <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required" placeholder="Email*"
+                        rows="1">{{$shipping_info->shipping_email}}</textarea>
+                    <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
+                        rows="1">{{$shipping_info->shipping_name}}</textarea>
+                    <textarea name="shipping_address" style="margin: 0 0 5px 0" required="required"
+                        placeholder="Địa chỉ*" rows="1">{{$shipping_info->shipping_address}}</textarea>
+                    <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
+                        placeholder="Số điện thoại*" rows="1">{{$shipping_info->shipping_phone}}</textarea>
+                    <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
+                        rows="5"></textarea>
                 </div>
                 @else
                 <div class="form-one" style="width:300px; margin: -10px 0 0 15px">
                     <p style="font-weight:bold; font-size: 18px">Điền thông tin giao hàng</p>
-                        <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Email*" rows="1"></textarea>
-                        <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
-                            rows="1"></textarea>
-                        <textarea name="shipping_address" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Địa chỉ*" rows="1"></textarea>
-                        <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
-                            placeholder="Số điện thoại*" rows="1"></textarea>
-                        <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
-                            rows="5"></textarea>
+                    <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required" placeholder="Email*"
+                        rows="1"></textarea>
+                    <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
+                        rows="1"></textarea>
+                    <textarea name="shipping_address" style="margin: 0 0 5px 0" required="required"
+                        placeholder="Địa chỉ*" rows="1"></textarea>
+                    <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
+                        placeholder="Số điện thoại*" rows="1"></textarea>
+                    <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
+                        rows="5"></textarea>
                 </div>
                 @endif
                 <div style="margin: 300px 0 0 15px">
@@ -173,14 +174,11 @@
                                 <div class="chose_area" style="padding:10px 0 10px 10px">
 
                                     <label for="">Nhập mã khuyến mãi</label>
-                                    <form action="{{URL::to('/apply-coupon')}}" method="POST">
-                                        {{csrf_field()}}
-                                        <div style="">
-                                            <input type="text" name="coupon_name" style="height: 30px">
-                                            <input style="margin: -2px 0 0 0" type="submit" value="Áp dụng"
-                                                class="btn btn-primary btn">
-                                        </div>
-                                    </form>
+                                    <div style="">
+                                        <input type="text" name="coupon_name" id="coupon_name" style="height: 30px">
+                                        <input style="margin: -2px 0 0 0; width: 80px" value="Áp dụng"
+                                            class="btn btn-primary submit-coupon-btn">
+                                    </div>
                                 </div>
                             </div>
 
@@ -229,7 +227,28 @@
         </div>
     </form>
 </section>
-
-
+<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
+<script>
+    $('.submit-coupon-btn').click(function(e){
+		e.preventDefault();
+		$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+		}
+        });
+		$.ajax({
+		url: "{{ url('/apply-coupon') }}",
+		method: 'post',
+		data: {
+			coupon_name: $('#coupon_name').val()
+		},
+		success: function(result){
+			location.reload();
+		},
+		error: function(result){
+			alert("Áp mã giảm giá thất bại!");
+        }});
+        });
+</script>
 
 @endsection
