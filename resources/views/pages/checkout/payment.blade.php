@@ -15,12 +15,9 @@
         {{ csrf_field() }}
         <div style="display:flex; margin: -50px 0 0">
             <div>
-
-
+                @if($shipping_info != "null")
                 <div class="form-one" style="width:300px; margin: -10px 0 0 15px">
                     <p style="font-weight:bold; font-size: 18px">Điền thông tin giao hàng</p>
-                    <form>
-
                         <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required"
                             placeholder="Email*" rows="1">{{$shipping_info->shipping_email}}</textarea>
                         <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
@@ -31,10 +28,22 @@
                             placeholder="Số điện thoại*" rows="1">{{$shipping_info->shipping_phone}}</textarea>
                         <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
                             rows="5"></textarea>
-
-                    </form>
                 </div>
-
+                @else
+                <div class="form-one" style="width:300px; margin: -10px 0 0 15px">
+                    <p style="font-weight:bold; font-size: 18px">Điền thông tin giao hàng</p>
+                        <textarea name="shipping_email" style="margin: 0 0 5px 0" required="required"
+                            placeholder="Email*" rows="1"></textarea>
+                        <textarea name="shipping_name" style="margin: 0 0 5px 0" required="required" placeholder="Tên*"
+                            rows="1"></textarea>
+                        <textarea name="shipping_address" style="margin: 0 0 5px 0" required="required"
+                            placeholder="Địa chỉ*" rows="1"></textarea>
+                        <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
+                            placeholder="Số điện thoại*" rows="1"></textarea>
+                        <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
+                            rows="5"></textarea>
+                </div>
+                @endif
                 <div style="margin: 300px 0 0 15px">
                     <h4>Chọn hình thức thanh toán</h4>
 
