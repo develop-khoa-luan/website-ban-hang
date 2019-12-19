@@ -122,8 +122,14 @@ class CheckoutController extends Controller
         $email = $request->email_account;
         $password = md5($request->password_account);
         $result = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
+
         if ($result) {
             Session::put('customer_id', $result->customer_id);
+            $name = DB::table('tbl_customer')->where('customer_id', $result->customer_id)->select('customer_name')->first();
+            if($name){
+                Session::put('name1', $name->customer_name);
+            }
+           
             return Redirect::to('/payment');
         } else {
             return Redirect::to('/login-checkout');
@@ -348,5 +354,22 @@ class CheckoutController extends Controller
         DB::table('tbl_order')->where('order_id', $order_id)->delete();
         Session::put('message', 'Xóa danh mục sản phẩm thành công.');
         return Redirect::to('manage-order');
+    }
+
+  
+    public function get_order_detail(Request $request){
+        $customer_id = $request->customer_id;
+        $view_customer = DB::table('tbl_customer')->where('customer_id',$customer_id)->get();
+        $get_order_detail = DB::table('tbl_order')
+        ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+        ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
+        ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
+        ->select('tbl_order.*','tbl_customer.*','tbl_order_detail.*','tbl_shipping.*')
+        ->where('tbl_customer.customer_id',$customer_id)
+        ->orderby('tbl_order.order_id', 'desc')
+        ->first();
+
+        return response()->json(['get_order_detail'=>$get_order_detail]);
+      
     }
 }

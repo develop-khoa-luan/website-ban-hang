@@ -246,7 +246,7 @@
 			location.reload();
 		},
 		error: function(result){
-			alert("Áp mã giảm giá thất bại!");
+			alert("Áp dụng mã giảm giá thất bại!");
         }});
         });
 </script>
