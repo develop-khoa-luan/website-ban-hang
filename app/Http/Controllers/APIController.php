@@ -48,4 +48,20 @@ class APIController extends Controller
         }
     }
 
+    // public function get_order_detail(Request $request){
+    //     $customer_id = $request->customer_id;
+    //     $view_customer = DB::table('tbl_customer')->where('customer_id',$customer_id)->get();
+    //     $get_order_detail = DB::table('tbl_order')
+    //     ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+    //     ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
+    //     ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
+    //     ->select('tbl_order.*','tbl_customer.*','tbl_order_detail.*','tbl_shipping.*')
+    //     ->where('tbl_customer.customer_id',$customer_id)
+    //     ->orderby('tbl_order.order_id', 'desc')
+    //     ->first();
+
+    //     return response()->json(['get_order_detail'=>$get_order_detail]);
+      
+    // }
+
 }

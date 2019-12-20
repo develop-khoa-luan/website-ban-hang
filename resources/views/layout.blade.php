@@ -33,7 +33,7 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> (+84) 0903768379</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> (+84) 97 854 2629 - (+84) 90 376 8379</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> 1997store@gmail.com</a></li>
 							</ul>
 						</div>
@@ -365,12 +365,18 @@
 						<div class="single-widget">
 							<h2>Thông tin liên hệ</h2>
 							<ul class="nav nav-pills nav-stacked">
+<<<<<<< HEAD
 								<li><a style=" font-size:16px" href="#"><i class="fa fa-map-marker"></i>KTX Khu B - ĐHQG
 										TPHCM,<br> Đông Hòa, Dĩ An, Bình Dương</a></li>
 								<li><a style=" font-size:16px" href="#"><i class="fa fa-phone"></i>(+84) 97 854 2629 -
 										(+84) 0903768379</a></li>
 								<li><a style=" font-size:16px" href="#"><i
 											class="fa fa-envelope-o"></i>1997store@gmail.com</a></li>
+=======
+								<li><a style=" font-size:16px" href="#"><i class="fa fa-map-marker"></i>KTX Khu B - ĐHQG TPHCM,<br> Đông Hòa, Dĩ An, Bình Dương</a></li>
+								<li><a style=" font-size:16px" href="#"><i class="fa fa-phone"></i>(+84) 97 854 2629 - (+84) 90 376 8379</a></li>
+								<li><a style=" font-size:16px" href="#"><i class="fa fa-envelope-o"></i>1997store@gmail.com</a></li>
+>>>>>>> 79a3c3e2955cf47c6c337850e287f951c598b787
 							</ul>
 						</div>
 					</div>
