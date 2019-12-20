@@ -294,6 +294,43 @@
 			</div>
 		</div>
 
+		<!-- Central Modal Medium Info -->
+	<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <input class="modal-product-id" id="modal-product-id" type="text" readonly hidden/>
+            <div class="col-5 col-md-7 col-lg-7 col-xl-7">
+                <img id="modal-product-image" style="height:200px; width: 200px; margin-top: 30px; margin-left: 40px" alt="" />
+            </div>
+            <!--Body-->
+            <div class="col-5 col-md-5 col-lg-5 col-xl-5">
+                <p style="font-size: 20px; margin-top: 10px" id="modal-product-name"></p>
+                <div class="">
+                    <p style="margin-top: 10px" id="modal-product-brand"></p>
+                    <p id="modal-product-category"></p>
+                    <label for="product-size">Size: </label>
+                    <select class="form-control modal-product-size" style="width: 85px" id="product-size">
+                    </select>
+                    <label for="quantity">Số lượng:</label>
+                    <input style="width: 85px" class="form-control modal-product-quantity" id="quantity" name="qty"
+                        type="number" min="0" max="" value="1" />
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer" style="margin-top: 0; border-bottom-right-radius: 1px">
+                <a type="button" class="btn btn-primary btn-add-to-cart-modal">Thêm ngay <i class="far fa-gem ml-1 text-white"></i></a>
+                <a type="button" class="btn btn-danger" data-dismiss="modal" style="margin-top: 15px">Hủy </a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Central Modal Medium Info -->
+
 	</footer>
 	<!--/Footer-->
 	<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
@@ -315,6 +352,26 @@
 				}
 			});
 		});
+		//login action
+		$('.show-modal-login').click(function(e){
+			$("#modal-product-detail").modal('show');
+			
+			$.ajax({
+					url: "{{ url('/get-product') }}",
+					method: 'get',
+					data: {
+						product_id: $(this).parents()[4].children[0].value
+					},  
+					success: function(data) {
+						$("#modal-product-name").text(data.product[0].product_name);
+						$("#modal-product-image").attr('src', '../public/uploads/product/'+data.product[0].product_image);
+						$("#modal-product-brand").text(data.product[0].brand_name);
+						$("#modal-product-category").text(data.product[0].category_name);
+						$("#modal-product-id").val(data.product[0].product_id);
+					}
+				});
+		});
+
 	</script>
 </body>
 

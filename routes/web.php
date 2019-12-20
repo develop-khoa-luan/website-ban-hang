@@ -135,6 +135,8 @@ Route::get('/count-cart', 'APIController@count_cart'  );
 Route::get('/get-quantity', 'APIController@get_quantity'  );
 Route::get('/get-product-detail', 'APIController@get_product_detail'  );
 Route::get('/get-product', 'APIController@get_product'  );
+Route::post('/login-customer-modal', 'APIController@login_customer_modal'  );
+
 
 
 

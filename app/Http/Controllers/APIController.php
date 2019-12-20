@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
 use Cart;
 use DB;
 
@@ -35,11 +35,17 @@ class APIController extends Controller
         return response()->json(['product'=>$product]);
     }
 
-    // function get_contact_info(Request $request){
-    //     $contact_id = $request->contact_id;
-    //     $contact = DB::table('tbl_contact_info')
-    //         ->where('tbl_contact_info.contact_id', $contact_id)->get();
-    //     return response()->json(['contact'=>$contact]);
-    // }
+    public function login_customer_modal(Request $request)
+    {
+        $email = $request->email_account;
+        $password = md5($request->password_account);
+        $result = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
+        if ($result) {
+            Session::put('customer_id', $result->customer_id);
+            return "Đăng nhập thành công!";
+        } else {
+            return "Sai tên đăng nhập hoặc mật khẩu!";
+        }
+    }
 
 }
