@@ -104,7 +104,7 @@
 								<?php
 									}else{	
 									?>
-								<li class="show-modal-login"><a style="font-size:16px" href="#"><i
+								<li class="show-modal-login"><a style="font-size:16px" ><i
 											class="fa fa-lock"></i> Đăng nhập</a>
 								</li>
 								<?php
@@ -365,18 +365,9 @@
 						<div class="single-widget">
 							<h2>Thông tin liên hệ</h2>
 							<ul class="nav nav-pills nav-stacked">
-<<<<<<< HEAD
-								<li><a style=" font-size:16px" href="#"><i class="fa fa-map-marker"></i>KTX Khu B - ĐHQG
-										TPHCM,<br> Đông Hòa, Dĩ An, Bình Dương</a></li>
-								<li><a style=" font-size:16px" href="#"><i class="fa fa-phone"></i>(+84) 97 854 2629 -
-										(+84) 0903768379</a></li>
-								<li><a style=" font-size:16px" href="#"><i
-											class="fa fa-envelope-o"></i>1997store@gmail.com</a></li>
-=======
 								<li><a style=" font-size:16px" href="#"><i class="fa fa-map-marker"></i>KTX Khu B - ĐHQG TPHCM,<br> Đông Hòa, Dĩ An, Bình Dương</a></li>
 								<li><a style=" font-size:16px" href="#"><i class="fa fa-phone"></i>(+84) 97 854 2629 - (+84) 90 376 8379</a></li>
 								<li><a style=" font-size:16px" href="#"><i class="fa fa-envelope-o"></i>1997store@gmail.com</a></li>
->>>>>>> 79a3c3e2955cf47c6c337850e287f951c598b787
 							</ul>
 						</div>
 					</div>
@@ -460,7 +451,7 @@
 										class="far fa-gem ml-1 text-white"></i></a>
 								<a type="button" class="btn btn-danger" data-dismiss="modal"
 									style="margin-top: 15px">Hủy </a>
-								<p style="margin-left: 80px" class="text-primary" id="message-login"></p>
+								<p style="margin-top: 10px" class="" id="message-login">Bạn chưa có tài khoản?<a href= "{{URL::to('/login-checkout')}}"><span class="text-primary"> Đăng kí ngay!</span></a></p>
 							</div>
 						</div>
 					</div>
