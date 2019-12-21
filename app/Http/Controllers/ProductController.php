@@ -29,8 +29,8 @@ class ProductController extends Controller
     public function add_product()
     {
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
-        $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->orderby('category_name', 'asc')->get();
+        $brand_product = DB::table('tbl_brand')->orderby('brand_name', 'asc')->get();
         return view('admin.add_product')->with('cate_product', $cate_product)->with('brand_product', $brand_product);
     }
 
@@ -92,8 +92,8 @@ class ProductController extends Controller
     public function edit_product($product_id)
     {
         $this->AuthLogin();
-        $cate_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
-        $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->orderby('category_name', 'asc')->get();
+        $brand_product = DB::table('tbl_brand')->orderby('brand_name', 'asc')->get();
         $all_product_detail = DB::table('tbl_product_detail')->where('product_id', $product_id)->get();
         $edit_product = DB::table('tbl_product')->where('product_id', $product_id)->get();
         $count_detail = count($all_product_detail);
@@ -143,9 +143,9 @@ class ProductController extends Controller
 
     public function details_product($product_id)
     {
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
 
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
 
         $all_product_detail = DB::table('tbl_product_detail')->where('product_id', $product_id)->get();
 

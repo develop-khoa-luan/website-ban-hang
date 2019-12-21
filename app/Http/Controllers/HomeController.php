@@ -15,9 +15,9 @@ session_start();
 class HomeController extends Controller
 {
     public function index (){
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
 
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
 
         $cart_count = Cart::count();
             
@@ -64,9 +64,9 @@ class HomeController extends Controller
     }
 
     public function price_home_asc(){
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
 
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
 
         $cart_count = Cart::count();
             
@@ -94,9 +94,9 @@ class HomeController extends Controller
     }
 
     public function price_home_desc(){
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
 
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
 
         $cart_count = Cart::count();
             
@@ -126,8 +126,8 @@ class HomeController extends Controller
 
     public function search(Request $request){
         $keywords = $request->keywords_submit;
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
         $search_product = DB::table('tbl_product')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
@@ -144,9 +144,9 @@ class HomeController extends Controller
     }
 
     public function contact(){
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
 
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
 
         $cart_count = Cart::count();
 
