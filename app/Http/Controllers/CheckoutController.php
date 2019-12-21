@@ -127,7 +127,7 @@ class CheckoutController extends Controller
             Session::put('customer_id', $result->customer_id);
             $name = DB::table('tbl_customer')->where('customer_id', $result->customer_id)->select('customer_name')->first();
             if($name){
-                Session::put('name1', $name->customer_name);
+                Session::put('customer_name', $name->customer_name);
             }
            
             return Redirect::to('/payment');

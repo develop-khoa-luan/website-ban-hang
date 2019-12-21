@@ -74,5 +74,5 @@ if($message){
         </div>    	
         
     </div>	
-</div
+</div>
 @endsection

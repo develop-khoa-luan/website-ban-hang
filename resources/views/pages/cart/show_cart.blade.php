@@ -44,7 +44,7 @@
                         <td class="cart_size">&nbsp;&nbsp;{{$v_content->options->size}}
                         </td>
                         <td class="cart_quantity">
-                                <input class="cart_quantity_input" type="number" min="0" max="" name="cart_qty" value="{{$v_content->qty}}">
+                                <input class="cart_quantity_input text-center" style="width: 50px; margin-left: 20px" type="number" min="0" max="" name="cart_qty" value="{{$v_content->qty}}">
                                 <input type="hidden" value="{{$v_content->rowId}}" name="rowId_cart" class="rowId_cart" id="">
                         </td>
                         <td class="cart_total">

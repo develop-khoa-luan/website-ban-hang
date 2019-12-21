@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="_token" content="{{csrf_token()}}" />
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Home | E-Shopper</title>
@@ -81,33 +82,37 @@
 							</ul>
                     </div>
 
-					<div class="">
-                        
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								
-								<li ><a style="font-size:16px" href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"><sup
-												class="text-danger count_cart"
-												style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
-										hàng</a>
-								</li>
+					<div class="mainmenu pull-right" style="margin-top: 10px">
+						<ul class="nav navbar-nav collapse navbar-collapse">
 
-								<?php
-									$customer_id = Session::get('customer_id');
-									if($customer_id != NULL){
-								?>
-								<li><a style="font-size:16px" href="{{URL::to('/logout-checkout')}}"><i class="fa fa-lock"></i> Đăng xuất</a>
-								</li>
-								<?php
+							<li><a style="font-size:16px" href="{{URL::to('/show-cart')}}"><i
+										class="fa fa-shopping-cart"><sup class="text-danger count_cart"
+											style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
+									hàng</a>
+							</li>
+
+							<?php
+								$customer_id = Session::get('customer_id');
+								$customer_name = Session::get('customer_name');
+								if($customer_id != NULL){
+							?>
+							<li class="dropdown"><a href="#">{{$customer_name}}<i class="fa fa-angle-down"></i></a>
+							<ul class="sub-menu">
+								<li><a href="{{URl::to('/customer-management')}}">Thông tin tài khoản</a></li>
+								<li><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
+							</ul>
+						</li>
+							</li>
+							<?php
 								}else{	
 								?>
-								<li><a style="font-size:16px" class="show-modal-login"><i class="fa fa-lock"></i> Đăng nhập</a>
-								</li>
-								<?php
+							<li class="show-modal-login"><a style="font-size:16px" ><i
+										class="fa fa-lock"></i> Đăng nhập</a>
+							</li>
+							<?php
 								}
 								?>
-							</ul>
-						</div>
+						</ul>
 					</div>
 				</div>
 			</div>
