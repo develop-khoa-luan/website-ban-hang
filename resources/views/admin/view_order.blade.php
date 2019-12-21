@@ -129,8 +129,13 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center content-center">
+                                <?php
+                                    $TongTien = 0;
+                                    foreach ($order_detail as $key => $value) {
+                                        $TongTien = $TongTien + $value->product_price*$value->product_sales_quantity;
+                                    }
+                                ?>
                                     @foreach ($order_detail as $item)
-                                    
                                     <tr>
                                         <td>{{$item->product_name}}</td>
                                         <td><img src="../public/uploads/product/{{ $item->product_image}}" width="75" height="75"></td>
@@ -142,13 +147,44 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
+                                    <tr class="text-center">
+                                        <th class="text-danger"></th>
+                                        <th class="text-dark text-left">Tổng Tiền: </th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-dark">{{number_format($TongTien, 0)}}<input class="TongGia" value="{{$TongTien}}" hidden></th>
+                                        {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
+                                        </th> --}}
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th class="text-danger"></th>
+                                        <th class="text-dark text-left">Tổng số sản phẩm: </th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-dark">{{number_format($count_quantity, 0)}}</th>
+                                        {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
+                                        </th> --}}
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th class="text-danger"></th>
+                                        <th class="text-dark text-left">Phần trăm giảm giá: </th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-dark show_discount"></th>
+                                        {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
+                                        </th> --}}
+                                    </tr>
                                 <tfoot>
                                     <tr class="text-center">
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($count_quantity, 0)}}</th>
+                                        <th class="text-danger text-left">Thành tiền thanh toán:</th>
                                         <th class="text-danger"></th>
                                         <th class="text-danger"></th>
-                                        <th class="text-danger">{{number_format($order_by_id->order_total, 0)}}</th>
+                                        <th class="text-danger"></th>
+                                        <th class="text-danger">{{number_format($order_by_id->order_total, 0)}}<input class="GiaThuc" value="{{$order_by_id->order_total}}" hidden></th>
                                         {{-- <th class="text-danger">{{ number_format($item->product_price*$item->product_sales_quantity, 0) }}
                                         </th> --}}
                                     </tr>
@@ -188,6 +224,9 @@
 </div>
 <script src="{{asset('public/backend/vendor/jquery/jquery.min.js')}}"></script>
 <script>
-
+        var giaThuc = $('.GiaThuc').val();
+        var tongGia = $('.TongGia').val();
+        var discount = (100 -((parseInt(giaThuc)/parseInt(tongGia))*100));
+        $('.show_discount').text(discount+'%');
 </script>
 @endsection

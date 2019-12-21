@@ -69,6 +69,79 @@ class CustomerController extends Controller
         // $manager_view_customer_order_detail = view('admin.view_customer_order_detail')->with('manager_order_by_id_customer',$manager_order_by_id_customer)->with('all_order_detail_view_customer', $all_order_detail_view_customer);
         // return view('admin_layout')->with('admin.view_customer_order_detail', $manager_view_customer_order_detail);
     }
+
+    public function Custommer_Login(){
+        $customer_id = Session::get('customer_id');
+        if($customer_id){
+            return Redirect::to('/trang-chu');
+        }
+        else{
+            return Redirect::to('/login-checkout')->send();
+        }
+    }
+
+    public function customer_management(){
+        $this->Custommer_Login();
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $selling_product = DB::table('tbl_order_detail')
+        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+        ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->get();
+
+        $customer_id = Session::get('customer_id');
+        $view_customer = DB::table('tbl_customer')->where('customer_id',$customer_id)->first();
+        $all_order = DB::table('tbl_order')
+        ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+        ->select('tbl_order.*')
+        ->where('tbl_customer.customer_id',$customer_id)
+        ->orderby('tbl_order.order_id', 'asc')
+        ->get();
+        return view('pages.checkout.customer_management')->with('view_customer',$view_customer)->with('all_order', $all_order)
+        ->with('category', $cate_product)->with('brand', $brand_product)->with('selling_product', $selling_product);
+    }
+
+    public function update_customer(Request $request){
+        $this->Custommer_Login();
+        $customer_id = Session::get('customer_id');
+
+        $customer_email = $request->customer_email;
+        $customer_name = $request->customer_name;
+        $customer_phone = $request->customer_phone;
+        $change_password = $request->change_password;
+        $customer_ex_password = md5($request->customer_ex_password);
+        $customer_new_password = $request->customer_new_password;
+
+        $customer_detail = DB::table('tbl_customer')->where('customer_id',$customer_id)->first();
+        if($change_password == 'yes'){
+            if($customer_ex_password == $customer_detail->customer_password){
+                $data_1 = array();
+                $data_1['customer_name'] = $customer_name;
+                $data_1['customer_phone'] = $customer_phone;
+                $data_1['customer_password'] = md5($customer_new_password);
+                DB::table('tbl_customer')->where('customer_id', $customer_id)->update($data_1);
+                $request->session()->put('message_change_detail_customer', "Cập nhập thông tin và mật khẩu thành công!");
+                return "Cập nhập thông tin và mật khẩu thành công!";
+            }else{
+                $request->session()->put('message_change_detail_customer', "Mật khẩu hiện tại không đúng!");
+                return "Mật khẩu hiện tại không đúng!";
+            }
+        }elseif($change_password=='no'){
+            $data_2 = array();
+            $data_2['customer_name'] = $customer_name;
+            $data_2['customer_phone'] = $customer_phone;
+            DB::table('tbl_customer')->where('customer_id', $customer_id)->update($data_2);
+            $request->session()->put('message_change_detail_customer', "Cập nhập thông tin thành công!");
+            return "Cập nhập thông tin thành công!";
+        }else{
+            $request->session()->put('message_change_detail_customer', "Thay đổi không thành công!");
+            return "Thay đổi không thành công!";
+        }
+    }
+
 }
 
 
