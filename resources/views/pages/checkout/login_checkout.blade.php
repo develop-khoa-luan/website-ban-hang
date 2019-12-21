@@ -2,7 +2,7 @@
 @section('content_update')
 
     <!--form-->
-    <div class="container" >
+    <div class="" >
         
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">

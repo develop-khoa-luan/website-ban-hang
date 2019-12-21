@@ -101,7 +101,7 @@
 								<?php
 								}else{	
 								?>
-								<li><a style="font-size:16px" href="{{URL::to('/login-checkout')}}"><i class="fa fa-lock"></i> Đăng nhập</a>
+								<li><a style="font-size:16px" class="show-modal-login"><i class="fa fa-lock"></i> Đăng nhập</a>
 								</li>
 								<?php
 								}
@@ -231,6 +231,47 @@
 			</div>
 		</div>
 
+	<!-- Central Modal Medium Info -->
+		<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-notify modal-info" role="document">
+				<!--Content-->
+				<div class="modal-content" style="width: 400px; margin: 15%">
+					<!--Header-->
+					<div class="row" style="margin-left: 80px">
+						<div class="text-warning" style="font-size: 20px; margin-top: 10px">ĐĂNG NHẬP</div>
+					</div>
+					<!--Body-->
+					<div class="">
+						<p style="margin-left: 80px" class="text-danger" id="message-login"></p>
+						<div class="">
+							<div class="row" style="margin-left: 80px">
+								<label for="email">Email: </label>
+								<input style="width: 200px" class="form-control modal-email" id="email" name="email"
+									type="text" />
+							</div>
+							<div class="row" style="margin-left: 80px">
+								<label for="password">Password:</label>
+								<input style="width: 200px" class="form-control modal-password" id="password"
+									name="password" type="password" />
+								<a type="button" class="btn btn-primary btn-login-submit">Đăng nhập <i
+										class="far fa-gem ml-1 text-white"></i></a>
+								<a type="button" class="btn btn-danger" data-dismiss="modal"
+									style="margin-top: 15px">Hủy </a>
+								<p style="margin-top: 10px" class="" id="message-login">Bạn chưa có tài khoản?<a href= "{{URL::to('/login-checkout')}}"><span class="text-primary"> Đăng kí ngay!</span></a></p>
+							</div>
+						</div>
+					</div>
+
+					<!--Footer-->
+					<div class="modal-footer">
+					</div>
+				</div>
+				<!--/.Content-->
+			</div>
+		</div>
+		<!-- Central Modal Medium Info -->
+
 	</footer>
 	<!--/Footer-->
 	<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
@@ -252,6 +293,38 @@
 				}
 			});
 		});
+
+		//login action
+		$('.show-modal-login').click(function(e){
+			$("#modal-login").modal('show');
+		});
+		$('.btn-login-submit').click(function(e){
+			e.preventDefault();
+			$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+			}
+			});
+			$.ajax({
+			url: "{{ url('/login-customer-modal') }}",
+			method: 'post',
+			data: {
+				email_account: $('.modal-email').val(),
+				password_account: $('.modal-password').val()
+			},
+			success: function(result){
+				if(result == 'Đăng nhập thành công!'){
+					location.reload();
+				}else{
+					$('#message-login').text(result);
+				}
+			},
+			error: function(result){
+				alert("Không đăng nhập thành công!");
+			}});
+			
+		});
+
 	</script>
 </body>
 
