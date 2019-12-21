@@ -39,7 +39,7 @@
                     </div>
                     <div class="row pull-right">
                         <div class="form-group col-md-6">
-                            <input type="button" class="btn btn-primary btn-change-detail" value="Cập nhập">
+                            <input type="button" class="btn btn-primary btn-change-detail" value="Cập nhật">
                         </div>
                         <div class="form-group col-md-6">
                             <a href="{{URL::to('/trang-chu')}}" style="background-color: crimson"
