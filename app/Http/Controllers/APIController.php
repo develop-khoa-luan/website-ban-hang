@@ -42,6 +42,10 @@ class APIController extends Controller
         $result = DB::table('tbl_customer')->where('customer_email', $email)->where('customer_password', $password)->first();
         if ($result) {
             Session::put('customer_id', $result->customer_id);
+            $name = DB::table('tbl_customer')->where('customer_id', $result->customer_id)->select('customer_name')->first();
+            if($name){
+                Session::put('customer_name', $name->customer_name);
+            }
             return "Đăng nhập thành công!";
         } else {
             return "Sai tên đăng nhập hoặc mật khẩu!";

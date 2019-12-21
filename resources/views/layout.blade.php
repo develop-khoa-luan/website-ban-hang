@@ -82,36 +82,37 @@
 							<li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
 						</ul>
 					</div>
+					<div class="mainmenu pull-right" style="margin-top: 10px">
+						<ul class="nav navbar-nav collapse navbar-collapse">
 
-					<div class="">
+							<li><a style="font-size:16px" href="{{URL::to('/show-cart')}}"><i
+										class="fa fa-shopping-cart"><sup class="text-danger count_cart"
+											style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
+									hàng</a>
+							</li>
 
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-
-								<li><a style="font-size:16px" href="{{URL::to('/show-cart')}}"><i
-											class="fa fa-shopping-cart"><sup class="text-danger count_cart"
-												style="font-size: 17px; font-weight:bold"></sup></i> Giỏ
-										hàng</a>
-								</li>
-
-								<?php
-									$customer_id = Session::get('customer_id');
-									if($customer_id != NULL){
-								?>
-								<li><a style="font-size:16px" href="{{URL::to('/logout-checkout')}}"><i
-											class="fa fa-lock"></i> Đăng xuất</a>
-								</li>
-								<?php
-									}else{	
-									?>
-								<li class="show-modal-login"><a style="font-size:16px" ><i
-											class="fa fa-lock"></i> Đăng nhập</a>
-								</li>
-								<?php
-									}
-									?>
+							<?php
+								$customer_id = Session::get('customer_id');
+								$customer_name = Session::get('customer_name');
+								if($customer_id != NULL){
+							?>
+							<li class="dropdown"><a href="#">{{$customer_name}}<i class="fa fa-angle-down"></i></a>
+							<ul class="sub-menu">
+							<li><a href="{{URl::to('/customer-management')}}">Thông tin tài khoản</a></li>
+								<li><a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a></li>
 							</ul>
-						</div>
+						</li>
+							</li>
+							<?php
+								}else{	
+								?>
+							<li class="show-modal-login"><a style="font-size:16px" ><i
+										class="fa fa-lock"></i> Đăng nhập</a>
+							</li>
+							<?php
+								}
+								?>
+						</ul>
 					</div>
 				</div>
 			</div>

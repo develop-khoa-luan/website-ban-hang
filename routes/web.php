@@ -180,6 +180,9 @@ Route::get('/view-customer/{customer_id}','CustomerController@view_customer' );
 
 Route::get('/view-customer-order-detail/{order_id}','CustomerController@view_customer_order_detail' );
 
+Route::get('/customer-management','CustomerController@customer_management' );
+Route::post('/update-customer','CustomerController@update_customer' );
+
 
 // contact page
 

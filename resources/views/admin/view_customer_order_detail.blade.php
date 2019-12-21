@@ -88,11 +88,11 @@
                         </tbody>
                         <tfoot>
                             <tr class="text-center">
-                                <th class="text-danger"></th>
-                                <th class="text-danger">{{number_format($count_quantity_view_customer, 0)}}</th>
-                                <th class="text-danger"></th>
-                                <th class="text-danger"></th>
-                                <th class="text-danger">{{number_format($order_by_id_customer->order_total, 0)}}</th>
+                                <td class="text-danger"></td>
+                                <td class="text-danger">{{number_format($count_quantity_view_customer, 0)}}</td>
+                                <td class="text-danger"></td>
+                                <td class="text-danger"></td>
+                                <td class="text-danger">{{number_format($order_by_id_customer->order_total, 0)}}</td>
                             </tr>
                         </tfoot>
                     </table>
