@@ -99,8 +99,8 @@ class BlogController extends Controller
     }
 
     public function blogs(){
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
         $all_blog = DB::table('tbl_blogs')->join('tbl_admin','tbl_blogs.author_id','=','tbl_admin.admin_id')
         ->select('tbl_blogs.*', 'tbl_admin.admin_name')->where('status', 1)
         ->orderBy('updated_at', 'DESC')->get();
@@ -119,8 +119,8 @@ class BlogController extends Controller
     }
 
     public function blog_detail($blog_id){
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
+        $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
         $blog = DB::table('tbl_blogs')->join('tbl_admin','tbl_blogs.author_id','=','tbl_admin.admin_id')
         ->select('tbl_blogs.*', 'tbl_admin.admin_name')->where('id', $blog_id)->first();
         return view('pages.blog.blog_detail')->with('category', $cate_product)->with('brand', $brand_product)
