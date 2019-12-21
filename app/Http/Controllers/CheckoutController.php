@@ -24,6 +24,28 @@ class CheckoutController extends Controller
             return Redirect::to('admin')->send();
         }
     }
+    public function AuthLoginCustomer()
+    {
+        $customer_id = Session::get('customer_id');
+        if ($customer_id) {
+            return Redirect::to('payment');
+        } else {
+            return Redirect::to('login-checkout')->send();
+        }
+    }
+
+    public function AuthContentCart()
+    {
+        $cart_count = Session::get('cart_count');
+        if ($cart_count) {
+            return Redirect::to('payment');
+            Session::put('cart_count',null);
+        } else {
+            return Redirect::to('trang-chu')->send();
+            Session::put('cart_count',null);
+        }
+    }
+
     public function login_checkout()
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
@@ -92,6 +114,8 @@ class CheckoutController extends Controller
 
     public function payment()
     {
+        $this->AuthLoginCustomer();
+        $this->AuthContentCart();
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 

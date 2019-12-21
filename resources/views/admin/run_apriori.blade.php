@@ -64,8 +64,8 @@
                     <button type="button" class="btn btn-success col-12 save-apriori-data" >Lưu kết quả</button>
                 </div>
                 <div class="col-12">
-                    <a href="{{URL::to('/apriori')}}"><input type="button" class="btn btn-danger col-12 mt-2"
-                            value="Hủy" /></a>
+                    <a href="{{URL::to('/apriori')}}"><input type="button" class="btn btn-primary col-12 mt-2"
+                            value="Xem kết quả" /></a>
                 </div>
             </div>
         </div>

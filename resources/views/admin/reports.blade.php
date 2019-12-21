@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="input-group mb-4 col-4 col-xl-4 col-sm-6">
                             <input type="button" class="btn btn-primary btn-submit-report" placeholder="Username"
-                                aria-label="Username" aria-describedby="" value="Submit">
+                                aria-label="Username" aria-describedby="" value="Xem kết quả">
                         </div>
                     </div>
                 </div>

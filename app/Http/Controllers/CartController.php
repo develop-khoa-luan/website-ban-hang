@@ -46,6 +46,7 @@ class CartController extends Controller
         $data['options']['size'] = $size;
         Cart::add($data);
         $cart_count = Cart::content()->count();
+        Session::put('cart_count', $cart_count);
         return response()->json(['cart_count'=>$cart_count]);
     }
 

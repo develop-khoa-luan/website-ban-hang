@@ -10,7 +10,7 @@
                 <li class="active">Giỏ hàng</li>
             </ol>
         </div>
-        <div class="table-responsive cart_info">
+        <div class="table-responsive cart_info" style="margin: -60px 0 20px 0">
             <?php
                 $content = Cart::content();
             ?>
