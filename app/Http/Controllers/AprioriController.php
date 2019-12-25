@@ -51,7 +51,7 @@ class AprioriController extends Controller
             array_push($all_itemsets, $string_list);
         }
         foreach ($all_itemsets as $key => $value) {//không lấy các giá trị chỉ có một tham số
-            if(strlen($value)>1){
+            if(strstr($value, ',')){
                 array_push($list_itemset, $value);
             }
         }

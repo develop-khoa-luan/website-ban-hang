@@ -54,7 +54,7 @@
                         <button type="submit" id="btn-draft" class="btn btn-secondary col-12 mt-2">Bản nháp</button>
                     </div> --}}
                     <div class="col-12">
-                        <a href="{{URL::to('/all-product')}}"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
+                        <a href="{{URL::to('/add-category-product')}}"><input type="button" class="btn btn-danger col-12 mt-2" value="Hủy"/></a>
                     </div>
                 </div>
             </div>
