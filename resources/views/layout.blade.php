@@ -191,7 +191,7 @@
 							@foreach($all_slide as $key => $tt)
 							<div style="padding-left:1px" class="item @if($key==0) active @endif">
 
-								<img style="width:100%" src="public/uploads/product/{{$tt->slide_image}}" alt="" />
+								<img style="width:100%; height: 410px" src="public/uploads/product/{{$tt->slide_image}}" alt="" />
 
 							</div>
 							@endforeach

@@ -21,12 +21,12 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên thương hiệu</label>
                         <input type="text" name="brand_product_name" class="form-control" id="exampleInputEmail1"
-                        value="{{$edit_value->brand_name}}">
+                        value="{{$edit_value->brand_name}}" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả thương hiệu</label>
                         <textarea style="resize: none" rows="4" name="brand_product_desc" class="form-control"
-                            id="exampleInputPassword1" placeholder="Mô tả...">{{$edit_value->brand_desc}}</textarea>
+                            id="exampleInputPassword1" placeholder="Mô tả..." required>{{$edit_value->brand_desc}}</textarea>
                     </div>
                     {{-- Use Jquery to change the brand status by click button, see at backend/demo/add-product.js --}}
                     <input type="number" value="0" name="brand_product_status" id="brand_status" readonly hidden />

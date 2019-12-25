@@ -19,12 +19,12 @@
                     <div class="form-group">
                         <label class="text-dark" for="exampleInputEmail1">Tên bản tin:</label>
                         <input type="text" name="title" class="form-control" id="exampleInputEmail1"
-                            placeholder="Tên bản tin.." value="{{$blog_detail->title}}">
+                            placeholder="Tên bản tin.." value="{{$blog_detail->title}}" required>
                     </div>
                     <div class="form-group">
                         <label class="text-dark for=" exampleInputPassword1">Tóm tắt bản tin:</label>
                         <textarea style="resize: none" rows="4" name="alias" class="form-control"
-                            id="exampleInputPassword1" placeholder="Tóm tắt...">{{$blog_detail->alias}}</textarea>
+                            id="exampleInputPassword1" placeholder="Tóm tắt..." required>{{$blog_detail->alias}}</textarea>
                     </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-12">
@@ -35,7 +35,7 @@
                                 <div class="row ml-1">
                                     <input id="get-image" name="featured_image" type="text" readonly
                                         class="col-11 form-control" placeholder="Chọn hình ảnh..."
-                                        value="{{$blog_detail->featured_image}}">
+                                        value="{{$blog_detail->featured_image}}" required>
                                     <div class="d-flex align-items-center">
                                         <a href="#" class="btn btn-danger btn-circle btn-sm ml-1" id="delete-image"><i
                                                 class="fas fa-trash"></i></a>
@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label class="text-dark for=" exampleInputPassword1">Nội dung bản tin:</label>
                         <textarea style="resize: none" rows="8" name="content" class="form-control"
-                            id="contentWithCkeditor" placeholder="Nội dung...">{{$blog_detail->content}}</textarea>
+                            id="contentWithCkeditor" placeholder="Nội dung..." required>{{$blog_detail->content}}</textarea>
                     </div>
 
                     <div class="form-group">

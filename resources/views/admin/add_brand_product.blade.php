@@ -20,12 +20,12 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên thương hiệu</label>
                         <input type="text" name="brand_product_name" class="form-control" id="exampleInputEmail1"
-                            placeholder="Tên thương hiệu...">
+                            placeholder="Tên thương hiệu..." required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả thương hiệu</label>
                         <textarea style="resize: none" rows="4" name="brand_product_desc" class="form-control"
-                            id="exampleInputPassword1" placeholder="Mô tả..."></textarea>
+                            id="exampleInputPassword1" placeholder="Mô tả..." required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Hiển thị</label>

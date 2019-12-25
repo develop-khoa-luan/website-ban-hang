@@ -61,7 +61,7 @@
                                         class="fas fa-plus-circle"></i></a>
                                 <div class="row ml-1">
                                     <input id="get-image" name="new_image" type="text" readonly
-                                        class="col-11 form-control" placeholder="Chọn hình sản phẩm...">
+                                        class="col-11 form-control" placeholder="Chọn hình sản phẩm..." required>
                                     <div class="d-flex align-items-center">
                                         <a href="#" class="btn btn-danger btn-circle btn-sm ml-1" id="delete-image"><i
                                                 class="fas fa-trash"></i></a>
@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label class="text-dark" >Nội dung sản phẩm:</label>
                         <textarea style="resize: none" rows="8" name="product_content" class="form-control"  
-                            id="contentWithCkeditor" placeholder="Nội dung..."></textarea>
+                            id="contentWithCkeditor" placeholder="Nội dung..." required></textarea>
                     </div>
 
                     <div class="form-group">
