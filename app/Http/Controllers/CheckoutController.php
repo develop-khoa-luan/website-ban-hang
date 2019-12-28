@@ -238,16 +238,33 @@ class CheckoutController extends Controller
             return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         }
     }
-    public function manage_order()
+    public function manage_order(Request $request)
     {
         $this->AuthLogin();
-        $all_order = DB::table('tbl_order')
-            ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
-            ->select('tbl_order.*', 'tbl_customer.customer_name')
-            ->orderby('tbl_order.order_id', 'desc')
-            ->get();
-        $manager_order = view('admin.manage_order')->with('all_order', $all_order);
-        return view('admin_layout')->with('admin.all_product', $manager_order);
+        $order_status = $request->order_status;
+        if($order_status == null){
+            $order_status = 'Đang chờ xử lý';
+        }
+        if($order_status == 'Xem tất cả'){
+                $all_order = DB::table('tbl_order')
+                ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+                ->select('tbl_order.*', 'tbl_customer.customer_name')
+                ->orderby('tbl_order.order_id', 'desc')
+                ->get();
+            $manager_order = view('admin.manage_order')->with('all_order', $all_order)
+            ->with('order_status', $order_status);
+            return view('admin_layout')->with('admin.all_product', $manager_order);
+        }else{
+            $all_order = DB::table('tbl_order')
+                ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+                ->select('tbl_order.*', 'tbl_customer.customer_name')
+                ->where('tbl_order.order_status', $order_status)
+                ->orderby('tbl_order.order_id', 'desc')
+                ->get();
+            $manager_order = view('admin.manage_order')->with('all_order', $all_order)
+            ->with('order_status', $order_status);
+            return view('admin_layout')->with('admin.all_product', $manager_order);
+        }
     }
 
     public function view_order($order_id)
@@ -269,6 +286,7 @@ class CheckoutController extends Controller
             ->with('count_quantity', $count_quantity);
         return view('admin_layout')->with('admin.view_product', $manager_order_by_id);
     }
+
     public function update_order(Request $request, $order_id)
     {
         $this->AuthLogin();
@@ -303,6 +321,17 @@ class CheckoutController extends Controller
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Xác nhận thanh toán');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
+                    case "Đang giao hàng":
+                        $data = array();
+                        $data['order_status'] = $request->order_status;
+                        foreach ($get_order_detail as $order_datail) {
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
+                            ->decrement('product_quantity', $order_datail->product_sales_quantity);
+                        }
+                        DB::table('tbl_order')->where('order_id', $order_id)->update($data);
+                        Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Đang giao hàng');
                         return Redirect::to('/view-order/' . $order_id);
                         break;
                     case "Hủy đơn hàng":
@@ -341,6 +370,13 @@ class CheckoutController extends Controller
                         Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Xác nhận thanh toán');
                         return Redirect::to('/view-order/' . $order_id);
                         break;
+                    case "Đang giao hàng":
+                            $data = array();
+                            $data['order_status'] = $request->order_status;
+                            DB::table('tbl_order')->where('order_id', $order_id)->update($data);
+                            Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Đang giao hàng');
+                            return Redirect::to('/view-order/' . $order_id);
+                            break;
                     case "Hủy đơn hàng":
                         $data = array();
                         $data['order_status'] = $request->order_status;
@@ -350,6 +386,43 @@ class CheckoutController extends Controller
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Hủy đơn hàng');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
+                    default:
+                        Session::put('message', 'Hủy đơn hàng không thành công.');
+                        return Redirect::to('/view-order/' . $order_id);
+                }
+                break;
+            case "Đang giao hàng":
+                switch ($status) {
+                    case "Đang chờ xử lý":
+                        Session::put('message', 'Cập nhập không thành công do đơn hàng đang được giao');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
+                    case "Xác nhận đơn hàng":
+                        Session::put('message', 'Cập nhập không thành công do đơn hàng đang được giao');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
+                    case "Xác nhận thanh toán":
+                        $data = array();
+                        $data['order_status'] = $request->order_status;
+                        DB::table('tbl_order')->where('order_id', $order_id)->update($data);
+                        Session::put('message', 'Cập nhật đơn hàng thành công! Đang giao hàng->Xác nhận thanh toán');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
+                    case "Đang giao hàng":
+                        Session::put('message', 'Cập nhập không thành công do đơn hàng đang được giao');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
+                    case "Hủy đơn hàng":
+                        $data = array();
+                        $data['order_status'] = $request->order_status;
+                        foreach ($get_order_detail as $order_datail) {
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
+                            ->increment('product_quantity', $order_datail->product_sales_quantity);
+                        }
+                        DB::table('tbl_order')->where('order_id', $order_id)->update($data);
+                        Session::put('message', 'Cập nhật đơn hàng thành công! Đang giao hàng->Hủy đơn hàng');
                         return Redirect::to('/view-order/' . $order_id);
                         break;
                     default:

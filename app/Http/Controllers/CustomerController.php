@@ -98,10 +98,36 @@ class CustomerController extends Controller
         ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
         ->select('tbl_order.*')
         ->where('tbl_customer.customer_id',$customer_id)
-        ->orderby('tbl_order.order_id', 'asc')
-        ->get();
+        ->orderby('tbl_order.updated_at', 'desc')
+        ->limit(10)->get();
+
         return view('pages.checkout.customer_management')->with('view_customer',$view_customer)->with('all_order', $all_order)
         ->with('category', $cate_product)->with('brand', $brand_product)->with('selling_product', $selling_product);
+    }
+
+    public function cus_view_order(Request $request)
+    {
+        $this->Custommer_Login();
+        $order_id = $request->order_id;
+        $customer_id = Session::get('customer_id');
+        
+        $order_by_id = DB::table('tbl_order')
+            ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+            ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
+            ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->where('order_id', $order_id)
+            ->where('tbl_order.customer_id', $customer_id)->first();
+            
+        $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
+        ->where('order_id', $order_id)
+        ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*','tbl_product.product_image')->get();
+
+        $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
+        
+        return response()->json([
+            'order_by_id' => $order_by_id,
+            'order_detail' => $all_order_detail,
+            'count_quantity' => $count_quantity
+        ]);
     }
 
     public function update_customer(Request $request){
@@ -140,6 +166,15 @@ class CustomerController extends Controller
             $request->session()->put('message_change_detail_customer', "Thay đổi không thành công!");
             return "Thay đổi không thành công!";
         }
+    }
+
+    function cus_delete_order($order_id, Request $request){
+        $customer_id = Session::get('customer_id');
+        $data = array();
+        $data['order_status'] = 'Hủy đơn hàng';
+        DB::table('tbl_order')->where('order_id', $order_id)->where('customer_id', $customer_id)->update($data);
+        $request->session()->put('message_change_detail_customer', 'Hủy đơn hàng HD'.$order_id.' thành công!');
+        return Redirect::to('customer-management');
     }
 
 }

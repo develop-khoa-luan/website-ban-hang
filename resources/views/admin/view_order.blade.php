@@ -61,7 +61,7 @@
                                 <div class="col-12 col-sm-6 col-md-6 text-danger">
                                     Trạng thái đơn hàng
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-6 text-dark">
+                                <div class="col-12 col-sm-6 col-md-6 text-dark current-order-status">
                                     {{$order_by_id->order_status}}
                                 </div>
                             </div>
@@ -206,9 +206,10 @@
                 {{csrf_field()}}
                 <div class="card-body">
                     <div class="col-12">
-                        <select name="order_status" class="col-12 form-control input-sm m-bot15">
+                        <select name="order_status" id="select-order-status" class="col-12 form-control input-sm m-bot15">
                             <option value="Đang chờ xử lý">Đang chờ xử lý</option>
                             <option value="Xác nhận đơn hàng">Xác nhận đơn hàng</option>
+                            <option value="Đang giao hàng">Đang giao hàng</option>
                             <option value="Hủy đơn hàng">Hủy đơn hàng</option>
                             <option value="Xác nhận thanh toán">Xác nhận thanh toán</option>
                         </select>
@@ -228,5 +229,11 @@
         var tongGia = $('.TongGia').val();
         var discount = (100 -((parseInt(giaThuc)/parseInt(tongGia))*100));
         $('.show_discount').text(discount+'%');
+        //choose order status
+        $(document).ready(function () {
+            var order_status = @json($order_by_id);
+            console.log(order_status);
+            $("#select-order-status").val(order_status.order_status);
+        })
 </script>
 @endsection
