@@ -31,7 +31,7 @@
                                         class="fas fa-plus-circle"></i></a>
                                 <div class="row ml-1">
                                     <input id="get-image" name="slide_image" type="text" readonly
-                                        class="col-11 form-control" placeholder="Chọn ảnh...">
+                                        class="col-11 form-control" placeholder="Chọn ảnh..." required>
                                     <div class="d-flex align-items-center">
                                         <a href="#" class="btn btn-danger btn-circle btn-sm ml-1" id="delete-image"><i
                                                 class="fas fa-trash"></i></a>

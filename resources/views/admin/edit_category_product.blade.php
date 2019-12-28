@@ -21,12 +21,12 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên danh mục</label>
                         <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1"
-                            value="{{$edit_value->category_name}}">
+                            value="{{$edit_value->category_name}}" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả danh mục</label>
                         <textarea style="resize: none" rows="4" name="category_product_desc" class="form-control"
-                            id="exampleInputPassword1">{{$edit_value->category_desc}}</textarea>
+                            id="exampleInputPassword1" required>{{$edit_value->category_desc}}</textarea>
                     </div>
                     {{-- Use Jquery to change the category status by click button, see at backend/demo/add-product.js --}}
                     <input type="number" value="0" name="category_product_status" id="category_status" readonly hidden />

@@ -21,14 +21,14 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Mã khuyến mãi</label>
                         <input type="text" name="coupon_name" class="form-control" id="exampleInputEmail1"
-                        value="{{$edit_coupon->coupon_name}}">
+                        value="{{$edit_coupon->coupon_name}}" required>
                     </div>
                     
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">Phần trăm chiết khấu</label>
                         <input type="text" name="coupon_amount" class="form-control" id="exampleInputEmail1"
-                            placeholder="Phần trăm chiết khấu..." value="{{$edit_coupon->coupon_amount}}">
+                            placeholder="Phần trăm chiết khấu..." value="{{$edit_coupon->coupon_amount}}" required>
                     </div>
 
                     <div class="form-group">

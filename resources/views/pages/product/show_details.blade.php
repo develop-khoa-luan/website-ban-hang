@@ -93,12 +93,12 @@
 
 
 
-<div class="category-tab shop-details-tab ">
+<div class="category-tab shop-details-tab "style="margin: -40px 0 0 0">
     <!--category-tab-->
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
-            <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+            <li class="active"><a href="#details" data-toggle="tab">Chi tiết</a></li>
+            {{-- <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li> --}}
         </ul>
     </div>
     <div class="tab-content ">
@@ -139,7 +139,7 @@
 
 <div class="recommended_items">
     <!--recommended_items-->
-    <h2 class="title text-center">recommended items</h2>
+    <h2 class="title text-center">Gợi ý sản phẩm</h2>
 
      <div id="recommended-item-carousel" class="carousel slide">{{--id="recommended-item-carousel" class="carousel slide" data-ride="carousel" --}}
         <div class="carousel-inner">

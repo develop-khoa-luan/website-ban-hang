@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Phần trăm chiết khấu</label>
                         <input type="text" name="coupon_amount" class="form-control" id="exampleInputEmail1"
-                            placeholder="Phần trăm chiết khấu...">
+                            placeholder="Phần trăm chiết khấu..." required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Trạng thái</label>

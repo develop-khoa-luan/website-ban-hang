@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá sản phẩm</label>
                                 <input type="number" name="product_price" class="form-control" id="exampleInputEmail1"
-                                    value="{{$pro->product_price}}">
+                                    value="{{$pro->product_price}}" required>
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                                         class="fas fa-plus-circle"></i></a>
                                 <div class="row">
                                     <input id="get-image" name="new_image" type="text" readonly
-                                        class="col-10 form-control ml-2" value="{{$pro->product_image}}">
+                                        class="col-10 form-control ml-2" value="{{$pro->product_image}}" required>
                                     <div class="d-flex align-items-center">
                                         <a href="#" class="btn btn-danger btn-circle btn-sm ml-1" id="delete-image"><i
                                                 class="fas fa-trash"></i></a>
@@ -88,12 +88,12 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả sản phẩm</label>
                         <textarea style="resize: none" rows="4" name="product_desc" class="form-control"
-                            id="exampleInputPassword1"> {{$pro->product_desc}}</textarea>
+                            id="exampleInputPassword1" required> {{$pro->product_desc}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Nội dung sản phẩm</label>
                         <textarea style="resize: none" rows="8" name="product_content" class="form-control"
-                            id="contentWithCkeditor">{{$pro->product_content}}</textarea>
+                            id="contentWithCkeditor" required>{{$pro->product_content}}</textarea>
                     </div>
                     <input type="number" value="0" name="product_status" id="product_status" readonly hidden />
                 </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="card-body">
                     <input type="number" name="count_product_detail" id="count_product_detail" class="count_product_detail" hidden
-                        value={{$count_detail}}>
+                        value={{$count_detail}} required>
                     <div class="row d-flex justify-content-center">
                         <div class="col-5 d-flex justify-content-right">Size</div>
                         <div class="col-1"></div>
@@ -117,10 +117,10 @@
                     @foreach ($all_product_detail as $item)
                     <?php $i++ ?>
                     <div id={{$i}} class="row mt-2 d-flex justify-content-center">
-                        <input type="text" name="product_size_{{$i}}" id="product_size_{{$i}}"
+                        <input type="text" name="product_size_{{$i}}" id="product_size_{{$i}}" required
                     class="form-control col-5" id="exampleInputEmail1" placeholder="Size..." value="{{$item->product_size}}">
                         <div class="col-1"></div>
-                        <input type="number" name="product_quantity_{{$i}}"
+                        <input type="number" name="product_quantity_{{$i}}" required
                             id="product_quantity_{{$i}}" class="form-control col-5" id="exampleInputEmail1"
                     placeholder="Số lượng..." value="{{$item->product_quantity}}">
                         <div class="col-1 d-flex align-items-center"><i
