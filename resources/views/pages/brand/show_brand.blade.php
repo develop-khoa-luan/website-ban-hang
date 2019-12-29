@@ -34,6 +34,7 @@
 		</div>
 	</form>
 	@endforeach
+	<div class="col-sm-12 text-center"> {{$brand_by_id->links()}}</div>
 	<!-- Central Modal Medium Info -->
 	<div class="modal fade" id="modal-product-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 		aria-hidden="true">

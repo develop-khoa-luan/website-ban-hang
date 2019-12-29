@@ -68,12 +68,57 @@ class CartController extends Controller
         ->get();
 
         $product_detail = array();
+        $product_order_id = array();
         foreach($get_cart as $cart){
             $get_product_detail = DB::table('tbl_product_detail')->where('product_id', $cart->id)->get();
             array_push($product_detail, $get_product_detail);
+            array_push($product_order_id, $cart->id);
         }
 
-        return view('pages.cart.show_cart')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product)->with('all_product_detail', $product_detail);
+        $product_1 = 0;
+        $product_2 = 0;
+        $product_3 = 0;
+        $product_4 = 0;
+
+        foreach ($product_order_id as $key => $value) {
+            switch ($key) {
+                case 0:
+                    $product_1 = $value;
+                    break;
+                case 1:
+                    $product_2 = $value;
+                    break;
+                case 2:
+                    $product_3 = $value;
+                    break;
+                case 3:
+                    $product_4 = $value;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $recommend_products = [];
+        $list_string_id = '';
+
+        $get_apriori_data = DB::table('tbl_data_apriori')->where('product_1', $product_1)
+        ->where('product_2', $product_2)->where('product_3', $product_3)->where('product_4', $product_4)
+        ->where('recommend_2', 0)->orderBy('recommend_1', 'desc')->get();
+        
+        foreach ($get_apriori_data as $key => $value) {
+            $list_string_id = $list_string_id.$value->recommend_1.',';
+        }
+        $list_id = explode(',', $list_string_id);
+
+        $recommend_products = DB::table('tbl_product')
+        ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->simplePaginate(3);
+
+        return view('pages.cart.show_cart')->with('all_slide', $all_slide)->with('selling_product', $selling_product)
+        ->with('category', $cate_product)->with('brand', $brand_product)
+        ->with('all_product_detail', $product_detail)->with('related_product', $recommend_products);
     }
 
     public function delete_to_cart($rowId){ 
