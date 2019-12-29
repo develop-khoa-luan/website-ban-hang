@@ -98,7 +98,7 @@ class CategoryProduct extends Controller
         $category_by_id = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('tbl_product.category_id',$category_id)->get();
+        ->where('tbl_product.category_id',$category_id)->simplePaginate(9);
 
         $category_by_id_cover = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
@@ -131,6 +131,8 @@ class CategoryProduct extends Controller
 
         // dd($all_slide);
 
-        return view('pages.category.show_category')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('all_slide_cover', $all_slide_cover)->with('category', $cate_product)->with('brand', $brand_product)->with('category_by_id',$category_by_id)->with('category_name',$category_name);    
+        return view('pages.category.show_category')->with('all_slide', $all_slide)->with('selling_product', $selling_product)
+        ->with('all_slide_cover', $all_slide_cover)->with('category', $cate_product)->with('brand', $brand_product)
+        ->with('category_by_id',$category_by_id)->with('category_name',$category_name);    
     }
 }
