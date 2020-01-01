@@ -50,6 +50,32 @@ class CartController extends Controller
         return response()->json(['cart_count'=>$cart_count]);
     }
 
+    public function SelectionSortAscending($mang)
+    {
+        // Đếm tổng số phần tử của mảng
+        $sophantu = count($mang);
+    
+        // Lặp để sắp xếp
+        for ($i = 0; $i < $sophantu - 1; $i++)
+        {
+            // Tìm vị trí phần tử nhỏ nhất
+            $min = $i;
+            for ($j = $i + 1; $j < $sophantu; $j++){
+                if ($mang[$j] < $mang[$min]){
+                    $min = $j;
+                }
+            }
+    
+            // Sau khi có vị trí nhỏ nhất thì hoán vị
+            // với vị trí thứ $i
+            $temp = $mang[$i];
+            $mang[$i] = $mang[$min];
+            $mang[$min] = $temp;
+        }
+    
+        // Trả về mảng đã sắp xếp
+        return $mang;
+    }
 
     public function show_cart(){
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
@@ -75,12 +101,15 @@ class CartController extends Controller
             array_push($product_order_id, $cart->id);
         }
 
+        $product_order_id_asc = $this->SelectionSortAscending($product_order_id);
+
+
         $product_1 = 0;
         $product_2 = 0;
         $product_3 = 0;
         $product_4 = 0;
 
-        foreach ($product_order_id as $key => $value) {
+        foreach ($product_order_id_asc as $key => $value) {
             switch ($key) {
                 case 0:
                     $product_1 = $value;
