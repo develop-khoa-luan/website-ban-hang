@@ -154,7 +154,9 @@ function formatData(allRules){
         var conf = element.Confidence;
         var sup = element.Support;
         var countX = 0;
-        element.X.forEach(x => {
+        var x_array = new Array();
+        x_array = element.X.sort(function(a, b){return a-b});
+        x_array.forEach(x => {
             countX = parseInt(countX) + 1;
             if (countX == 1){
                 product_1 = x;
@@ -170,7 +172,9 @@ function formatData(allRules){
             }
         });
         var countY = 0
-        element.Y.forEach(y => {
+        var y_array = new Array();
+        y_array = element.Y.sort(function(a, b){return a-b});
+        y_array.forEach(y => {
             countY = parseInt(countY) + 1;
             if (countY == 1){
                 recommend_1 = y;
