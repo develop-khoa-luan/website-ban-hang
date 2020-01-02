@@ -173,7 +173,7 @@ class ProductController extends Controller
         $recommend_products = DB::table('tbl_product')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->simplePaginate(3);
+        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->orderBy('tbl_product.created_at', 'asc')->paginate(3);
         
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
         

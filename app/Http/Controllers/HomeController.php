@@ -24,19 +24,19 @@ class HomeController extends Controller
 
         $all_product = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_id', 'desc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_id', 'desc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_product_t = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_id', 'desc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_id', 'desc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_product_asc_t = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_id', 'asc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_id', 'asc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_product_desc_t = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_id', 'desc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_id', 'desc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
@@ -73,11 +73,11 @@ class HomeController extends Controller
 
         $all_product = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_id', 'desc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_id', 'desc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_product_asc = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_price', 'asc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_price', 'asc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
@@ -103,11 +103,11 @@ class HomeController extends Controller
 
         $all_product = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_id', 'desc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_id', 'desc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_product_desc = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('product_status', '1')->orderby('product_price', 'desc')->simplePaginate(9);
+        ->where('product_status', '1')->orderby('product_price', 'desc')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
@@ -131,7 +131,7 @@ class HomeController extends Controller
         $search_product = DB::table('tbl_product')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-        ->where('product_name', 'like', '%'.$keywords.'%')->simplePaginate(9);
+        ->where('product_name', 'like', '%'.$keywords.'%')->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $selling_product = DB::table('tbl_order_detail')
          ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
