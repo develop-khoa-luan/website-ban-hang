@@ -178,6 +178,9 @@
 </section>
 <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
 <script>
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
     //action show modal order-detail
     $(document).ready(function () {
         $('.show-modal-order-detail').on('click', function (e) {
@@ -206,7 +209,7 @@
                     $("#modal-ship-phone").text(data1.shipping_phone);
                     $("#modal-ship-address").text(data1.shipping_address);
                     $("#modal-ship-notes").text(data1.shipping_notes);
-                    $("#modal-order-total").text(data1.order_total);
+                    $("#modal-order-total").text(formatNumber(data1.order_total)+" VNĐ");
                     data2 = result.order_detail;
                     var rows = "";
                     $('.row-for-order-detail').remove();
@@ -216,9 +219,9 @@
                                                 <td class="text-dark">` + element.product_name + `</td>
                                                 <td class="text-dark">` + element.product_sales_quantity + `</td>
                                                 <td class="text-dark">` + element.product_size + `</td>
-                                                <td class="text-dark">` + element.product_price + `</td>
-                                                <td class="text-dark">` + parseFloat(element.product_price) *
-                            parseFloat(element.product_sales_quantity) + `</td>
+                                                <td class="text-dark">` + formatNumber(element.product_price) + `</td>
+                                                <td class="text-dark">` + formatNumber(parseFloat(element.product_price) *
+                            parseFloat(element.product_sales_quantity)) + `</td>
                                             </tr>
                                             `
                     });
