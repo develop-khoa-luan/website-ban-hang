@@ -154,6 +154,7 @@ function formatData(allRules){
         var conf = element.Confidence;
         var sup = element.Support;
         var countX = 0;
+        // The data need asc sort for recommended
         var x_array = new Array();
         x_array = element.X.sort(function(a, b){return a-b});
         x_array.forEach(x => {

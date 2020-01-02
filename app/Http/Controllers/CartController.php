@@ -143,7 +143,7 @@ class CartController extends Controller
         $recommend_products = DB::table('tbl_product')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-        ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->simplePaginate(3);
+        ->whereIn('tbl_product.product_id', $list_id)->orderBy('tbl_product.created_at', 'desc')->paginate(3);;
 
         return view('pages.cart.show_cart')->with('all_slide', $all_slide)->with('selling_product', $selling_product)
         ->with('category', $cate_product)->with('brand', $brand_product)
