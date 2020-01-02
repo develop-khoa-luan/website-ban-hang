@@ -73,7 +73,7 @@
         </div>
     </div>
 </section>
-<section id="do_action" style="margin-bottom: -60px">
+<section id="do_action" >
     <div class="row">
         <div class="col-sm-6">
             <div class="total_area">
@@ -97,7 +97,7 @@
         </div>
     </div>
 </section>
-<div class="recommended_items col-sm-12">
+<div class="recommended_items col-sm-12" style="margin: -120px 0 0 0">
     <!--recommended_items-->
     <h2 class="title text-center">Gợi ý sản phẩm</h2>
 

@@ -106,7 +106,7 @@
 							<?php
 								}else{	
 								?>
-							<li class="show-modal-login"><a style="font-size:16px" ><i
+							<li class="show-modal-login"><a style="font-size:16px; cursor: pointer" ><i
 										class="fa fa-lock"></i> Đăng nhập</a>
 							</li>
 							<?php

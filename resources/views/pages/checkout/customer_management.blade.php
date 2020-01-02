@@ -4,7 +4,7 @@
     <meta name="_token" content="{{csrf_token()}}" />
     <div class="bg">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-5">
                 <div class="contact-form">
                     <h2 class="title text-center">Quản lý thông tin</h2>
                     <?php
@@ -31,10 +31,10 @@
                     </div>
                     <div class="show-change-password"></div>
                     <div class="form-group col-md-12">
-                        <a class="change-password">Thay đổi mật khẩu!</a>
+                        <a class="change-password" style="cursor: pointer">Thay đổi mật khẩu!</a>
                     </div>
                     <div class="form-group col-md-12">
-                        <a class="dischange-password">Hủy thay đổi!</a>
+                        <a class="dischange-password" style="cursor: pointer">Hủy thay đổi!</a>
                     </div>
                     <div class="row pull-right">
                         <div class="form-group col-md-6">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-7">
                 <div class="contact-form">
                     <h2 class="title text-center">Lịch sử mua hàng</h2>
                     <table class="table table-striped table-hover table-bordered">
