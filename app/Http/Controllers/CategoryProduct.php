@@ -98,7 +98,7 @@ class CategoryProduct extends Controller
         $category_by_id = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
-        ->where('tbl_product.category_id',$category_id)->orderBy('tbl_product.created_at', 'asc')->paginate(9);
+        ->where('tbl_product.category_id',$category_id)->orderBy('tbl_product.created_at', 'desc')->paginate(9);
 
         $category_by_id_cover = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')
