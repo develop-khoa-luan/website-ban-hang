@@ -123,7 +123,13 @@ class BlogController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
         $blog = DB::table('tbl_blogs')->join('tbl_admin','tbl_blogs.author_id','=','tbl_admin.admin_id')
         ->select('tbl_blogs.*', 'tbl_admin.admin_name')->where('id', $blog_id)->first();
-        return view('pages.blog.blog_detail')->with('category', $cate_product)->with('brand', $brand_product)
+        $selling_product = DB::table('tbl_order_detail')
+        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
+        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
+        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
+        ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+        ->get();
+        return view('pages.blog.blog_detail')->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product)
         ->with('blog', $blog);
     }
 }
