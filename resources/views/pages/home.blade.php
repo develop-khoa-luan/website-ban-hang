@@ -48,7 +48,8 @@
                     </div>
                     <!--Body-->
                     <div class="col-5 col-md-5 col-lg-5 col-xl-5">
-                        <p style="font-size: 20px; margin-top: 10px" id="modal-product-name" class="show-notification"></p>
+                        <p style="font-size: 20px; margin-top: 10px" id="modal-product-name"
+                           class="show-notification"></p>
                         <div class="">
                             <p style="margin-top: 10px" id="modal-product-brand"></p>
                             <p id="modal-product-category"></p>
@@ -57,7 +58,7 @@
                             </select>
 
                             <label for="quantity">Số lượng:</label>
-                            <input style="width: 85px" class="form-control modal-product-quantity"  id="quantity"
+                            <input style="width: 85px" class="form-control modal-product-quantity" id="quantity"
                                    name="qty"
                                    type="number" min="0" max="" value="1"/>
                         </div>
@@ -142,13 +143,13 @@
                                 $(".modal-product-size").append(html);
                             }
                         });
-                        if(count_products_quantity==0){
+                        if (count_products_quantity == 0) {
                             $('.modal-product-quantity').val("0");
                             $('.btn-add-to-cart-modal').hide();
                             var notify = `<p class="text-danger notify-message" style="font-size: 15px">Sản phẩm hết hàng!</p>`;
                             $('.show-notification').append(notify)
                         }
-                        if(count_products_quantity > 0){
+                        if (count_products_quantity > 0) {
                             $('.modal-product-quantity').val("1");
                             $('.btn-add-to-cart-modal').show();
 
@@ -157,19 +158,25 @@
                 });
             });
 
-            $('.modal-product-quantity').keyup( function () {
+            $('.modal-product-quantity').keyup(function () {
                 var product_quantity = $('.option-size').attr("value_quantity");
                 var inputCustomer = $('.modal-product-quantity').val();
-                if(parseInt(inputCustomer) >= parseInt(product_quantity)){
+                if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
                     $('.modal-product-quantity').val(product_quantity);
+                }
+                if (parseInt(inputCustomer) <= 0) {
+                    $('.modal-product-quantity').val("0");
                 }
             })
 
-            $('.modal-product-quantity').change( function () {
+            $('.modal-product-quantity').change(function () {
                 var product_quantity = $('.option-size').attr("value_quantity");
                 var inputCustomer = $('.modal-product-quantity').val();
-                if(parseInt(inputCustomer) >= parseInt(product_quantity)){
+                if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
                     $('.modal-product-quantity').val(product_quantity);
+                }
+                if (parseInt(inputCustomer) <= 0) {
+                    $('.modal-product-quantity').val("0");
                 }
             })
 

@@ -153,11 +153,14 @@
             });
         });
 
-        $('.modal-product-quantity').keyup( function () {
+        $('.modal-product-quantity').keyup(function () {
             var product_quantity = $('.option-size').attr("value_quantity");
             var inputCustomer = $('.modal-product-quantity').val();
-            if(parseInt(inputCustomer) >= parseInt(product_quantity)){
+            if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
                 $('.modal-product-quantity').val(product_quantity);
+            }
+            if (parseInt(inputCustomer) <= 0) {
+                $('.modal-product-quantity').val("0");
             }
         })
 
@@ -166,6 +169,9 @@
             var inputCustomer = $('.modal-product-quantity').val();
             if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
                 $('.modal-product-quantity').val(product_quantity);
+            }
+            if (parseInt(inputCustomer) <= 0) {
+                $('.modal-product-quantity').val("0");
             }
         })
 
