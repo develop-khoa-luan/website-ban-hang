@@ -49,8 +49,8 @@
                     <!--Body-->
                     <div class="col-5 col-md-5 col-lg-5 col-xl-5">
                         <p style="font-size: 20px; margin-top: 10px" id="modal-product-name"
-                           class="show-notification"></p>
-                        <div class="">
+                           class=""></p>
+                        <div class="show-notification">
                             <p style="margin-top: 10px" id="modal-product-brand"></p>
                             <p id="modal-product-category"></p>
                             <label for="product-size">Size: </label>
@@ -146,8 +146,8 @@
                         if (count_products_quantity == 0) {
                             $('.modal-product-quantity').val("0");
                             $('.btn-add-to-cart-modal').hide();
-                            var notify = `<p class="text-danger notify-message" style="font-size: 15px">Sản phẩm hết hàng!</p>`;
-                            $('.show-notification').append(notify)
+                            let notify = `<p class="text-danger notify-message" style="font-size: 15px">Sản phẩm hết hàng!</p>`;
+                            $('.show-notification').append(notify);
                         }
                         if (count_products_quantity > 0) {
                             $('.modal-product-quantity').val("1");

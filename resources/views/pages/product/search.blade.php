@@ -49,8 +49,8 @@
                     <!--Body-->
                     <div class="col-5 col-md-5 col-lg-5 col-xl-5">
                         <p style="font-size: 20px; margin-top: 10px" id="modal-product-name"
-                           class="show-notification"></p>
-                        <div class="">
+                           class=""></p>
+                        <div class="show-notification">
                             <p style="margin-top: 10px" id="modal-product-brand"></p>
                             <p id="modal-product-category"></p>
                             <label for="product-size">Size: </label>
