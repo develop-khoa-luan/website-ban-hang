@@ -138,6 +138,9 @@
                 if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
                     $('.modal-product-quantity').val(product_quantity);
                 }
+                if (parseInt(inputCustomer) <= 0) {
+                    $('.modal-product-quantity').val("0");
+                }
             })
 
             $('.modal-product-quantity').change(function () {
@@ -145,6 +148,9 @@
                 var inputCustomer = $('.modal-product-quantity').val();
                 if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
                     $('.modal-product-quantity').val(product_quantity);
+                }
+                if (parseInt(inputCustomer) <= 0) {
+                    $('.modal-product-quantity').val("0");
                 }
             })
 
