@@ -67,7 +67,8 @@
                                             </select>
                                         </div>
                                         <label for="quantity">Số lượng:</label>
-                                        <input style="width: 100px" class="form-control" id="quantity" name="qty"
+                                        <input style="width: 100px" class="form-control quantity-input" id="quantity"
+                                               name="qty"
                                                type="number"
                                                min="0" max="{{$item->product_quantity}}" value="1"/>
                                     </div>
@@ -206,8 +207,8 @@
                     <!--Body-->
                     <div class="col-5 col-md-5 col-lg-5 col-xl-5">
                         <p style="font-size: 20px; margin-top: 10px" id="modal-product-name"
-                           class="show-notification"></p>
-                        <div class="">
+                           class=""></p>
+                        <div class="show-notification">
                             <p style="margin-top: 10px" id="modal-product-brand"></p>
                             <p id="modal-product-category"></p>
                             <label for="product-size">Size: </label>
@@ -259,6 +260,31 @@
                     }
                 });
             });
+
+            //check quantity input
+            $('.quantity-input').keyup(function () {
+                var product_quantity = $('.quantity-input').attr("max");
+                var inputCustomer = $('.quantity-input').val();
+                console.log(product_quantity);
+                console.log(inputCustomer);
+                if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
+                    $('.quantity-input').val(product_quantity);
+                }
+                if (parseInt(inputCustomer) <= 0) {
+                    $('.quantity-input').val("0");
+                }
+            })
+
+            $('.quantity-input').change(function () {
+                var product_quantity = $('.quantity-input').attr("max");
+                var inputCustomer = $('.quantity-input').val();
+                if (parseInt(inputCustomer) >= parseInt(product_quantity)) {
+                    $('.quantity-input').val(product_quantity);
+                }
+                if (parseInt(inputCustomer) <= 0) {
+                    $('.quantity-input').val("0");
+                }
+            })
 
             //add-to-cart
             $('.btn-buy-now').click(function (e) {
