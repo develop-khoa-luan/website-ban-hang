@@ -23,7 +23,7 @@
         </div>
     </div><!--/blog-post-area-->
 
-    <div class="rating-area">
+    {{-- <div class="rating-area">
         <ul class="ratings">
             <li class="rate-this">Bình chọn cho bài viết:</li>
             <li>
@@ -35,9 +35,9 @@
             </li>
             <li class="color">(6 votes)</li>
         </ul>
-    </div><!--/rating-area-->
+    </div><!--/rating-area--> --}}
 
-    <div class="response-area">
+    {{-- <div class="response-area">
         <h2>3 RESPONSES</h2>
         <ul class="media-list">
             <li class="media">
@@ -117,6 +117,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection

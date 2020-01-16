@@ -32,7 +32,7 @@
                             <span class="text-ellipsis">
                                 <?php
                                         if($brand_pro -> brand_status == 0){
-                                    ?>
+                                ?>
                                 <a href="{{URL::to('/unactive-brand-product/'.$brand_pro ->brand_id)}}"><span
                                         style="color: brown; font-size: 20px"
                                         class="fa fa-angle-double-down"></span></a>

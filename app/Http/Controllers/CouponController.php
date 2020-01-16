@@ -53,14 +53,14 @@ class CouponController extends Controller
     public function unactive_coupon ($coupon_id){
         $this->AuthLogin();
         DB::table('tbl_coupon')->where('coupon_id',$coupon_id)->update(['coupon_status'=>1]);
-        Session::put('message','Kích hoạt danh mục sản phẩm thành công.');
+        Session::put('message','Kích hoạt mã khuyến mãi thành công.');
         return Redirect::to('all-coupon');
     }
 
     public function active_coupon ($coupon_id){
         $this->AuthLogin();
         DB::table('tbl_coupon')->where('coupon_id',$coupon_id)->update(['coupon_status'=>0]);
-        Session::put('message','Không kích hoạt danh mục sản phẩm thành công.');
+        Session::put('message','Không kích hoạt mã khuyến mãi thành công.');
         return Redirect::to('all-coupon');
     }
 
@@ -78,7 +78,7 @@ class CouponController extends Controller
         $data['coupon_amount'] = $request->coupon_amount;
         $data['coupon_status'] = $request->coupon_status;
         DB::table('tbl_coupon')->where('coupon_id',$coupon_id)->update($data);
-        Session::put('message','Cập nhật danh mục mã khuyến mãi thành công.');
+        Session::put('message','Cập nhật mã khuyến mãi thành công.');
         return Redirect::to('all-coupon');
     }
 
