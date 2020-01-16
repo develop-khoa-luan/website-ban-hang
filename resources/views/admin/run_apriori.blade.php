@@ -110,7 +110,7 @@
                 }
 
                 let supportThreshold = parseFloat($.trim($('#SupportThresholdTextBox').val()));
-                let L = AprioriMining.doApriori(db, supportThreshold);
+                let L = AprioriMining.doApriori(db, supportThreshold);// Tìm các sản phẩm có độ support > sup
                 ClearResult();
                 // Step1: Find large itemsets for given support threshold
                 // AddResultLine(L.length + ' Large Itemsets (by Apriori):');
@@ -119,7 +119,7 @@
 
                 // Step2: Build rules based on large itemsets and confidence threshold
                 let confidenceThreshold = parseFloat($.trim($('#ConfidenceThresholdTextBox').val()));
-                let allRules = AprioriMining.mine(db, L, confidenceThreshold);
+                let allRules = AprioriMining.mine(db, L, confidenceThreshold);//tìm tập kết hợp
                 AddResultLine(allRules.length + " Association Rules");
                 AddResultLine(allRules.join('\n'));
                 formatData(allRules)

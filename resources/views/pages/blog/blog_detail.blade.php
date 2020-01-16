@@ -1,4 +1,4 @@
-@extends('layout_update')
+@extends('layout_update_v3')
 @section('content_update')
 <div class="col-sm-9">
     <div class="blog-post-area">
@@ -41,7 +41,7 @@
         <h2>3 RESPONSES</h2>
         <ul class="media-list">
             <li class="media">
-                
+
                 <a class="pull-left" href="#">
                     <img class="media-object" src="images/blog/man-two.jpg" alt="">
                 </a>
@@ -83,7 +83,7 @@
                     <a class="btn btn-primary" href=""><i class="fa fa-reply"></i>Replay</a>
                 </div>
             </li>
-        </ul>					
+        </ul>
     </div>
     <div class="replay-box">
         <div class="row">
