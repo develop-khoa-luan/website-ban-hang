@@ -6,7 +6,7 @@ class ItemsetCollection extends Array {
     constructor() {
         super();
     }
-
+    //lấy từng sản phẩm độc nhất
     getUniqueItems() {
         let uniqueItems = new Itemset();
 
@@ -18,10 +18,10 @@ class ItemsetCollection extends Array {
                 }
             }
         }
-
+        console.log('uniqueItems'+ uniqueItems);
         return uniqueItems;
     }
-
+    //tìm độ support min
     findSupport(itemset) {
         let matchCount = 0;
         for (var index in this) {

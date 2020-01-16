@@ -157,14 +157,14 @@ class ProductController extends Controller
             $category_id = $value->category_id;
         }
         //get recommend from apriori data
-        
+
         //attributes
         $recommend_products = [];
         $list_string_id = '';
 
         $get_apriori_data = DB::table('tbl_data_apriori')->where('product_1', $product_id)->where('product_2', 0)
         ->where('recommend_2', 0)->orderBy('recommend_1', 'desc')->get();
-        
+
         foreach ($get_apriori_data as $key => $value) {
             $list_string_id = $list_string_id.$value->recommend_1.',';
         }
@@ -174,9 +174,9 @@ class ProductController extends Controller
         ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->whereIn('tbl_product.product_id', $list_id)->where('tbl_product.product_status', 1)->orderBy('tbl_product.created_at', 'desc')->paginate(3);
-        
+
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
-        
+
         $selling_product = DB::table('tbl_order_detail')
         ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
         ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
