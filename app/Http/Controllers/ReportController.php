@@ -43,7 +43,7 @@ class ReportController extends Controller
             if ($report_detail_1 == 'theo-thang') {
                 $avg_earning_per_month = DB::table('tbl_order')
                     ->select(DB::raw('sum(order_total) as sum_total, MONTH(updated_at) as time'))
-                    ->where('order_status', '=', 'Xác nhận thanh toán')
+                    ->where('order_status', '=', 'Xác nhận thanh toán')->whereYear('updated_at', $current_year)
                     ->groupBy(DB::raw('YEAR(updated_at) ASC, MONTH(updated_at) ASC'))->get();
                 return response()->json([
                     'data' => $avg_earning_per_month,
