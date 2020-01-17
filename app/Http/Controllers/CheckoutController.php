@@ -79,14 +79,14 @@ class CheckoutController extends Controller
             Session::put('customer_id', $customer_id);
             Session::put('customer_name', $request->customer_name);
             return Redirect::to('/payment');
-            
+
         }
         else{
             Session::put('message1', 'Email đăng kí đã có trên hệ thống. Xin vui lòng nhập lại');
             return Redirect::to('/login-checkout');
-            
+
         }
-        
+
     }
 
     public function checkout()
@@ -153,7 +153,7 @@ class CheckoutController extends Controller
             if($name){
                 Session::put('customer_name', $name->customer_name);
             }
-           
+
             return Redirect::to('/payment');
         } else {
             return Redirect::to('/login-checkout');
@@ -274,7 +274,7 @@ class CheckoutController extends Controller
             ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
             ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
             ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->where('order_id', $order_id)->first();
-            
+
         $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
         ->where('order_id', $order_id)
         ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*','tbl_product.product_image')->get();
@@ -449,11 +449,12 @@ class CheckoutController extends Controller
     {
         $this->AuthLogin();
         DB::table('tbl_order')->where('order_id', $order_id)->delete();
+        DB::table('tbl_order_detail')->where('order_id', $order_id)->delete();
         Session::put('message', 'Xóa danh mục sản phẩm thành công.');
         return Redirect::to('manage-order');
     }
 
-  
+
     public function get_order_detail(Request $request){
         $customer_id = $request->customer_id;
         $view_customer = DB::table('tbl_customer')->where('customer_id',$customer_id)->get();
@@ -467,6 +468,6 @@ class CheckoutController extends Controller
         ->first();
 
         return response()->json(['get_order_detail'=>$get_order_detail]);
-      
+
     }
 }
