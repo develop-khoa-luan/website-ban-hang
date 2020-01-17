@@ -134,6 +134,7 @@ class ProductController extends Controller
     {
         $this->AuthLogin();
         DB::table('tbl_product')->where('product_id', $product_id)->delete();
+        DB::table('tbl_product_detail')->where('product_id', $product_id)->delete();
         Session::put('message', 'Xóa sản phẩm thành công.');
         return Redirect::to('all-product');
     }
