@@ -27,7 +27,7 @@
                         placeholder="Địa chỉ*" rows="1">{{$shipping_info->shipping_address}}</textarea>
                     <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
                         placeholder="Số điện thoại*" rows="1">{{$shipping_info->shipping_phone}}</textarea>
-                    <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
+                    <textarea name="shipping_notes"  placeholder="Ghi chú đơn hàng"
                         rows="5"></textarea>
                 </div>
                 @else
@@ -41,7 +41,7 @@
                         placeholder="Địa chỉ*" rows="1"></textarea>
                     <textarea name="shipping_phone" style="margin: 0 0 5px 0" required="required"
                         placeholder="Số điện thoại*" rows="1"></textarea>
-                    <textarea name="shipping_notes" required="required" placeholder="Ghi chú đơn hàng"
+                    <textarea name="shipping_notes"  placeholder="Ghi chú đơn hàng"
                         rows="5"></textarea>
                 </div>
                 @endif
@@ -63,7 +63,7 @@
                         </option>
                     </select>
                     <?php
-                        $content = Cart::content();       
+                        $content = Cart::content();
                     ?>
                     @foreach ($content as $v_content1)
                     <?php
@@ -81,7 +81,7 @@
 
                             $after_coupon = Session::get('total_after_discount');
                             if($after_coupon){
-                            
+
                             }
                         ?>
                     <input type="number" name="total_order" value={{$after_coupon}} hidden>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="table-responsive cart_info">
                     <?php
-                    $content = Cart::content();       
+                    $content = Cart::content();
                 ?>
                     <table class="table table-condensed">
                         <thead>
@@ -190,23 +190,23 @@
                                         <?php
                                                 $total_temp = Session::get('total_amount');
                                                 if($total_temp){
-                                                    
+
                                                     echo '<li> Tổng tiền ( Tạm tính )  <span>' .number_format($total_temp,0).' '.'VND'.  ' </span> </li>';
                                                     Session::put('total_amount',null);
                                                 }
 
                                                 $coupon = Session::get('CouponAmount');
                                                 if($coupon){
-                                                    
+
                                                     echo '<li> Tiền chiết khấu  <span>' .number_format($coupon,0).' '.'VND'.  ' </span> </li>';
                                                     Session::put('CouponAmount',null);
                                                 }
 
-                                                
+
 
                                                 $after_coupon = Session::get('total_after_discount');
                                                 if($after_coupon){
-                                                    
+
                                                     echo '<li> Tổng tiền  <span>' .number_format($after_coupon,0).' '.'VND'.  ' </span> </li>';
                                                     Session::put('total_after_discount',null);
                                                 }
