@@ -105,6 +105,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-form p-2">
+                            <div class="row border-bottom">
+                                <div class="col-12 col-sm-6 col-md-6 text-danger">
+                                    Ghi chú đơn hàng:
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 text-dark">
+                                    {{$order_by_id->shipping_notes}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

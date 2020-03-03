@@ -24,6 +24,7 @@ class CheckoutController extends Controller
             return Redirect::to('admin')->send();
         }
     }
+
     public function AuthLoginCustomer()
     {
         $customer_id = Session::get('customer_id');
@@ -39,10 +40,10 @@ class CheckoutController extends Controller
         $cart_count = Session::get('cart_count');
         if ($cart_count) {
             return Redirect::to('payment');
-            Session::put('cart_count',null);
+            Session::put('cart_count', null);
         } else {
             return Redirect::to('trang-chu')->send();
-            Session::put('cart_count',null);
+            Session::put('cart_count', null);
         }
     }
 
@@ -55,11 +56,11 @@ class CheckoutController extends Controller
         $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
 
         $selling_product = DB::table('tbl_order_detail')
-        ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
-        ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
-        ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-        ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
-        ->get();
+            ->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
+            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a', 'desc')
+            ->select('tbl_order_detail.product_name', 'tbl_product.product_price', 'tbl_product.product_image', 'tbl_product.product_id')
+            ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+            ->get();
 
         return view('pages.checkout.login_checkout')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
     }
@@ -72,16 +73,15 @@ class CheckoutController extends Controller
         $data['customer_password'] = md5($request->customer_password);
         $data['customer_phone'] = $request->customer_phone;
 
-        $duplicate = DB::table('tbl_customer')->where('customer_email',$data['customer_email'])->first();
+        $duplicate = DB::table('tbl_customer')->where('customer_email', $data['customer_email'])->first();
         // dd($duplicate);
-        if($duplicate == null){
+        if ($duplicate == null) {
             $customer_id = DB::table('tbl_customer')->insertGetId($data);
             Session::put('customer_id', $customer_id);
             Session::put('customer_name', $request->customer_name);
             return Redirect::to('/payment');
 
-        }
-        else{
+        } else {
             Session::put('message1', 'Email đăng kí đã có trên hệ thống. Xin vui lòng nhập lại');
             return Redirect::to('/login-checkout');
 
@@ -125,14 +125,14 @@ class CheckoutController extends Controller
 
         $get_last_order = DB::table('tbl_order')->where('customer_id', $customer_id)->orderBy('created_at', 'DESC')->first();
 
-        if($get_last_order){
+        if ($get_last_order) {
             $get_last_shipping = DB::table('tbl_shipping')->where('shipping_id', $get_last_order->shipping_id)->first();
-        }else{
+        } else {
             $get_last_shipping = "null";
         }
 
         return view('pages.checkout.payment')->with('all_slide', $all_slide)->with('shipping_info', $get_last_shipping)
-        ->with('category', $cate_product)->with('brand', $brand_product);
+            ->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function logout_checkout()
@@ -150,7 +150,7 @@ class CheckoutController extends Controller
         if ($result) {
             Session::put('customer_id', $result->customer_id);
             $name = DB::table('tbl_customer')->where('customer_id', $result->customer_id)->select('customer_name')->first();
-            if($name){
+            if ($name) {
                 Session::put('customer_name', $name->customer_name);
             }
 
@@ -159,6 +159,7 @@ class CheckoutController extends Controller
             return Redirect::to('/login-checkout');
         }
     }
+
     public function order_place(Request $request)
     {
         //insert info shipping
@@ -167,7 +168,11 @@ class CheckoutController extends Controller
         $datas['shipping_email'] = $request->shipping_email;
         $datas['shipping_address'] = $request->shipping_address;
         $datas['shipping_phone'] = $request->shipping_phone;
-        $datas['shipping_notes'] = $request->shipping_notes;
+        if ($request->shipping_notes == null) {
+            $datas['shipping_notes'] = "";
+        }else{
+            $datas['shipping_notes'] = $request->shipping_notes;
+        }
         $shipping_id = DB::table('tbl_shipping')->insertGetId($datas);
         Session::put('shipping_id', $shipping_id);
 
@@ -205,11 +210,11 @@ class CheckoutController extends Controller
             $brand_product = DB::table('tbl_brand')->where('brand_status', '1')->orderby('brand_name', 'asc')->get();
             $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
             $selling_product = DB::table('tbl_order_detail')
-            ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
-            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
-            ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-            ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
-            ->get();
+                ->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
+                ->groupBy('tbl_order_detail.product_name')->orderby('sum_a', 'desc')
+                ->select('tbl_order_detail.product_name', 'tbl_product.product_price', 'tbl_product.product_image', 'tbl_product.product_id')
+                ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+                ->get();
             Cart::destroy();
             return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         } elseif ($data['payment_method'] == 2) {
@@ -218,11 +223,11 @@ class CheckoutController extends Controller
             Cart::destroy();
             $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
             $selling_product = DB::table('tbl_order_detail')
-            ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
-            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
-            ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-            ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
-            ->get();
+                ->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
+                ->groupBy('tbl_order_detail.product_name')->orderby('sum_a', 'desc')
+                ->select('tbl_order_detail.product_name', 'tbl_product.product_price', 'tbl_product.product_image', 'tbl_product.product_id')
+                ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+                ->get();
             return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         } else {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_name', 'asc')->get();
@@ -230,31 +235,32 @@ class CheckoutController extends Controller
             Cart::destroy();
             $all_slide = DB::table('tbl_slide')->where('tbl_slide.slide_status', '1')->get();
             $selling_product = DB::table('tbl_order_detail')
-            ->join('tbl_product','tbl_product.product_id','=','tbl_order_detail.product_id')
-            ->groupBy('tbl_order_detail.product_name')->orderby('sum_a','desc')
-            ->select('tbl_order_detail.product_name','tbl_product.product_price','tbl_product.product_image','tbl_product.product_id')
-            ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
-            ->get();
+                ->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
+                ->groupBy('tbl_order_detail.product_name')->orderby('sum_a', 'desc')
+                ->select('tbl_order_detail.product_name', 'tbl_product.product_price', 'tbl_product.product_image', 'tbl_product.product_id')
+                ->selectRaw('COUNT(tbl_order_detail.product_id) AS sum_a')->limit(3)
+                ->get();
             return view('pages.checkout.handcash')->with('all_slide', $all_slide)->with('selling_product', $selling_product)->with('category', $cate_product)->with('brand', $brand_product);
         }
     }
+
     public function manage_order(Request $request)
     {
         $this->AuthLogin();
         $order_status = $request->order_status;
-        if($order_status == null){
+        if ($order_status == null) {
             $order_status = 'Đang chờ xử lý';
         }
-        if($order_status == 'Xem tất cả'){
-                $all_order = DB::table('tbl_order')
+        if ($order_status == 'Xem tất cả') {
+            $all_order = DB::table('tbl_order')
                 ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
                 ->select('tbl_order.*', 'tbl_customer.customer_name')
                 ->orderby('tbl_order.order_id', 'desc')
                 ->get();
             $manager_order = view('admin.manage_order')->with('all_order', $all_order)
-            ->with('order_status', $order_status);
+                ->with('order_status', $order_status);
             return view('admin_layout')->with('admin.all_product', $manager_order);
-        }else{
+        } else {
             $all_order = DB::table('tbl_order')
                 ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
                 ->select('tbl_order.*', 'tbl_customer.customer_name')
@@ -262,7 +268,7 @@ class CheckoutController extends Controller
                 ->orderby('tbl_order.order_id', 'desc')
                 ->get();
             $manager_order = view('admin.manage_order')->with('all_order', $all_order)
-            ->with('order_status', $order_status);
+                ->with('order_status', $order_status);
             return view('admin_layout')->with('admin.all_product', $manager_order);
         }
     }
@@ -276,8 +282,8 @@ class CheckoutController extends Controller
             ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->where('order_id', $order_id)->first();
 
         $all_order_detail = DB::table('tbl_order_detail')->join('tbl_product', 'tbl_product.product_id', '=', 'tbl_order_detail.product_id')
-        ->where('order_id', $order_id)
-        ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*','tbl_product.product_image')->get();
+            ->where('order_id', $order_id)
+            ->orderby('order_detail_id', 'asc')->select('tbl_order_detail.*', 'tbl_product.product_image')->get();
 
         $count_quantity = DB::table('tbl_order_detail')->where('order_id', $order_id)->orderby('order_detail_id', 'asc')->sum('product_sales_quantity');
 
@@ -305,8 +311,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
-                            ->decrement('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id], ['product_size', $order_datail->product_size]])
+                                ->decrement('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Xác nhận đơn hàng');
@@ -316,8 +322,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
-                            ->decrement('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id], ['product_size', $order_datail->product_size]])
+                                ->decrement('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Xác nhận thanh toán');
@@ -327,8 +333,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
-                            ->decrement('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id], ['product_size', $order_datail->product_size]])
+                                ->decrement('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang chờ xử lý->Đang giao hàng');
@@ -352,8 +358,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
-                            ->increment('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id], ['product_size', $order_datail->product_size]])
+                                ->increment('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Đang chờ xử lý');
@@ -371,18 +377,18 @@ class CheckoutController extends Controller
                         return Redirect::to('/view-order/' . $order_id);
                         break;
                     case "Đang giao hàng":
-                            $data = array();
-                            $data['order_status'] = $request->order_status;
-                            DB::table('tbl_order')->where('order_id', $order_id)->update($data);
-                            Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Đang giao hàng');
-                            return Redirect::to('/view-order/' . $order_id);
-                            break;
+                        $data = array();
+                        $data['order_status'] = $request->order_status;
+                        DB::table('tbl_order')->where('order_id', $order_id)->update($data);
+                        Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Đang giao hàng');
+                        return Redirect::to('/view-order/' . $order_id);
+                        break;
                     case "Hủy đơn hàng":
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
-                            ->increment('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id], ['product_size', $order_datail->product_size]])
+                                ->increment('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Xác nhận đơn hàng->Hủy đơn hàng');
@@ -418,8 +424,8 @@ class CheckoutController extends Controller
                         $data = array();
                         $data['order_status'] = $request->order_status;
                         foreach ($get_order_detail as $order_datail) {
-                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id],['product_size', $order_datail->product_size]])
-                            ->increment('product_quantity', $order_datail->product_sales_quantity);
+                            DB::table('tbl_product_detail')->where([['product_id', $order_datail->product_id], ['product_size', $order_datail->product_size]])
+                                ->increment('product_quantity', $order_datail->product_sales_quantity);
                         }
                         DB::table('tbl_order')->where('order_id', $order_id)->update($data);
                         Session::put('message', 'Cập nhật đơn hàng thành công! Đang giao hàng->Hủy đơn hàng');
@@ -455,19 +461,20 @@ class CheckoutController extends Controller
     }
 
 
-    public function get_order_detail(Request $request){
+    public function get_order_detail(Request $request)
+    {
         $customer_id = $request->customer_id;
-        $view_customer = DB::table('tbl_customer')->where('customer_id',$customer_id)->get();
+        $view_customer = DB::table('tbl_customer')->where('customer_id', $customer_id)->get();
         $get_order_detail = DB::table('tbl_order')
-        ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
-        ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
-        ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
-        ->select('tbl_order.*','tbl_customer.*','tbl_order_detail.*','tbl_shipping.*')
-        ->where('tbl_customer.customer_id',$customer_id)
-        ->orderby('tbl_order.order_id', 'desc')
-        ->first();
+            ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+            ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
+            ->join('tbl_shipping', 'tbl_order.shipping_id', '=', 'tbl_shipping.shipping_id')
+            ->select('tbl_order.*', 'tbl_customer.*', 'tbl_order_detail.*', 'tbl_shipping.*')
+            ->where('tbl_customer.customer_id', $customer_id)
+            ->orderby('tbl_order.order_id', 'desc')
+            ->first();
 
-        return response()->json(['get_order_detail'=>$get_order_detail]);
+        return response()->json(['get_order_detail' => $get_order_detail]);
 
     }
 }

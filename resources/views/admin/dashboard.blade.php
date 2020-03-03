@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3">Tổng doanh thu (Tháng)
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-3">Doanh thu tháng hiện tại ({{$currentMonth}})
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{number_format($earning_current_month)}} VND</div>
@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-3">Doanh thu bình quân (năm)</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-3">Doanh thu trung bình mỗi tháng trong năm {{$currentYear}}</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{number_format($avg_earning)}} VND
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                 break;
             default:
                 break;
-                
+
         }
         arrayAvgTotal.push(element.avg_total/1000000);
     });

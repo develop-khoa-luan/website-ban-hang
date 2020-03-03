@@ -25,7 +25,7 @@ class AdminController extends Controller
     }
 
     public function index (){
-        
+
         return view ('admin_login');
     }
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
         //dd($earning_current_month);
         $avg_earning_per_month = DB::table('tbl_order')
         ->select(DB::raw('sum(order_total) as avg_total, MONTH(updated_at) as month'))
-        ->where('order_status', '=', 'Xác nhận thanh toán')
+        ->where('order_status', '=', 'Xác nhận thanh toán')->whereYear('created_at', $current_year)
         ->groupBy(DB::raw('YEAR(updated_at) ASC, MONTH(updated_at) ASC'))->get();
 
         $sum_avg = 0;
@@ -62,7 +62,7 @@ class AdminController extends Controller
         $bills_pending = DB::table('tbl_order')->where('order_status', '=', 'Đang chờ xử lý')
         ->count('order_id');
 
-        
+
         $admin_id = Session::get('admin_id');
         $info_admin = DB::table('tbl_admin')->where('admin_id',$admin_id)->first();
 
@@ -70,7 +70,7 @@ class AdminController extends Controller
 
         return view('admin.dashboard')->with('info_admin',$info_admin)->with('earning_current_month',$earning_current_month)->with('avg_earning', $avg_earning)
         ->with('avg_earning_per_month', $avg_earning_per_month)->with('bills_current_month', $bills_current_month)
-        ->with('bills_pending', $bills_pending);
+        ->with('bills_pending', $bills_pending)->with("currentMonth", $current_month)->with("currentYear", $current_year);
 
     }
 
@@ -79,7 +79,7 @@ class AdminController extends Controller
         $admin_password = md5($request->admin_password);
 
         $result = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
-    
+
         if($result){
             Session::put('admin_name',$result->admin_name);
             Session::put('admin_id',$result->admin_id);
