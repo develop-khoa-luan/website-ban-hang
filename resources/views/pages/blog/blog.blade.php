@@ -21,7 +21,7 @@
                 </span>
             </div>
             <a href="">
-            <img src="{{URL::to('/public/uploads/product/'.$blog->featured_image)}}" style="height: 390px; width: 846px" alt="">
+            <img src="{{URL::to('/public/uploads/product/'.$blog->featured_image)}}" style="height: 290px; width: 446px" alt="">
             </a>
             <p>{{$blog->alias}}</p>
             <a class="btn btn-primary" href="{{URL::to('/blog/'.$blog->id)}}">Đọc thêm</a>
@@ -30,10 +30,6 @@
 
         <div class="pagination-area">
             <ul class="pagination">
-                <li><a href="" class="active">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
             </ul>
         </div>
     </div>
